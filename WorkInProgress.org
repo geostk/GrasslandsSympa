@@ -1,0 +1,625 @@
+#+TITLE: Analyze of grasslands biodiversity/heterogeneity
+#+SUBTITLE: MUESLI
+#+OPTIONS: toc:t todo:nil tags:nil
+#+LATEX_CLASS: koma-article
+#+LATEX_CLASS_OPTIONS: [a4paper,11pt,DIV=16]
+#+LATEX_HEADER:\usepackage[french]{babel}\usepackage{minted}\usemintedstyle{emacs}\usepackage{booktabs}
+#+TODO: TODO INPROGRESS DONE                       
+
+* Convenient functions
+** Global import
+#+BEGIN_SRC python :tangle Codes/muesli_functions.py
+import scipy as sp
+import sqlite3
+
+#+END_SRC
+** Extract only two bands from the data
+#+BEGIN_SRC python :tangle Codes/muesli_functions.py
+def read2bands(DB,b1,b2):
+    """The function  reads two bands  from the database and  group samples
+    with the same ID.
+
+    """
+
+    # Create a SQL connection - No check if the DB exist !
+    con = sqlite3.connect(DB) 
+    cursor = con.cursor()
+
+    # Get the IDs
+    id_pp = []
+    for row in cursor.execute("SELECT id FROM output WHERE band_0 > 0"): # Read only grassland inside the MUESLI area
+        if row[0] not in id_pp: # Add [0] to the two next row
+            id_pp.append(row[0])
+
+    # Load one grassland per iteration
+    X = list()
+    for id_ in id_pp:
+        # Load variables
+        X_ = list()
+        for row in cursor.execute("SELECT band_{}, band_{} FROM output WHERE id=?".format(b1,b2),(id_,)):
+            tp = sp.asarray(row).astype(float)
+            if not sp.isnan(tp).any(): # Check for nan values
+                X_.append(tp)
+        X.append(sp.asarray(X_))
+
+    return X,id_pp
+#+END_SRC
+
+
+
+
+* Processing
+** NDVI 
+#+BEGIN_SRC python :tangle Codes/ndvi_per_grasslands.py :exports codes
+import muesli_functions as mf
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.style.use('ggplot')
+from sklearn.neighbors import KernelDensity
+from sklearn.model_selection import GridSearchCV
+import scipy as sp
+
+# Options
+PLOT_DENSITY = True
+
+# Load samples
+X,Y = mf.read2bands("/media/Data/Data/MUESLI/spectresPrairies/Data/prairie_half.sqlite",70,106)
+print("Load {} grasslands".format(len(X)))
+
+# Compute NDVI
+NDVI = []
+for i in xrange(len(X)):
+    X_ = X[i]
+    # Compute safe version of NDVI
+    DENOM = (X_[:,1]+X_[:,0])
+    t = sp.where(DENOM>0)[0]    
+    NDVI_ = (X_[t,1]-X_[t,0])/DENOM[t]
+    if len(NDVI_) > 0:
+        NDVI.append(NDVI_)
+
+print("Compute NDVI for {} grasslands".format(len(NDVI)))
+
+if PLOT_DENSITY:
+    ndvi_grid = sp.linspace(0, 1, 1000)[:, sp.newaxis]
+    for i in xrange(len(NDVI)):
+        print "Compute id:{}".format(Y[i])
+        grid = GridSearchCV(KernelDensity(),
+                            {'bandwidth': sp.linspace(0.001, 0.1, 10)},
+                            cv=5, n_jobs=-1)
+        NDVI_ = NDVI[i][:,sp.newaxis]
+        grid.fit(NDVI_)
+        kde = grid.best_estimator_
+        pdf = sp.exp(kde.score_samples(ndvi_grid))
+        plt.figure()
+        plt.plot(ndvi_grid,pdf,linewidth=3,alpha=0.75)
+        plt.plot(NDVI_,-0.5 - 0.2 * sp.random.random(NDVI_.size),'ko',alpha=0.25)
+        plt.title('Grasslands number {0} of size {1}. Optimal bw={2}'.format(Y[i],NDVI_.shape[0],kde.bandwidth))
+        plt.grid(True)
+        plt.savefig("/media/Data/Data/MUESLI/spectresPrairies/Figures/density_ndvi_{}.png".format(Y[i]),dpi=300)
+        plt.close()
+#+END_SRC
+
+We can plot the differents histograms
+
+#+BEGIN_SRC bash :exports results :results raw
+for i in Figures/density_*png
+do
+    echo \#+ATTR_HTML: :width 500px
+    echo [[file:./${i}]]
+done
+#+END_SRC
+
+#+RESULTS:
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_100.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_103.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_104.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_105.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_106.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_107.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_108.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_109.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_10.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_110.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_111.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_113.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_114.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_115.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_116.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_119.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_11.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_120.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_121.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_122.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_123.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_124.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_125.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_126.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_127.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_128.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_129.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_12.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_130.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_131.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_132.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_133.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_134.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_135.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_136.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_137.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_138.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_13.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_141.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_142.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_143.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_14.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_15.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_16.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_17.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_18.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_1.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_20.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_21.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_22.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_23.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_24.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_25.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_26.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_27.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_28.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_2.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_33.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_35.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_36.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_37.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_38.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_39.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_3.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_42.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_43.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_44.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_46.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_47.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_48.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_49.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_4.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_50.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_51.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_52.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_53.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_54.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_55.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_56.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_57.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_58.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_59.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_5.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_60.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_61.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_62.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_63.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_64.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_65.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_66.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_67.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_68.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_69.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_6.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_70.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_71.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_72.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_73.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_74.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_75.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_76.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_77.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_78.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_79.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_7.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_80.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_81.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_82.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_83.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_84.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_8.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_93.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_94.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_95.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_96.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_97.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_98.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_99.png]]
+#+ATTR_HTML: :width 500px :style "display:inline"
+[[file:./Figures/density_grassland_9.png]]
+
+* Old things                                                       :noexport:
+** Clean data
+The data  must be cleaned. Some  of the wavelengths are  noisy, due to
+water absorption in the atmosphere. The valid domains are
+
+#+ATTR_LATEX: :booktabs t
+#+CAPTION: Domain of validity
+| Domain | Beginning |  End |
+|--------+-----------+------|
+|      1 |       400 | 1340 |
+|      2 |      1550 | 1800 |
+|      3 |      1950 | 2400 |
+
+These parts need to be extracted from the data. The following python code does the job.
+
+#+BEGIN_SRC python 
+import scipy as sp
+import sqlite3
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.style.use('ggplot')
+
+
+# Parameters
+NB = 438
+bands = 'band_0'
+for b in xrange(1,NB):
+    bands += ", band_{}".format(b)
+
+# Create SQL connection
+con = sqlite3.connect("prairie_half.sqlite")
+cursor = con.cursor()
+
+# Load the data
+id_pp = []
+for row in cursor.execute("SELECT id FROM output WHERE band_0 > 0"): # Read only grassland inside the MUESLI area
+    if row[0] not in id_pp: # Add [0] to the two next row
+        id_pp.append(row[0])
+    
+# Load one grassland per iteration and compute the mean
+Y, X = [], []
+for id_ in id_pp:
+    # Load variables
+    cursor.execute("SELECT d, h FROM output WHERE id=? LIMIT 1",(id_,))
+    rows_y=cursor.fetchall()
+    Y.append([
+        float(rows_y[0][0]),
+        float(rows_y[0][1])
+    ])
+    rows_y = None
+
+    # Load samples
+    X_ = list()
+    for row in cursor.execute("SELECT "+bands+" FROM output WHERE id=?",(id_,)):
+        tp = sp.asarray(row).astype(float)
+        if not sp.isnan(tp).any(): # Check for nan values
+            X_.append(tp)
+        
+    X.append(sp.asarray(X_).mean(axis=0))
+
+# Close connection
+con.close()
+
+# Clean data
+X = sp.asarray(X)
+mask = sp.where(X[0,:]!=9000)[0]
+sp.savez("prairies.npz",X=X,Y=Y,M=mask)
+
+for i in xrange(X.shape[0]):
+    plt.plot(X[i,mask])
+plt.show()
+#+END_SRC
+
+#+BEGIN_SRC python 
+import scipy as sp
+import sqlite3
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.style.use('ggplot')
+
+
+# Parameters
+NB = 438
+bands = 'band_0'
+for b in xrange(1,NB):
+    bands += ", band_{}".format(b)
+
+# Create SQL connection
+con = sqlite3.connect("prairie_half.sqlite")
+cursor = con.cursor()
+
+# Load the data
+id_pp = []
+for row in cursor.execute("SELECT id FROM output WHERE band_0 > 0"): # Read only grassland inside the MUESLI area
+    if row[0] not in id_pp: 
+        id_pp.append(row[0])
+    
+# Load one grassland per iteration and compute the mean
+Y, X = list(), list()
+for id_ in id_pp:
+    # Load variables
+    cursor.execute("SELECT d, h FROM output WHERE id=? LIMIT 1",(id_,))
+    rows_y=cursor.fetchall()
+    d,h=float(rows_y[0][0]),float(rows_y[0][1])
+    rows_y = None
+
+    # Load samples
+    for row in cursor.execute("SELECT ogc_fid "+bands+" FROM output WHERE id=?",(id_,)):
+        tp = sp.asarray(row[1:]).astype(float)
+        if not sp.isnan(tp).any(): # Check for nan values
+            X.append(tp)
+            Y.append([d,h,row[0]])
+# Close connection
+con.close()
+
+# Clean data
+X, Y = sp.asarray(X), sp.asarray(Y)
+print X.shape
+print Y.shape
+mask = sp.where(X[0,:]!=9000)[0]
+sp.savez("prairiesFull.npz",X=X,Y=Y,M=mask)
+#+END_SRC
+** Learning step
+
+#+BEGIN_SRC python
+import lms
+import scipy as sp
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+# Load data
+data = sp.load("prairiesFull.npz")
+X, Y, M = data['X'], data['Y'], data['M']
+
+# Scale data
+scaler = StandardScaler()
+X = scaler.fit_transform(X[:,M])
+
+# Split data
+xt, xT, yt, yT = train_test_split(X,Y[:,1],test_size=0.25,random_state=0)
+
+# Learn
+SIG = 2.0**sp.arange(-4,5)
+THETA = 10.0**sp.arange(-10,10)
+
+model = lms.KLMS()
+ids,rmse=model.forward_feature_extraction(xt,yt,SIG,delta=-100,maxvar=3,v=5)
+print("Best Ids: {}".format(ids))
+print("RMSE: {}".format(rmse))
+
+res = model.cross_validation(xt[:,ids],yt,SIG,learn_model=1,output=1,v=5)
+print("Best parameters: sig = {0} and theta = {1}".format(res[0],res[1]))
+print("Best R2: {0}".format(res[2]))
+
+yp=model.predict(xT[:,ids],xt[:,ids])
+r = 1 - sp.mean((yp-yT)**2)/sp.var(yT)
+print r
+plt.figure()
+plt.scatter(yT,yp,s=100,c=(yT-yp)**2)
+plt.show()
+#+END_SRC
+** Unsupervised learning
+ #+BEGIN_SRC python
+import scipy as sp
+import sqlite3
+import hdda
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.style.use('ggplot')
+import csv
+
+# Parameters
+NB = 438
+bands = 'band_0'
+for b in xrange(1,NB):
+    bands += ", band_{}".format(b)
+
+# Create SQL connection
+con = sqlite3.connect("prairie_half.sqlite")
+cursor = con.cursor()
+
+# Load all samples
+X,Y = list(),list()
+for row in cursor.execute("SELECT id, "+bands+" FROM output where band_0 > 0"):
+    tp = sp.asarray(row[1:]).astype(float)
+    if not sp.isnan(tp).any(): # Check for nan values
+        X.append(tp)
+        Y.append(row[0])
+
+# Close connection
+con.close()
+X, Y = sp.asarray(X), sp.asarray(Y)
+print X.shape
+
+# Learn
+BIC, ICL = [], []
+NCLASS = range(10,80,5)
+for c in NCLASS:
+    print c
+    param = {'th':0.1,'C':c,'tol':0.00001}
+    model = hdda.HDGMM(model='M4')
+    out = model.fit(X[::10,X[0,:]!=9000],param=param)
+    if out == 1:
+        ICL.append(model.icl)
+        BIC.append(model.bic)
+        print("Number of iteration: {}".format(model.niter)) 
+    else:
+        ICL.append(sp.nan)
+        BIC.append(sp.nan)
+dICL = sp.diff(ICL)
+dBIC = sp.diff(BIC)
+print dICL/dICL.max()
+print dBIC/dBIC.max()
+
+with open('criteria.csv','wb') as csvfile:
+    writer = csv.writer(csvfile)
+    writer.writerow(('Number of class','ICL','BIC'))
+    for row in zip(NCLASS,ICL,BIC):
+        writer.writerow(row)   
+#+END_SRC
+** Spectral Variation Hypothesis
+
+#+BEGIN_SRC python
+import scipy as sp
+from scipy import spatial,linalg,stats
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.style.use('ggplot')
+
+# Load data
+data = sp.load("prairiesFull.npz")
+X, Y, M = data['X'], data['Y'], data['M']
+d = sp.unique(Y[:,0])
+h = sp.unique(Y[:,1])
+sv,svn = [],[]
+for d_ in d:
+    id = sp.where(Y[:,0]==d_)[0]
+    Xt = X[id[:,sp.newaxis],M]
+    Xtm = Xt.mean(axis=0)[sp.newaxis,:]
+    sv.append(spatial.distance.cdist(Xt,Xtm, 'sqeuclidean').mean())
+    cov = sp.cov(Xt,rowvar=0)
+    covu = linalg.triu(cov)
+    svn.append(covu[covu!=0].sum())
+print stats.pearsonr(sp.log(sv),d)
+print stats.pearsonr(sp.log(svn),d)
+print stats.pearsonr(sv,d)
+print stats.pearsonr(svn,d)
+
+print stats.pearsonr(sp.log(sv),h)
+print stats.pearsonr(sp.log(svn),h)
+print stats.pearsonr(sv,h)
+print stats.pearsonr(svn,h)
+
+# plt.figure()
+# plt.scatter(sp.log(svn),d)
+# plt.figure()
+# plt.scatter(sp.log(svn),h)
+# plt.figure()
+# plt.scatter(sp.log(sv),sp.log(svn))
+# plt.show()
+#+END_SRC
+
+#+RESULTS:
+
+* Configurations
+** Changes les images pour inline
+#+BEGIN_SRC bash
+sed -i 's/.figure { padding: 1em; }.*$/.figure { padding: 1em; display:inline }/g' WorkInProgress.html
+sed -i 's/.figure p { padding: 1em; }.*$/.figure { padding: 1em; display:inline }/g' WorkInProgress.html
+#+END_SRC
+
+#+RESULTS:
