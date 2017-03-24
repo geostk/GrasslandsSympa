@@ -11,7 +11,6 @@
 #+BEGIN_SRC python :tangle Codes/muesli_functions.py
 import scipy as sp
 import sqlite3
-
 #+END_SRC
 ** Extract only two bands from the data
 #+BEGIN_SRC python :tangle Codes/muesli_functions.py
@@ -21,14 +20,14 @@ def read2bands(DB,b1,b2):
 
     """
 
-    # Create a SQL connection - No check if the DB exist !
+    # Create a SQL connection - No check if the DB exists !
     con = sqlite3.connect(DB) 
     cursor = con.cursor()
 
     # Get the IDs
     id_pp = []
-    for row in cursor.execute("SELECT id FROM output WHERE band_0 > 0"): # Read only grassland inside the MUESLI area
-        if row[0] not in id_pp: # Add [0] to the two next row
+    for row in cursor.execute("SELECT id FROM output WHERE band_0 > 0"): # Read only grasslands that intersect with the MUESLI area
+        if row[0] not in id_pp:
             id_pp.append(row[0])
 
     # Load one grassland per iteration
@@ -45,11 +44,11 @@ def read2bands(DB,b1,b2):
     return X,id_pp
 #+END_SRC
 
-
-
-
 * Processing
 ** NDVI 
+
+For all the grasslands, the NDVI is computed and the density plot is estimated.
+
 #+BEGIN_SRC python :tangle Codes/ndvi_per_grasslands.py :exports codes
 import muesli_functions as mf
 import matplotlib.pyplot as plt
@@ -99,255 +98,267 @@ if PLOT_DENSITY:
         plt.close()
 #+END_SRC
 
-We can plot the differents histograms
+We can plot the estimated density
 
-#+BEGIN_SRC bash :exports results :results raw
+#+BEGIN_SRC bash :exports results :results raw outputs
 for i in Figures/density_*png
 do
-    echo \#+ATTR_HTML: :width 500px
+    echo \#+ATTR_HTML: :width 500px :style "display:inline"
     echo [[file:./${i}]]
 done
 #+END_SRC
 
 #+RESULTS:
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_100.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_103.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_104.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_105.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_106.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_107.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_108.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_109.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_10.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_110.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_111.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_113.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_114.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_115.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_116.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_119.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_11.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_120.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_121.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_122.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_123.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_124.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_125.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_126.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_127.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_128.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_129.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_12.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_130.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_131.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_132.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_133.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_134.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_135.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_136.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_137.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_138.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_13.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_141.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_142.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_143.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_14.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_15.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_16.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_17.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_18.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_1.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_20.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_21.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_22.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_23.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_24.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_25.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_26.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_27.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_28.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_2.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_33.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_35.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_36.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_37.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_38.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_39.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_3.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_42.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_43.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_44.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_46.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_47.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_48.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_49.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_4.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_50.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_51.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_52.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_53.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_54.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_55.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_56.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_57.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_58.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_59.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_5.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_60.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_61.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_62.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_63.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_64.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_65.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_66.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_67.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_68.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_69.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_6.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_70.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_71.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_72.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_73.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_74.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_75.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_76.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_77.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_78.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_79.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_7.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_80.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_81.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_82.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_83.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_84.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_8.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_93.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_94.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_95.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_96.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_97.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_98.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_99.png]]
-#+ATTR_HTML: :width 500px :style "display:inline"
+#+ATTR_HTML: :width 500px :style display:inline
 [[file:./Figures/density_grassland_9.png]]
+
+* To do 
+- [ ] Extract color images of the grasslands
+
+* Configurations                                                   :noexport:
+** Changes les images pour inline
+#+BEGIN_SRC bash
+sed -i 's/.figure { padding: 1em; }*$/.figure { padding: 1em; display:inline }/g' WorkInProgress.html
+sed -i 's/.figure p { text-align: center; }*$/.figure p { text-align: center ; display:inline }/g' WorkInProgress.html
+#+END_SRC
+
+#+RESULTS:
 
 * Old things                                                       :noexport:
 ** Clean data
@@ -611,15 +622,6 @@ print stats.pearsonr(svn,h)
 # plt.figure()
 # plt.scatter(sp.log(sv),sp.log(svn))
 # plt.show()
-#+END_SRC
-
-#+RESULTS:
-
-* Configurations
-** Changes les images pour inline
-#+BEGIN_SRC bash
-sed -i 's/.figure { padding: 1em; }.*$/.figure { padding: 1em; display:inline }/g' WorkInProgress.html
-sed -i 's/.figure p { padding: 1em; }.*$/.figure { padding: 1em; display:inline }/g' WorkInProgress.html
 #+END_SRC
 
 #+RESULTS:
