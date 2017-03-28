@@ -44,6 +44,8 @@ def read2bands(DB,b1,b2):
     return X,id_pp
 #+END_SRC
 
+* Pre-processing
+** 
 * Processing
 ** NDVI 
 
@@ -101,7 +103,7 @@ if PLOT_DENSITY:
 We can plot the estimated density
 
 #+BEGIN_SRC bash :exports results :results raw outputs
-for i in Figures/density_*png
+for i in Figures/density_ndvi_*png
 do
     echo \#+ATTR_HTML: :width 500px :style "display:inline"
     echo [[file:./${i}]]
@@ -110,243 +112,243 @@ done
 
 #+RESULTS:
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_100.png]]
+[[file:./Figures/density_ndvi_100.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_103.png]]
+[[file:./Figures/density_ndvi_103.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_104.png]]
+[[file:./Figures/density_ndvi_104.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_105.png]]
+[[file:./Figures/density_ndvi_105.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_106.png]]
+[[file:./Figures/density_ndvi_106.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_107.png]]
+[[file:./Figures/density_ndvi_107.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_108.png]]
+[[file:./Figures/density_ndvi_108.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_109.png]]
+[[file:./Figures/density_ndvi_109.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_10.png]]
+[[file:./Figures/density_ndvi_10.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_110.png]]
+[[file:./Figures/density_ndvi_110.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_111.png]]
+[[file:./Figures/density_ndvi_111.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_113.png]]
+[[file:./Figures/density_ndvi_113.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_114.png]]
+[[file:./Figures/density_ndvi_114.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_115.png]]
+[[file:./Figures/density_ndvi_115.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_116.png]]
+[[file:./Figures/density_ndvi_116.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_119.png]]
+[[file:./Figures/density_ndvi_119.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_11.png]]
+[[file:./Figures/density_ndvi_11.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_120.png]]
+[[file:./Figures/density_ndvi_120.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_121.png]]
+[[file:./Figures/density_ndvi_121.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_122.png]]
+[[file:./Figures/density_ndvi_122.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_123.png]]
+[[file:./Figures/density_ndvi_123.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_124.png]]
+[[file:./Figures/density_ndvi_124.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_125.png]]
+[[file:./Figures/density_ndvi_125.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_126.png]]
+[[file:./Figures/density_ndvi_126.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_127.png]]
+[[file:./Figures/density_ndvi_127.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_128.png]]
+[[file:./Figures/density_ndvi_128.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_129.png]]
+[[file:./Figures/density_ndvi_129.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_12.png]]
+[[file:./Figures/density_ndvi_12.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_130.png]]
+[[file:./Figures/density_ndvi_130.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_131.png]]
+[[file:./Figures/density_ndvi_131.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_132.png]]
+[[file:./Figures/density_ndvi_132.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_133.png]]
+[[file:./Figures/density_ndvi_133.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_134.png]]
+[[file:./Figures/density_ndvi_134.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_135.png]]
+[[file:./Figures/density_ndvi_135.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_136.png]]
+[[file:./Figures/density_ndvi_136.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_137.png]]
+[[file:./Figures/density_ndvi_137.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_138.png]]
+[[file:./Figures/density_ndvi_138.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_13.png]]
+[[file:./Figures/density_ndvi_13.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_141.png]]
+[[file:./Figures/density_ndvi_141.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_142.png]]
+[[file:./Figures/density_ndvi_142.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_143.png]]
+[[file:./Figures/density_ndvi_143.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_14.png]]
+[[file:./Figures/density_ndvi_14.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_15.png]]
+[[file:./Figures/density_ndvi_15.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_16.png]]
+[[file:./Figures/density_ndvi_16.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_17.png]]
+[[file:./Figures/density_ndvi_17.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_18.png]]
+[[file:./Figures/density_ndvi_18.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_1.png]]
+[[file:./Figures/density_ndvi_1.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_20.png]]
+[[file:./Figures/density_ndvi_20.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_21.png]]
+[[file:./Figures/density_ndvi_21.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_22.png]]
+[[file:./Figures/density_ndvi_22.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_23.png]]
+[[file:./Figures/density_ndvi_23.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_24.png]]
+[[file:./Figures/density_ndvi_24.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_25.png]]
+[[file:./Figures/density_ndvi_25.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_26.png]]
+[[file:./Figures/density_ndvi_26.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_27.png]]
+[[file:./Figures/density_ndvi_27.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_28.png]]
+[[file:./Figures/density_ndvi_28.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_2.png]]
+[[file:./Figures/density_ndvi_2.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_33.png]]
+[[file:./Figures/density_ndvi_33.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_35.png]]
+[[file:./Figures/density_ndvi_35.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_36.png]]
+[[file:./Figures/density_ndvi_36.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_37.png]]
+[[file:./Figures/density_ndvi_37.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_38.png]]
+[[file:./Figures/density_ndvi_38.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_39.png]]
+[[file:./Figures/density_ndvi_39.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_3.png]]
+[[file:./Figures/density_ndvi_3.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_42.png]]
+[[file:./Figures/density_ndvi_42.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_43.png]]
+[[file:./Figures/density_ndvi_43.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_44.png]]
+[[file:./Figures/density_ndvi_44.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_46.png]]
+[[file:./Figures/density_ndvi_46.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_47.png]]
+[[file:./Figures/density_ndvi_47.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_48.png]]
+[[file:./Figures/density_ndvi_48.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_49.png]]
+[[file:./Figures/density_ndvi_49.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_4.png]]
+[[file:./Figures/density_ndvi_4.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_50.png]]
+[[file:./Figures/density_ndvi_50.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_51.png]]
+[[file:./Figures/density_ndvi_51.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_52.png]]
+[[file:./Figures/density_ndvi_52.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_53.png]]
+[[file:./Figures/density_ndvi_53.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_54.png]]
+[[file:./Figures/density_ndvi_54.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_55.png]]
+[[file:./Figures/density_ndvi_55.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_56.png]]
+[[file:./Figures/density_ndvi_56.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_57.png]]
+[[file:./Figures/density_ndvi_57.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_58.png]]
+[[file:./Figures/density_ndvi_58.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_59.png]]
+[[file:./Figures/density_ndvi_59.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_5.png]]
+[[file:./Figures/density_ndvi_5.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_60.png]]
+[[file:./Figures/density_ndvi_60.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_61.png]]
+[[file:./Figures/density_ndvi_61.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_62.png]]
+[[file:./Figures/density_ndvi_62.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_63.png]]
+[[file:./Figures/density_ndvi_63.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_64.png]]
+[[file:./Figures/density_ndvi_64.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_65.png]]
+[[file:./Figures/density_ndvi_65.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_66.png]]
+[[file:./Figures/density_ndvi_66.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_67.png]]
+[[file:./Figures/density_ndvi_67.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_68.png]]
+[[file:./Figures/density_ndvi_68.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_69.png]]
+[[file:./Figures/density_ndvi_69.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_6.png]]
+[[file:./Figures/density_ndvi_6.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_70.png]]
+[[file:./Figures/density_ndvi_70.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_71.png]]
+[[file:./Figures/density_ndvi_71.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_72.png]]
+[[file:./Figures/density_ndvi_72.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_73.png]]
+[[file:./Figures/density_ndvi_73.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_74.png]]
+[[file:./Figures/density_ndvi_74.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_75.png]]
+[[file:./Figures/density_ndvi_75.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_76.png]]
+[[file:./Figures/density_ndvi_76.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_77.png]]
+[[file:./Figures/density_ndvi_77.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_78.png]]
+[[file:./Figures/density_ndvi_78.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_79.png]]
+[[file:./Figures/density_ndvi_79.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_7.png]]
+[[file:./Figures/density_ndvi_7.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_80.png]]
+[[file:./Figures/density_ndvi_80.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_81.png]]
+[[file:./Figures/density_ndvi_81.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_82.png]]
+[[file:./Figures/density_ndvi_82.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_83.png]]
+[[file:./Figures/density_ndvi_83.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_84.png]]
+[[file:./Figures/density_ndvi_84.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_8.png]]
+[[file:./Figures/density_ndvi_8.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_93.png]]
+[[file:./Figures/density_ndvi_93.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_94.png]]
+[[file:./Figures/density_ndvi_94.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_95.png]]
+[[file:./Figures/density_ndvi_95.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_96.png]]
+[[file:./Figures/density_ndvi_96.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_97.png]]
+[[file:./Figures/density_ndvi_97.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_98.png]]
+[[file:./Figures/density_ndvi_98.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_99.png]]
+[[file:./Figures/density_ndvi_99.png]]
 #+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_grassland_9.png]]
+[[file:./Figures/density_ndvi_9.png]]
 
 * To do 
 - [ ] Extract color images of the grasslands
