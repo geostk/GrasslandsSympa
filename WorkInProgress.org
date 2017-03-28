@@ -45,7 +45,8 @@ def read2bands(DB,b1,b2):
 #+END_SRC
 
 * Pre-processing
-** 
+** Extraction of the training samples
+** Filtering the noisy spectral bands
 * Processing
 ** NDVI 
 
@@ -352,7 +353,7 @@ done
 
 * To do 
 - [ ] Extract color images of the grasslands
-
+- [ ] Voir [[file:~/Documents/Recherche/ENSAT/These_Master/Lopes/CR/lopes_work.org::*Journ%C3%A9e%20hyper][Journée hyper]]
 * Configurations                                                   :noexport:
 ** Changes les images pour inline
 #+BEGIN_SRC bash
