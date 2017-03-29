@@ -135,7 +135,7 @@ print(bands)
 ** Extract color images
 We first need to get the number of grasslands in the shapefile. 
 
-#+BEGIN_SRC python :exports both :results output :tangle Codes/extract_color.sh
+#+BEGIN_SRC python :exports both :results output
 from osgeo import ogr,gdalconst
 
 # Data name
@@ -154,7 +154,7 @@ print layerIn.GetFeatureCount()
 
 Then  we  will iterate  over  each  entity (grasslands),  extract  its
 polygons, warp the "aperçu" to extract the image.
-#+BEGIN_SRC sh
+#+BEGIN_SRC sh :tangle Codes/extract_color.sh
 for i in `seq 1 192`
 do
     # Extract the polygon
