@@ -158,7 +158,7 @@ polygons, warp the "aperçu" to extract the image.
 for i in `seq 1 192`
 do
     # Extract the polygon
-    ogr2ogr -f "ESRI Shapefile" /tmp/temp.shp -where "ID = ${i}" all_prairies_indices_emp_auch.shp
+    ogr2ogr -f "ESRI Shapefile" /tmp/temp.shp -where "ID = ${i}" ../Data/all_prairies_indices_emp_auch.shp
 
     # Warp the aperçu
     gdalwarp -cutline /tmp/temp.shp -crop_to_cutline -dstalpha /mnt/Data_1/MUESLI/VNIR_SWIR_2m/L1c/apercu/ENVI/MUESLI_mos_VNIR_SWIR_268_208_123_ENVI Figures/color_${i}.tif
@@ -476,6 +476,7 @@ done
 * To do 
 - [ ] Extract color images of the grasslands
 - [ ] Voir [[file:~/Documents/Recherche/ENSAT/These_Master/Lopes/CR/lopes_work.org::*Journ%C3%A9e%20hyper][Journée hyper]]
+- [ ] In NDVI, change the absolute path to relative path
 * Configurations                                                   :noexport:
 ** Changes les images pour inline
 #+BEGIN_SRC bash
