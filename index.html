@@ -1,0 +1,3584 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-03-29 Wed 21:05 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Analyze of grasslands biodiversity/heterogeneity</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Mathieu Fauvel" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; display:inline }
+  .figure p { text-align: center ; display:inline }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Analyze of grasslands biodiversity/heterogeneity
+<br>
+<span class="subtitle">MUESLI</span>
+</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org9e73b22">1. Convenient functions</a>
+<ul>
+<li><a href="#org9d874c1">1.1. Global import</a></li>
+<li><a href="#org2b11aab">1.2. Extract only two bands from the data</a></li>
+</ul>
+</li>
+<li><a href="#org8f3ff04">2. Pre-processing</a>
+<ul>
+<li><a href="#orge1d74b7">2.1. Extraction of the training samples</a></li>
+<li><a href="#org1c12048">2.2. Filtering the noisy spectral bands</a></li>
+</ul>
+</li>
+<li><a href="#orgea26e8b">3. Processing</a>
+<ul>
+<li><a href="#orgc0ea139">3.1. Extract color images</a></li>
+<li><a href="#orgbee2900">3.2. NDVI</a></li>
+</ul>
+</li>
+<li><a href="#orga6f2343">4. Plot and images</a></li>
+<li><a href="#orgbc4c610">5. To do</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9e73b22" class="outline-2">
+<h2 id="org9e73b22"><span class="section-number-2">1</span> Convenient functions</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-org9d874c1" class="outline-3">
+<h3 id="org9d874c1"><span class="section-number-3">1.1</span> Global import</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #F92672;">import</span> scipy <span style="color: #F92672;">as</span> sp
+<span style="color: #F92672;">import</span> sqlite3
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2b11aab" class="outline-3">
+<h3 id="org2b11aab"><span class="section-number-3">1.2</span> Extract only two bands from the data</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #F92672;">def</span> <span style="color: #A6E22E;">read2bands</span>(DB,b1,b2):
+<span style="background-color: #64645E;"> </span>   <span style="color: #E6DB74;">"""The function  reads two bands  from the database and  group samples</span>
+<span style="color: #E6DB74; background-color: #64645E;"> </span><span style="color: #E6DB74;">   with the same ID.</span>
+
+<span style="color: #E6DB74; background-color: #64645E;"> </span><span style="color: #E6DB74;">   """</span>
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Create a SQL connection - No check if the DB exists !</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">con</span> = sqlite3.connect(DB) 
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">cursor</span> = con.cursor()
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Get the IDs</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">id_pp</span> = []
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">for</span> row <span style="color: #F92672;">in</span> cursor.execute(<span style="color: #E6DB74;">"SELECT id FROM output WHERE band_0 &gt; 0"</span>): <span style="color: #75715E;"># </span><span style="color: #75715E;">Read only grasslands that intersect with the MUESLI area</span>
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">if</span> row[0] <span style="color: #F92672;">not</span> <span style="color: #F92672;">in</span> id_pp:
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   id_pp.append(row[0])
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Load one grassland per iteration</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">X</span> = <span style="color: #F92672;">list</span>()
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">for</span> id_ <span style="color: #F92672;">in</span> id_pp:
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Load variables</span>
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">X_</span> = <span style="color: #F92672;">list</span>()
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">for</span> row <span style="color: #F92672;">in</span> cursor.execute(<span style="color: #E6DB74;">"SELECT band_{}, band_{} FROM output WHERE id=?"</span>.<span style="color: #F92672;">format</span>(b1,b2),(id_,)):
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">tp</span> = sp.asarray(row).astype(<span style="color: #F92672;">float</span>)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">if</span> <span style="color: #F92672;">not</span> sp.isnan(tp).<span style="color: #F92672;">any</span>(): <span style="color: #75715E;"># </span><span style="color: #75715E;">Check for nan values</span>
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   X_.append(tp)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   X.append(sp.asarray(X_))
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">return</span> X,id_pp
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8f3ff04" class="outline-2">
+<h2 id="org8f3ff04"><span class="section-number-2">2</span> Pre-processing</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orge1d74b7" class="outline-3">
+<h3 id="orge1d74b7"><span class="section-number-3">2.1</span> Extraction of the training samples</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+All  the samples  are extracted  from the  Grasslands, and  grouped by
+id. It is possible to use less samples by changing the strategy in the
+<code>otbxli_SampleSelection</code> app.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #75715E;"># </span><span style="color: #75715E;">Class statistics</span>
+<span style="color: #FD971F;">FIELD</span>=<span style="color: #E6DB74;">'id'</span>
+otbcli_PolygonClassStatistics -in /mnt/Data_1/MUESLI/VNIR_SWIR_2m/L1c/atm/mosaic.tif <span style="color: #E6DB74; font-weight: bold;">\</span>
+                              -vec all_prairies_indices_emp_auch.shp <span style="color: #E6DB74; font-weight: bold;">\</span>
+                              -out classStat_${<span style="color: #FD971F;">FIELD</span>}.xml <span style="color: #E6DB74; font-weight: bold;">\</span>
+                              -field ${<span style="color: #FD971F;">FIELD</span>}
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">Samples selection</span>
+otbcli_SampleSelection -in /mnt/Data_1/MUESLI/VNIR_SWIR_2m/L1c/atm/mosaic.tif <span style="color: #E6DB74; font-weight: bold;">\</span>
+                       -vec all_prairies_indices_emp_auch.shp <span style="color: #E6DB74; font-weight: bold;">\</span>
+                       -out samplesSelected_${<span style="color: #FD971F;">FIELD</span>}.sqlite <span style="color: #E6DB74; font-weight: bold;">\</span>
+                       -instats classStat_${<span style="color: #FD971F;">FIELD</span>}.xml <span style="color: #E6DB74; font-weight: bold;">\</span>
+                       -field ${<span style="color: #FD971F;">FIELD</span>} <span style="color: #E6DB74; font-weight: bold;">\</span>
+                       -strategy all  -ram 8192
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">Samples Extraction</span>
+otbcli_SampleExtraction -in /mnt/Data_1/MUESLI/VNIR_SWIR_2m/L1c/atm/mosaic.tif <span style="color: #E6DB74; font-weight: bold;">\</span>
+                         -vec samplesSelected_${<span style="color: #FD971F;">FIELD</span>}.sqlite <span style="color: #E6DB74; font-weight: bold;">\</span>
+                         -out prairie_${<span style="color: #FD971F;">FIELD</span>}.sqlite <span style="color: #E6DB74; font-weight: bold;">\</span>
+                         -outfield prefix <span style="color: #E6DB74; font-weight: bold;">\</span>
+                         -outfield.prefix.name band_ <span style="color: #E6DB74; font-weight: bold;">\</span>
+                         -field ${<span style="color: #FD971F;">FIELD</span>} -ram 8192
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org1c12048" class="outline-3">
+<h3 id="org1c12048"><span class="section-number-3">2.2</span> Filtering the noisy spectral bands</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+The data  must be cleaned. Some  of the wavelengths are  noisy, due to
+water  absorption in  the  atmosphere.  Thus we  choose  to work  with
+reduced spectral domains, which are given in the table <a href="#org5de774a">1</a>.
+</p>
+
+<table id="org5de774a" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 1:</span> Domain of validity.</caption>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">Domain</th>
+<th scope="col" class="org-right">Beginning</th>
+<th scope="col" class="org-right">End</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">400</td>
+<td class="org-right">1340</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-right">1550</td>
+<td class="org-right">1800</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-right">1980</td>
+<td class="org-right">2400</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Given the wavelength provided in the <code>.hdr</code> files, we have the following
+band number / wavelength correspondences reported in table <a href="#org7a6cc36">2</a>.
+</p>
+
+<table id="org7a6cc36" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 2:</span> Wavelengths as a function of band number.</caption>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Band number</th>
+<th scope="col" class="org-right">1</th>
+<th scope="col" class="org-right">2</th>
+<th scope="col" class="org-right">3</th>
+<th scope="col" class="org-right">4</th>
+<th scope="col" class="org-right">5</th>
+<th scope="col" class="org-right">6</th>
+<th scope="col" class="org-right">7</th>
+<th scope="col" class="org-right">8</th>
+<th scope="col" class="org-right">9</th>
+<th scope="col" class="org-right">10</th>
+<th scope="col" class="org-right">11</th>
+<th scope="col" class="org-right">12</th>
+<th scope="col" class="org-right">13</th>
+<th scope="col" class="org-right">14</th>
+<th scope="col" class="org-right">15</th>
+<th scope="col" class="org-right">16</th>
+<th scope="col" class="org-right">17</th>
+<th scope="col" class="org-right">18</th>
+<th scope="col" class="org-right">19</th>
+<th scope="col" class="org-right">20</th>
+<th scope="col" class="org-right">21</th>
+<th scope="col" class="org-right">22</th>
+<th scope="col" class="org-right">23</th>
+<th scope="col" class="org-right">24</th>
+<th scope="col" class="org-right">25</th>
+<th scope="col" class="org-right">26</th>
+<th scope="col" class="org-right">27</th>
+<th scope="col" class="org-right">28</th>
+<th scope="col" class="org-right">29</th>
+<th scope="col" class="org-right">30</th>
+<th scope="col" class="org-right">31</th>
+<th scope="col" class="org-right">32</th>
+<th scope="col" class="org-right">33</th>
+<th scope="col" class="org-right">34</th>
+<th scope="col" class="org-right">35</th>
+<th scope="col" class="org-right">36</th>
+<th scope="col" class="org-right">37</th>
+<th scope="col" class="org-right">38</th>
+<th scope="col" class="org-right">39</th>
+<th scope="col" class="org-right">40</th>
+<th scope="col" class="org-right">41</th>
+<th scope="col" class="org-right">42</th>
+<th scope="col" class="org-right">43</th>
+<th scope="col" class="org-right">44</th>
+<th scope="col" class="org-right">45</th>
+<th scope="col" class="org-right">46</th>
+<th scope="col" class="org-right">47</th>
+<th scope="col" class="org-right">48</th>
+<th scope="col" class="org-right">49</th>
+<th scope="col" class="org-right">50</th>
+<th scope="col" class="org-right">51</th>
+<th scope="col" class="org-right">52</th>
+<th scope="col" class="org-right">53</th>
+<th scope="col" class="org-right">54</th>
+<th scope="col" class="org-right">55</th>
+<th scope="col" class="org-right">56</th>
+<th scope="col" class="org-right">57</th>
+<th scope="col" class="org-right">58</th>
+<th scope="col" class="org-right">59</th>
+<th scope="col" class="org-right">60</th>
+<th scope="col" class="org-right">61</th>
+<th scope="col" class="org-right">62</th>
+<th scope="col" class="org-right">63</th>
+<th scope="col" class="org-right">64</th>
+<th scope="col" class="org-right">65</th>
+<th scope="col" class="org-right">66</th>
+<th scope="col" class="org-right">67</th>
+<th scope="col" class="org-right">68</th>
+<th scope="col" class="org-right">69</th>
+<th scope="col" class="org-right">70</th>
+<th scope="col" class="org-right">71</th>
+<th scope="col" class="org-right">72</th>
+<th scope="col" class="org-right">73</th>
+<th scope="col" class="org-right">74</th>
+<th scope="col" class="org-right">75</th>
+<th scope="col" class="org-right">76</th>
+<th scope="col" class="org-right">77</th>
+<th scope="col" class="org-right">78</th>
+<th scope="col" class="org-right">79</th>
+<th scope="col" class="org-right">80</th>
+<th scope="col" class="org-right">81</th>
+<th scope="col" class="org-right">82</th>
+<th scope="col" class="org-right">83</th>
+<th scope="col" class="org-right">84</th>
+<th scope="col" class="org-right">85</th>
+<th scope="col" class="org-right">86</th>
+<th scope="col" class="org-right">87</th>
+<th scope="col" class="org-right">88</th>
+<th scope="col" class="org-right">89</th>
+<th scope="col" class="org-right">90</th>
+<th scope="col" class="org-right">91</th>
+<th scope="col" class="org-right">92</th>
+<th scope="col" class="org-right">93</th>
+<th scope="col" class="org-right">94</th>
+<th scope="col" class="org-right">95</th>
+<th scope="col" class="org-right">96</th>
+<th scope="col" class="org-right">97</th>
+<th scope="col" class="org-right">98</th>
+<th scope="col" class="org-right">99</th>
+<th scope="col" class="org-right">100</th>
+<th scope="col" class="org-right">101</th>
+<th scope="col" class="org-right">102</th>
+<th scope="col" class="org-right">103</th>
+<th scope="col" class="org-right">104</th>
+<th scope="col" class="org-right">105</th>
+<th scope="col" class="org-right">106</th>
+<th scope="col" class="org-right">107</th>
+<th scope="col" class="org-right">108</th>
+<th scope="col" class="org-right">109</th>
+<th scope="col" class="org-right">110</th>
+<th scope="col" class="org-right">111</th>
+<th scope="col" class="org-right">112</th>
+<th scope="col" class="org-right">113</th>
+<th scope="col" class="org-right">114</th>
+<th scope="col" class="org-right">115</th>
+<th scope="col" class="org-right">116</th>
+<th scope="col" class="org-right">117</th>
+<th scope="col" class="org-right">118</th>
+<th scope="col" class="org-right">119</th>
+<th scope="col" class="org-right">120</th>
+<th scope="col" class="org-right">121</th>
+<th scope="col" class="org-right">122</th>
+<th scope="col" class="org-right">123</th>
+<th scope="col" class="org-right">124</th>
+<th scope="col" class="org-right">125</th>
+<th scope="col" class="org-right">126</th>
+<th scope="col" class="org-right">127</th>
+<th scope="col" class="org-right">128</th>
+<th scope="col" class="org-right">129</th>
+<th scope="col" class="org-right">130</th>
+<th scope="col" class="org-right">131</th>
+<th scope="col" class="org-right">132</th>
+<th scope="col" class="org-right">133</th>
+<th scope="col" class="org-right">134</th>
+<th scope="col" class="org-right">135</th>
+<th scope="col" class="org-right">136</th>
+<th scope="col" class="org-right">137</th>
+<th scope="col" class="org-right">138</th>
+<th scope="col" class="org-right">139</th>
+<th scope="col" class="org-right">140</th>
+<th scope="col" class="org-right">141</th>
+<th scope="col" class="org-right">142</th>
+<th scope="col" class="org-right">143</th>
+<th scope="col" class="org-right">144</th>
+<th scope="col" class="org-right">145</th>
+<th scope="col" class="org-right">146</th>
+<th scope="col" class="org-right">147</th>
+<th scope="col" class="org-right">148</th>
+<th scope="col" class="org-right">149</th>
+<th scope="col" class="org-right">150</th>
+<th scope="col" class="org-right">151</th>
+<th scope="col" class="org-right">152</th>
+<th scope="col" class="org-right">153</th>
+<th scope="col" class="org-right">154</th>
+<th scope="col" class="org-right">155</th>
+<th scope="col" class="org-right">156</th>
+<th scope="col" class="org-right">157</th>
+<th scope="col" class="org-right">158</th>
+<th scope="col" class="org-right">159</th>
+<th scope="col" class="org-right">160</th>
+<th scope="col" class="org-right">161</th>
+<th scope="col" class="org-right">162</th>
+<th scope="col" class="org-right">163</th>
+<th scope="col" class="org-right">164</th>
+<th scope="col" class="org-right">165</th>
+<th scope="col" class="org-right">166</th>
+<th scope="col" class="org-right">167</th>
+<th scope="col" class="org-right">168</th>
+<th scope="col" class="org-right">169</th>
+<th scope="col" class="org-right">170</th>
+<th scope="col" class="org-right">171</th>
+<th scope="col" class="org-right">172</th>
+<th scope="col" class="org-right">173</th>
+<th scope="col" class="org-right">174</th>
+<th scope="col" class="org-right">175</th>
+<th scope="col" class="org-right">176</th>
+<th scope="col" class="org-right">177</th>
+<th scope="col" class="org-right">178</th>
+<th scope="col" class="org-right">179</th>
+<th scope="col" class="org-right">180</th>
+<th scope="col" class="org-right">181</th>
+<th scope="col" class="org-right">182</th>
+<th scope="col" class="org-right">183</th>
+<th scope="col" class="org-right">184</th>
+<th scope="col" class="org-right">185</th>
+<th scope="col" class="org-right">186</th>
+<th scope="col" class="org-right">187</th>
+<th scope="col" class="org-right">188</th>
+<th scope="col" class="org-right">189</th>
+<th scope="col" class="org-right">190</th>
+<th scope="col" class="org-right">191</th>
+<th scope="col" class="org-right">192</th>
+<th scope="col" class="org-right">193</th>
+<th scope="col" class="org-right">194</th>
+<th scope="col" class="org-right">195</th>
+<th scope="col" class="org-right">196</th>
+<th scope="col" class="org-right">197</th>
+<th scope="col" class="org-right">198</th>
+<th scope="col" class="org-right">199</th>
+<th scope="col" class="org-right">200</th>
+<th scope="col" class="org-right">201</th>
+<th scope="col" class="org-right">202</th>
+<th scope="col" class="org-right">203</th>
+<th scope="col" class="org-right">204</th>
+<th scope="col" class="org-right">205</th>
+<th scope="col" class="org-right">206</th>
+<th scope="col" class="org-right">207</th>
+<th scope="col" class="org-right">208</th>
+<th scope="col" class="org-right">209</th>
+<th scope="col" class="org-right">210</th>
+<th scope="col" class="org-right">211</th>
+<th scope="col" class="org-right">212</th>
+<th scope="col" class="org-right">213</th>
+<th scope="col" class="org-right">214</th>
+<th scope="col" class="org-right">215</th>
+<th scope="col" class="org-right">216</th>
+<th scope="col" class="org-right">217</th>
+<th scope="col" class="org-right">218</th>
+<th scope="col" class="org-right">219</th>
+<th scope="col" class="org-right">220</th>
+<th scope="col" class="org-right">221</th>
+<th scope="col" class="org-right">222</th>
+<th scope="col" class="org-right">223</th>
+<th scope="col" class="org-right">224</th>
+<th scope="col" class="org-right">225</th>
+<th scope="col" class="org-right">226</th>
+<th scope="col" class="org-right">227</th>
+<th scope="col" class="org-right">228</th>
+<th scope="col" class="org-right">229</th>
+<th scope="col" class="org-right">230</th>
+<th scope="col" class="org-right">231</th>
+<th scope="col" class="org-right">232</th>
+<th scope="col" class="org-right">233</th>
+<th scope="col" class="org-right">234</th>
+<th scope="col" class="org-right">235</th>
+<th scope="col" class="org-right">236</th>
+<th scope="col" class="org-right">237</th>
+<th scope="col" class="org-right">238</th>
+<th scope="col" class="org-right">239</th>
+<th scope="col" class="org-right">240</th>
+<th scope="col" class="org-right">241</th>
+<th scope="col" class="org-right">242</th>
+<th scope="col" class="org-right">243</th>
+<th scope="col" class="org-right">244</th>
+<th scope="col" class="org-right">245</th>
+<th scope="col" class="org-right">246</th>
+<th scope="col" class="org-right">247</th>
+<th scope="col" class="org-right">248</th>
+<th scope="col" class="org-right">249</th>
+<th scope="col" class="org-right">250</th>
+<th scope="col" class="org-right">251</th>
+<th scope="col" class="org-right">252</th>
+<th scope="col" class="org-right">253</th>
+<th scope="col" class="org-right">254</th>
+<th scope="col" class="org-right">255</th>
+<th scope="col" class="org-right">256</th>
+<th scope="col" class="org-right">257</th>
+<th scope="col" class="org-right">258</th>
+<th scope="col" class="org-right">259</th>
+<th scope="col" class="org-right">260</th>
+<th scope="col" class="org-right">261</th>
+<th scope="col" class="org-right">262</th>
+<th scope="col" class="org-right">263</th>
+<th scope="col" class="org-right">264</th>
+<th scope="col" class="org-right">265</th>
+<th scope="col" class="org-right">266</th>
+<th scope="col" class="org-right">267</th>
+<th scope="col" class="org-right">268</th>
+<th scope="col" class="org-right">269</th>
+<th scope="col" class="org-right">270</th>
+<th scope="col" class="org-right">271</th>
+<th scope="col" class="org-right">272</th>
+<th scope="col" class="org-right">273</th>
+<th scope="col" class="org-right">274</th>
+<th scope="col" class="org-right">275</th>
+<th scope="col" class="org-right">276</th>
+<th scope="col" class="org-right">277</th>
+<th scope="col" class="org-right">278</th>
+<th scope="col" class="org-right">279</th>
+<th scope="col" class="org-right">280</th>
+<th scope="col" class="org-right">281</th>
+<th scope="col" class="org-right">282</th>
+<th scope="col" class="org-right">283</th>
+<th scope="col" class="org-right">284</th>
+<th scope="col" class="org-right">285</th>
+<th scope="col" class="org-right">286</th>
+<th scope="col" class="org-right">287</th>
+<th scope="col" class="org-right">288</th>
+<th scope="col" class="org-right">289</th>
+<th scope="col" class="org-right">290</th>
+<th scope="col" class="org-right">291</th>
+<th scope="col" class="org-right">292</th>
+<th scope="col" class="org-right">293</th>
+<th scope="col" class="org-right">294</th>
+<th scope="col" class="org-right">295</th>
+<th scope="col" class="org-right">296</th>
+<th scope="col" class="org-right">297</th>
+<th scope="col" class="org-right">298</th>
+<th scope="col" class="org-right">299</th>
+<th scope="col" class="org-right">300</th>
+<th scope="col" class="org-right">301</th>
+<th scope="col" class="org-right">302</th>
+<th scope="col" class="org-right">303</th>
+<th scope="col" class="org-right">304</th>
+<th scope="col" class="org-right">305</th>
+<th scope="col" class="org-right">306</th>
+<th scope="col" class="org-right">307</th>
+<th scope="col" class="org-right">308</th>
+<th scope="col" class="org-right">309</th>
+<th scope="col" class="org-right">310</th>
+<th scope="col" class="org-right">311</th>
+<th scope="col" class="org-right">312</th>
+<th scope="col" class="org-right">313</th>
+<th scope="col" class="org-right">314</th>
+<th scope="col" class="org-right">315</th>
+<th scope="col" class="org-right">316</th>
+<th scope="col" class="org-right">317</th>
+<th scope="col" class="org-right">318</th>
+<th scope="col" class="org-right">319</th>
+<th scope="col" class="org-right">320</th>
+<th scope="col" class="org-right">321</th>
+<th scope="col" class="org-right">322</th>
+<th scope="col" class="org-right">323</th>
+<th scope="col" class="org-right">324</th>
+<th scope="col" class="org-right">325</th>
+<th scope="col" class="org-right">326</th>
+<th scope="col" class="org-right">327</th>
+<th scope="col" class="org-right">328</th>
+<th scope="col" class="org-right">329</th>
+<th scope="col" class="org-right">330</th>
+<th scope="col" class="org-right">331</th>
+<th scope="col" class="org-right">332</th>
+<th scope="col" class="org-right">333</th>
+<th scope="col" class="org-right">334</th>
+<th scope="col" class="org-right">335</th>
+<th scope="col" class="org-right">336</th>
+<th scope="col" class="org-right">337</th>
+<th scope="col" class="org-right">338</th>
+<th scope="col" class="org-right">339</th>
+<th scope="col" class="org-right">340</th>
+<th scope="col" class="org-right">341</th>
+<th scope="col" class="org-right">342</th>
+<th scope="col" class="org-right">343</th>
+<th scope="col" class="org-right">344</th>
+<th scope="col" class="org-right">345</th>
+<th scope="col" class="org-right">346</th>
+<th scope="col" class="org-right">347</th>
+<th scope="col" class="org-right">348</th>
+<th scope="col" class="org-right">349</th>
+<th scope="col" class="org-right">350</th>
+<th scope="col" class="org-right">351</th>
+<th scope="col" class="org-right">352</th>
+<th scope="col" class="org-right">353</th>
+<th scope="col" class="org-right">354</th>
+<th scope="col" class="org-right">355</th>
+<th scope="col" class="org-right">356</th>
+<th scope="col" class="org-right">357</th>
+<th scope="col" class="org-right">358</th>
+<th scope="col" class="org-right">359</th>
+<th scope="col" class="org-right">360</th>
+<th scope="col" class="org-right">361</th>
+<th scope="col" class="org-right">362</th>
+<th scope="col" class="org-right">363</th>
+<th scope="col" class="org-right">364</th>
+<th scope="col" class="org-right">365</th>
+<th scope="col" class="org-right">366</th>
+<th scope="col" class="org-right">367</th>
+<th scope="col" class="org-right">368</th>
+<th scope="col" class="org-right">369</th>
+<th scope="col" class="org-right">370</th>
+<th scope="col" class="org-right">371</th>
+<th scope="col" class="org-right">372</th>
+<th scope="col" class="org-right">373</th>
+<th scope="col" class="org-right">374</th>
+<th scope="col" class="org-right">375</th>
+<th scope="col" class="org-right">376</th>
+<th scope="col" class="org-right">377</th>
+<th scope="col" class="org-right">378</th>
+<th scope="col" class="org-right">379</th>
+<th scope="col" class="org-right">380</th>
+<th scope="col" class="org-right">381</th>
+<th scope="col" class="org-right">382</th>
+<th scope="col" class="org-right">383</th>
+<th scope="col" class="org-right">384</th>
+<th scope="col" class="org-right">385</th>
+<th scope="col" class="org-right">386</th>
+<th scope="col" class="org-right">387</th>
+<th scope="col" class="org-right">388</th>
+<th scope="col" class="org-right">389</th>
+<th scope="col" class="org-right">390</th>
+<th scope="col" class="org-right">391</th>
+<th scope="col" class="org-right">392</th>
+<th scope="col" class="org-right">393</th>
+<th scope="col" class="org-right">394</th>
+<th scope="col" class="org-right">395</th>
+<th scope="col" class="org-right">396</th>
+<th scope="col" class="org-right">397</th>
+<th scope="col" class="org-right">398</th>
+<th scope="col" class="org-right">399</th>
+<th scope="col" class="org-right">400</th>
+<th scope="col" class="org-right">401</th>
+<th scope="col" class="org-right">402</th>
+<th scope="col" class="org-right">403</th>
+<th scope="col" class="org-right">404</th>
+<th scope="col" class="org-right">405</th>
+<th scope="col" class="org-right">406</th>
+<th scope="col" class="org-right">407</th>
+<th scope="col" class="org-right">408</th>
+<th scope="col" class="org-right">409</th>
+<th scope="col" class="org-right">410</th>
+<th scope="col" class="org-right">411</th>
+<th scope="col" class="org-right">412</th>
+<th scope="col" class="org-right">413</th>
+<th scope="col" class="org-right">414</th>
+<th scope="col" class="org-right">415</th>
+<th scope="col" class="org-right">416</th>
+<th scope="col" class="org-right">417</th>
+<th scope="col" class="org-right">418</th>
+<th scope="col" class="org-right">419</th>
+<th scope="col" class="org-right">420</th>
+<th scope="col" class="org-right">421</th>
+<th scope="col" class="org-right">422</th>
+<th scope="col" class="org-right">423</th>
+<th scope="col" class="org-right">424</th>
+<th scope="col" class="org-right">425</th>
+<th scope="col" class="org-right">426</th>
+<th scope="col" class="org-right">427</th>
+<th scope="col" class="org-right">428</th>
+<th scope="col" class="org-right">429</th>
+<th scope="col" class="org-right">430</th>
+<th scope="col" class="org-right">431</th>
+<th scope="col" class="org-right">432</th>
+<th scope="col" class="org-right">433</th>
+<th scope="col" class="org-right">434</th>
+<th scope="col" class="org-right">435</th>
+<th scope="col" class="org-right">436</th>
+<th scope="col" class="org-right">437</th>
+<th scope="col" class="org-right">438</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Wavelenghth</td>
+<td class="org-right">414.681622</td>
+<td class="org-right">418.320307</td>
+<td class="org-right">421.958992</td>
+<td class="org-right">425.597676</td>
+<td class="org-right">429.236361</td>
+<td class="org-right">432.875046</td>
+<td class="org-right">436.513731</td>
+<td class="org-right">440.152415</td>
+<td class="org-right">443.7911</td>
+<td class="org-right">447.429785</td>
+<td class="org-right">451.06847</td>
+<td class="org-right">454.707155</td>
+<td class="org-right">458.345839</td>
+<td class="org-right">461.984524</td>
+<td class="org-right">465.623209</td>
+<td class="org-right">469.261894</td>
+<td class="org-right">472.900578</td>
+<td class="org-right">476.539263</td>
+<td class="org-right">480.177948</td>
+<td class="org-right">483.816633</td>
+<td class="org-right">487.455317</td>
+<td class="org-right">491.094002</td>
+<td class="org-right">494.732687</td>
+<td class="org-right">498.371372</td>
+<td class="org-right">502.010056</td>
+<td class="org-right">505.648741</td>
+<td class="org-right">509.287426</td>
+<td class="org-right">512.926111</td>
+<td class="org-right">516.564796</td>
+<td class="org-right">520.20348</td>
+<td class="org-right">523.842165</td>
+<td class="org-right">527.48085</td>
+<td class="org-right">531.119535</td>
+<td class="org-right">534.758219</td>
+<td class="org-right">538.396904</td>
+<td class="org-right">542.035589</td>
+<td class="org-right">545.674274</td>
+<td class="org-right">549.312958</td>
+<td class="org-right">552.951643</td>
+<td class="org-right">556.590328</td>
+<td class="org-right">560.229013</td>
+<td class="org-right">563.867697</td>
+<td class="org-right">567.506382</td>
+<td class="org-right">571.145067</td>
+<td class="org-right">574.783752</td>
+<td class="org-right">578.422437</td>
+<td class="org-right">582.061121</td>
+<td class="org-right">585.699806</td>
+<td class="org-right">589.338491</td>
+<td class="org-right">592.977176</td>
+<td class="org-right">596.61586</td>
+<td class="org-right">600.254545</td>
+<td class="org-right">603.89323</td>
+<td class="org-right">607.531915</td>
+<td class="org-right">611.170599</td>
+<td class="org-right">614.809284</td>
+<td class="org-right">618.447969</td>
+<td class="org-right">622.086654</td>
+<td class="org-right">625.725338</td>
+<td class="org-right">629.364023</td>
+<td class="org-right">633.002708</td>
+<td class="org-right">636.641393</td>
+<td class="org-right">640.280078</td>
+<td class="org-right">643.918762</td>
+<td class="org-right">647.557447</td>
+<td class="org-right">651.196132</td>
+<td class="org-right">654.834817</td>
+<td class="org-right">658.473501</td>
+<td class="org-right">662.112186</td>
+<td class="org-right">665.750871</td>
+<td class="org-right">669.389556</td>
+<td class="org-right">673.02824</td>
+<td class="org-right">676.666925</td>
+<td class="org-right">680.30561</td>
+<td class="org-right">683.944295</td>
+<td class="org-right">687.582979</td>
+<td class="org-right">691.221664</td>
+<td class="org-right">694.860349</td>
+<td class="org-right">698.499034</td>
+<td class="org-right">702.137719</td>
+<td class="org-right">705.776403</td>
+<td class="org-right">709.415088</td>
+<td class="org-right">713.053773</td>
+<td class="org-right">716.692458</td>
+<td class="org-right">720.331142</td>
+<td class="org-right">723.969827</td>
+<td class="org-right">727.608512</td>
+<td class="org-right">731.247197</td>
+<td class="org-right">734.885881</td>
+<td class="org-right">738.524566</td>
+<td class="org-right">742.163251</td>
+<td class="org-right">745.801936</td>
+<td class="org-right">749.44062</td>
+<td class="org-right">753.079305</td>
+<td class="org-right">756.71799</td>
+<td class="org-right">760.356675</td>
+<td class="org-right">763.99536</td>
+<td class="org-right">767.634044</td>
+<td class="org-right">771.272729</td>
+<td class="org-right">774.911414</td>
+<td class="org-right">778.550099</td>
+<td class="org-right">782.188783</td>
+<td class="org-right">785.827468</td>
+<td class="org-right">789.466153</td>
+<td class="org-right">793.104838</td>
+<td class="org-right">796.743522</td>
+<td class="org-right">800.382207</td>
+<td class="org-right">804.020892</td>
+<td class="org-right">807.659577</td>
+<td class="org-right">811.298261</td>
+<td class="org-right">814.936946</td>
+<td class="org-right">818.575631</td>
+<td class="org-right">822.214316</td>
+<td class="org-right">825.853</td>
+<td class="org-right">829.491685</td>
+<td class="org-right">833.13037</td>
+<td class="org-right">836.769055</td>
+<td class="org-right">840.40774</td>
+<td class="org-right">844.046424</td>
+<td class="org-right">847.685109</td>
+<td class="org-right">851.323794</td>
+<td class="org-right">854.962479</td>
+<td class="org-right">858.601163</td>
+<td class="org-right">862.239848</td>
+<td class="org-right">865.878533</td>
+<td class="org-right">869.517218</td>
+<td class="org-right">873.155902</td>
+<td class="org-right">876.794587</td>
+<td class="org-right">880.433272</td>
+<td class="org-right">884.071957</td>
+<td class="org-right">887.710641</td>
+<td class="org-right">891.349326</td>
+<td class="org-right">894.988011</td>
+<td class="org-right">898.626696</td>
+<td class="org-right">902.265381</td>
+<td class="org-right">905.904065</td>
+<td class="org-right">909.54275</td>
+<td class="org-right">913.181435</td>
+<td class="org-right">916.82012</td>
+<td class="org-right">920.458804</td>
+<td class="org-right">924.097489</td>
+<td class="org-right">927.736174</td>
+<td class="org-right">931.374859</td>
+<td class="org-right">935.013543</td>
+<td class="org-right">938.652228</td>
+<td class="org-right">942.290913</td>
+<td class="org-right">945.929598</td>
+<td class="org-right">949.568282</td>
+<td class="org-right">953.206967</td>
+<td class="org-right">956.845652</td>
+<td class="org-right">960.484337</td>
+<td class="org-right">964.123022</td>
+<td class="org-right">967.761706</td>
+<td class="org-right">971.400391</td>
+<td class="org-right">977.281135</td>
+<td class="org-right">982.74497</td>
+<td class="org-right">988.208806</td>
+<td class="org-right">993.672641</td>
+<td class="org-right">999.136476</td>
+<td class="org-right">1004.600311</td>
+<td class="org-right">1010.064146</td>
+<td class="org-right">1015.527981</td>
+<td class="org-right">1020.991816</td>
+<td class="org-right">1026.455651</td>
+<td class="org-right">1031.919486</td>
+<td class="org-right">1037.383321</td>
+<td class="org-right">1042.847156</td>
+<td class="org-right">1048.310991</td>
+<td class="org-right">1053.774826</td>
+<td class="org-right">1059.238662</td>
+<td class="org-right">1064.702497</td>
+<td class="org-right">1070.166332</td>
+<td class="org-right">1075.630167</td>
+<td class="org-right">1081.094002</td>
+<td class="org-right">1086.557837</td>
+<td class="org-right">1092.021672</td>
+<td class="org-right">1097.485507</td>
+<td class="org-right">1102.949342</td>
+<td class="org-right">1108.413177</td>
+<td class="org-right">1113.877012</td>
+<td class="org-right">1119.340847</td>
+<td class="org-right">1124.804682</td>
+<td class="org-right">1130.268518</td>
+<td class="org-right">1135.732353</td>
+<td class="org-right">1141.196188</td>
+<td class="org-right">1146.660023</td>
+<td class="org-right">1152.123858</td>
+<td class="org-right">1157.587693</td>
+<td class="org-right">1163.051528</td>
+<td class="org-right">1168.515363</td>
+<td class="org-right">1173.979198</td>
+<td class="org-right">1179.443033</td>
+<td class="org-right">1184.906868</td>
+<td class="org-right">1190.370703</td>
+<td class="org-right">1195.834538</td>
+<td class="org-right">1201.298374</td>
+<td class="org-right">1206.762209</td>
+<td class="org-right">1212.226044</td>
+<td class="org-right">1217.689879</td>
+<td class="org-right">1223.153714</td>
+<td class="org-right">1228.617549</td>
+<td class="org-right">1234.081384</td>
+<td class="org-right">1239.545219</td>
+<td class="org-right">1245.009054</td>
+<td class="org-right">1250.472889</td>
+<td class="org-right">1255.936724</td>
+<td class="org-right">1261.400559</td>
+<td class="org-right">1266.864394</td>
+<td class="org-right">1272.32823</td>
+<td class="org-right">1277.792065</td>
+<td class="org-right">1283.2559</td>
+<td class="org-right">1288.719735</td>
+<td class="org-right">1294.18357</td>
+<td class="org-right">1299.647405</td>
+<td class="org-right">1305.11124</td>
+<td class="org-right">1310.575075</td>
+<td class="org-right">1316.03891</td>
+<td class="org-right">1321.502745</td>
+<td class="org-right">1326.96658</td>
+<td class="org-right">1332.430415</td>
+<td class="org-right">1337.89425</td>
+<td class="org-right">1343.358086</td>
+<td class="org-right">1348.821921</td>
+<td class="org-right">1354.285756</td>
+<td class="org-right">1359.749591</td>
+<td class="org-right">1365.213426</td>
+<td class="org-right">1370.677261</td>
+<td class="org-right">1376.141096</td>
+<td class="org-right">1381.604931</td>
+<td class="org-right">1387.068766</td>
+<td class="org-right">1392.532601</td>
+<td class="org-right">1397.996436</td>
+<td class="org-right">1403.460271</td>
+<td class="org-right">1408.924106</td>
+<td class="org-right">1414.387942</td>
+<td class="org-right">1419.851777</td>
+<td class="org-right">1425.315612</td>
+<td class="org-right">1430.779447</td>
+<td class="org-right">1436.243282</td>
+<td class="org-right">1441.707117</td>
+<td class="org-right">1447.170952</td>
+<td class="org-right">1452.634787</td>
+<td class="org-right">1458.098622</td>
+<td class="org-right">1463.562457</td>
+<td class="org-right">1469.026292</td>
+<td class="org-right">1474.490127</td>
+<td class="org-right">1479.953962</td>
+<td class="org-right">1485.417798</td>
+<td class="org-right">1490.881633</td>
+<td class="org-right">1496.345468</td>
+<td class="org-right">1501.809303</td>
+<td class="org-right">1507.273138</td>
+<td class="org-right">1512.736973</td>
+<td class="org-right">1518.200808</td>
+<td class="org-right">1523.664643</td>
+<td class="org-right">1529.128478</td>
+<td class="org-right">1534.592313</td>
+<td class="org-right">1540.056148</td>
+<td class="org-right">1545.519983</td>
+<td class="org-right">1550.983818</td>
+<td class="org-right">1556.447654</td>
+<td class="org-right">1561.911489</td>
+<td class="org-right">1567.375324</td>
+<td class="org-right">1572.839159</td>
+<td class="org-right">1578.302994</td>
+<td class="org-right">1583.766829</td>
+<td class="org-right">1589.230664</td>
+<td class="org-right">1594.694499</td>
+<td class="org-right">1600.158334</td>
+<td class="org-right">1605.622169</td>
+<td class="org-right">1611.086004</td>
+<td class="org-right">1616.549839</td>
+<td class="org-right">1622.013674</td>
+<td class="org-right">1627.477509</td>
+<td class="org-right">1632.941345</td>
+<td class="org-right">1638.40518</td>
+<td class="org-right">1643.869015</td>
+<td class="org-right">1649.33285</td>
+<td class="org-right">1654.796685</td>
+<td class="org-right">1660.26052</td>
+<td class="org-right">1665.724355</td>
+<td class="org-right">1671.18819</td>
+<td class="org-right">1676.652025</td>
+<td class="org-right">1682.11586</td>
+<td class="org-right">1687.579695</td>
+<td class="org-right">1693.04353</td>
+<td class="org-right">1698.507365</td>
+<td class="org-right">1703.971201</td>
+<td class="org-right">1709.435036</td>
+<td class="org-right">1714.898871</td>
+<td class="org-right">1720.362706</td>
+<td class="org-right">1725.826541</td>
+<td class="org-right">1731.290376</td>
+<td class="org-right">1736.754211</td>
+<td class="org-right">1742.218046</td>
+<td class="org-right">1747.681881</td>
+<td class="org-right">1753.145716</td>
+<td class="org-right">1758.609551</td>
+<td class="org-right">1764.073386</td>
+<td class="org-right">1769.537221</td>
+<td class="org-right">1775.001057</td>
+<td class="org-right">1780.464892</td>
+<td class="org-right">1785.928727</td>
+<td class="org-right">1791.392562</td>
+<td class="org-right">1796.856397</td>
+<td class="org-right">1802.320232</td>
+<td class="org-right">1807.784067</td>
+<td class="org-right">1813.247902</td>
+<td class="org-right">1818.711737</td>
+<td class="org-right">1824.175572</td>
+<td class="org-right">1829.639407</td>
+<td class="org-right">1835.103242</td>
+<td class="org-right">1840.567077</td>
+<td class="org-right">1846.030913</td>
+<td class="org-right">1851.494748</td>
+<td class="org-right">1856.958583</td>
+<td class="org-right">1862.422418</td>
+<td class="org-right">1867.886253</td>
+<td class="org-right">1873.350088</td>
+<td class="org-right">1878.813923</td>
+<td class="org-right">1884.277758</td>
+<td class="org-right">1889.741593</td>
+<td class="org-right">1895.205428</td>
+<td class="org-right">1900.669263</td>
+<td class="org-right">1906.133098</td>
+<td class="org-right">1911.596933</td>
+<td class="org-right">1917.060769</td>
+<td class="org-right">1922.524604</td>
+<td class="org-right">1927.988439</td>
+<td class="org-right">1933.452274</td>
+<td class="org-right">1938.916109</td>
+<td class="org-right">1944.379944</td>
+<td class="org-right">1949.843779</td>
+<td class="org-right">1955.307614</td>
+<td class="org-right">1960.771449</td>
+<td class="org-right">1966.235284</td>
+<td class="org-right">1971.699119</td>
+<td class="org-right">1977.162954</td>
+<td class="org-right">1982.626789</td>
+<td class="org-right">1988.090625</td>
+<td class="org-right">1993.55446</td>
+<td class="org-right">1999.018295</td>
+<td class="org-right">2004.48213</td>
+<td class="org-right">2009.945965</td>
+<td class="org-right">2015.4098</td>
+<td class="org-right">2020.873635</td>
+<td class="org-right">2026.33747</td>
+<td class="org-right">2031.801305</td>
+<td class="org-right">2037.26514</td>
+<td class="org-right">2042.728975</td>
+<td class="org-right">2048.19281</td>
+<td class="org-right">2053.656645</td>
+<td class="org-right">2059.120481</td>
+<td class="org-right">2064.584316</td>
+<td class="org-right">2070.048151</td>
+<td class="org-right">2075.511986</td>
+<td class="org-right">2080.975821</td>
+<td class="org-right">2086.439656</td>
+<td class="org-right">2091.903491</td>
+<td class="org-right">2097.367326</td>
+<td class="org-right">2102.831161</td>
+<td class="org-right">2108.294996</td>
+<td class="org-right">2113.758831</td>
+<td class="org-right">2119.222666</td>
+<td class="org-right">2124.686501</td>
+<td class="org-right">2130.150337</td>
+<td class="org-right">2135.614172</td>
+<td class="org-right">2141.078007</td>
+<td class="org-right">2146.541842</td>
+<td class="org-right">2152.005677</td>
+<td class="org-right">2157.469512</td>
+<td class="org-right">2162.933347</td>
+<td class="org-right">2168.397182</td>
+<td class="org-right">2173.861017</td>
+<td class="org-right">2179.324852</td>
+<td class="org-right">2184.788687</td>
+<td class="org-right">2190.252522</td>
+<td class="org-right">2195.716357</td>
+<td class="org-right">2201.180193</td>
+<td class="org-right">2206.644028</td>
+<td class="org-right">2212.107863</td>
+<td class="org-right">2217.571698</td>
+<td class="org-right">2223.035533</td>
+<td class="org-right">2228.499368</td>
+<td class="org-right">2233.963203</td>
+<td class="org-right">2239.427038</td>
+<td class="org-right">2244.890873</td>
+<td class="org-right">2250.354708</td>
+<td class="org-right">2255.818543</td>
+<td class="org-right">2261.282378</td>
+<td class="org-right">2266.746213</td>
+<td class="org-right">2272.210049</td>
+<td class="org-right">2277.673884</td>
+<td class="org-right">2283.137719</td>
+<td class="org-right">2288.601554</td>
+<td class="org-right">2294.065389</td>
+<td class="org-right">2299.529224</td>
+<td class="org-right">2304.993059</td>
+<td class="org-right">2310.456894</td>
+<td class="org-right">2315.920729</td>
+<td class="org-right">2321.384564</td>
+<td class="org-right">2326.848399</td>
+<td class="org-right">2332.312234</td>
+<td class="org-right">2337.776069</td>
+<td class="org-right">2343.239905</td>
+<td class="org-right">2348.70374</td>
+<td class="org-right">2354.167575</td>
+<td class="org-right">2359.63141</td>
+<td class="org-right">2365.095245</td>
+<td class="org-right">2370.55908</td>
+<td class="org-right">2376.022915</td>
+<td class="org-right">2381.48675</td>
+<td class="org-right">2386.950585</td>
+<td class="org-right">2392.41442</td>
+<td class="org-right">2397.878255</td>
+<td class="org-right">2403.34209</td>
+<td class="org-right">2408.805925</td>
+<td class="org-right">2414.269761</td>
+<td class="org-right">2419.733596</td>
+<td class="org-right">2425.197431</td>
+<td class="org-right">2430.661266</td>
+<td class="org-right">2436.125101</td>
+<td class="org-right">2441.588936</td>
+<td class="org-right">2447.052771</td>
+<td class="org-right">2452.516606</td>
+<td class="org-right">2457.980441</td>
+<td class="org-right">2463.444276</td>
+<td class="org-right">2468.908111</td>
+<td class="org-right">2474.371946</td>
+<td class="org-right">2479.835781</td>
+<td class="org-right">2485.299617</td>
+<td class="org-right">2490.763452</td>
+<td class="org-right">2496.227287</td>
+<td class="org-right">2501.691122</td>
+<td class="org-right">2507.154957</td>
+<td class="org-right">2512.618792</td>
+<td class="org-right">2518.082627</td>
+<td class="org-right">2523.546462</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+We get the  bands number given in table <a href="#orgc453361">3</a>,  for a total
+of 345 spectral bands.
+</p>
+<table id="orgc453361" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 3:</span> Selected bands, border included.</caption>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">Domain</th>
+<th scope="col" class="org-right">Beginning</th>
+<th scope="col" class="org-right">End</th>
+<th scope="col" class="org-right">#</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">221</td>
+<td class="org-right">221</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-right">260</td>
+<td class="org-right">306</td>
+<td class="org-right">47</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-right">339</td>
+<td class="org-right">415</td>
+<td class="org-right">77</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">Total</td>
+<td class="org-right">345</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+The following  lines on  Python provides  the string  to be  used with
+<code>sqlite3</code> to load only these bands.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #75715E;"># </span><span style="color: #75715E;">Python indices start at zero: need to "-1" the band number</span>
+<span style="color: #FD971F;">bands</span> = <span style="color: #E6DB74;">'band_0'</span>
+
+<span style="color: #F92672;">for</span> b <span style="color: #F92672;">in</span> <span style="color: #F92672;">xrange</span>(1,221):
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">bands</span> += <span style="color: #E6DB74;">", band_{}"</span>.<span style="color: #F92672;">format</span>(b)
+
+<span style="color: #F92672;">for</span> b <span style="color: #F92672;">in</span> <span style="color: #F92672;">xrange</span>(259,306):
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">bands</span> += <span style="color: #E6DB74;">", band_{}"</span>.<span style="color: #F92672;">format</span>(b)
+
+<span style="color: #F92672;">for</span> b <span style="color: #F92672;">in</span> <span style="color: #F92672;">xrange</span>(338,415):
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">bands</span> += <span style="color: #E6DB74;">", band_{}"</span>.<span style="color: #F92672;">format</span>(b)
+
+<span style="color: #F92672;">print</span>(bands)
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgea26e8b" class="outline-2">
+<h2 id="orgea26e8b"><span class="section-number-2">3</span> Processing</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-orgc0ea139" class="outline-3">
+<h3 id="orgc0ea139"><span class="section-number-3">3.1</span> Extract color images</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+We first need to get the number of grasslands in the shapefile. 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #F92672;">from</span> osgeo <span style="color: #F92672;">import</span> ogr,gdalconst
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">Data name</span>
+<span style="color: #FD971F;">inVector</span> = <span style="color: #E6DB74;">"Data/all_prairies_indices_emp_auch.shp"</span>
+<span style="color: #FD971F;">driver</span> = ogr.GetDriverByName(<span style="color: #E6DB74;">'ESRI Shapefile'</span>)
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">Open data</span>
+<span style="color: #FD971F;">vectorIn</span> = driver.Open(inVector, gdalconst.GA_ReadOnly)
+<span style="color: #FD971F;">layerIn</span> = vectorIn.GetLayer()
+
+<span style="color: #F92672;">print</span> layerIn.GetFeatureCount()
+</pre>
+</div>
+
+<pre class="example">
+192
+</pre>
+
+<p>
+Then  we  will iterate  over  each  entity (grasslands),  extract  its
+polygons, warp the "aperçu" to extract the image.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #F92672;">for</span> i<span style="color: #F92672;"> in</span> <span style="color: #AE81FF; font-weight: bold;">`seq 1 192`</span>
+<span style="color: #F92672;">do</span>
+    <span style="color: #75715E;"># </span><span style="color: #75715E;">Extract the polygon</span>
+    ogr2ogr -f <span style="color: #E6DB74;">"ESRI Shapefile"</span> /tmp/temp.shp -where <span style="color: #E6DB74;">"ID = ${i}"</span> all_prairies_indices_emp_auch.shp
+
+    <span style="color: #75715E;"># </span><span style="color: #75715E;">Warp the aper&#231;u</span>
+    gdalwarp -cutline /tmp/temp.shp -crop_to_cutline -dstalpha /mnt/Data_1/MUESLI/VNIR_SWIR_2m/L1c/apercu/ENVI/MUESLI_mos_VNIR_SWIR_268_208_123_ENVI Figures/color_${<span style="color: #FD971F;">i</span>}.tif
+    
+    <span style="color: #75715E;"># </span><span style="color: #75715E;">Clean data</span>
+    rm /tmp/temp.*
+<span style="color: #F92672;">done</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbee2900" class="outline-3">
+<h3 id="orgbee2900"><span class="section-number-3">3.2</span> NDVI</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+For all the  grasslands, the NDVI is computed and  the density plot is
+estimated. To compute the NDVI we  need the wavelength 800nm and 670nm
+which correspond, from table <a href="#org7a6cc36">2</a>, to the bands number 106 and 70,
+respectively.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #F92672;">import</span> muesli_functions <span style="color: #F92672;">as</span> mf
+<span style="color: #F92672;">import</span> matplotlib.pyplot <span style="color: #F92672;">as</span> plt
+<span style="color: #F92672;">import</span> matplotlib
+matplotlib.style.use(<span style="color: #E6DB74;">'ggplot'</span>)
+<span style="color: #F92672;">from</span> sklearn.neighbors <span style="color: #F92672;">import</span> KernelDensity
+<span style="color: #F92672;">from</span> sklearn.model_selection <span style="color: #F92672;">import</span> GridSearchCV
+<span style="color: #F92672;">import</span> scipy <span style="color: #F92672;">as</span> sp
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">Options</span>
+<span style="color: #FD971F;">PLOT_DENSITY</span> = <span style="color: #AE81FF;">True</span>
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">Load samples</span>
+<span style="color: #FD971F;">X</span>,<span style="color: #FD971F;">Y</span> = mf.read2bands(<span style="color: #E6DB74;">"/media/Data/Data/MUESLI/spectresPrairies/Data/prairie_half.sqlite"</span>,70,106)
+<span style="color: #F92672;">print</span>(<span style="color: #E6DB74;">"Load {} grasslands"</span>.<span style="color: #F92672;">format</span>(<span style="color: #F92672;">len</span>(X)))
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">Compute NDVI</span>
+<span style="color: #FD971F;">NDVI</span> = []
+<span style="color: #F92672;">for</span> i <span style="color: #F92672;">in</span> <span style="color: #F92672;">xrange</span>(<span style="color: #F92672;">len</span>(X)):
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">X_</span> = X[i]
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Compute safe version of NDVI</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">DENOM</span> = (X_[:,1]+X_[:,0])
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">t</span> = sp.where(DENOM&gt;0)[0]    
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">NDVI_</span> = (X_[t,1]-X_[t,0])/DENOM[t]
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">if</span> <span style="color: #F92672;">len</span>(NDVI_) &gt; 0:
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   NDVI.append(NDVI_)
+
+<span style="color: #F92672;">print</span>(<span style="color: #E6DB74;">"Compute NDVI for {} grasslands"</span>.<span style="color: #F92672;">format</span>(<span style="color: #F92672;">len</span>(NDVI)))
+
+<span style="color: #F92672;">if</span> PLOT_DENSITY:
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">ndvi_grid</span> = sp.linspace(0, 1, 1000)[:, sp.newaxis]
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">for</span> i <span style="color: #F92672;">in</span> <span style="color: #F92672;">xrange</span>(<span style="color: #F92672;">len</span>(NDVI)):
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">print</span> <span style="color: #E6DB74;">"Compute id:{}"</span>.<span style="color: #F92672;">format</span>(Y[i])
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">grid</span> = GridSearchCV(KernelDensity(),
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   {<span style="color: #E6DB74;">'bandwidth'</span>: sp.linspace(0.001, 0.1, 10)},
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   cv=5, n_jobs=-1)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">NDVI_</span> = NDVI[i][:,sp.newaxis]
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   grid.fit(NDVI_)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">kde</span> = grid.best_estimator_
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">pdf</span> = sp.exp(kde.score_samples(ndvi_grid))
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   plt.figure()
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   plt.plot(ndvi_grid,pdf,linewidth=3,alpha=0.75)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   plt.plot(NDVI_,-0.5 - 0.2 * sp.random.random(NDVI_.size),<span style="color: #E6DB74;">'ko'</span>,alpha=0.25)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   plt.title(<span style="color: #E6DB74;">'Grasslands number {0} of size {1}. Optimal bw={2}'</span>.<span style="color: #F92672;">format</span>(Y[i],NDVI_.shape[0],kde.bandwidth))
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   plt.grid(<span style="color: #AE81FF;">True</span>)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   plt.savefig(<span style="color: #E6DB74;">"/media/Data/Data/MUESLI/spectresPrairies/Figures/density_ndvi_{}.png"</span>.<span style="color: #F92672;">format</span>(Y[i]),dpi=300)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   plt.close()
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga6f2343" class="outline-2">
+<h2 id="orga6f2343"><span class="section-number-2">4</span> Plot and images</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+We can plot the estimated density from the NDVI.
+</p>
+
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_100.png" alt="density_ndvi_100.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_103.png" alt="density_ndvi_103.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_104.png" alt="density_ndvi_104.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_105.png" alt="density_ndvi_105.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_106.png" alt="density_ndvi_106.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_107.png" alt="density_ndvi_107.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_108.png" alt="density_ndvi_108.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_109.png" alt="density_ndvi_109.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_10.png" alt="density_ndvi_10.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_110.png" alt="density_ndvi_110.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_111.png" alt="density_ndvi_111.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_113.png" alt="density_ndvi_113.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_114.png" alt="density_ndvi_114.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_115.png" alt="density_ndvi_115.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_116.png" alt="density_ndvi_116.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_119.png" alt="density_ndvi_119.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_11.png" alt="density_ndvi_11.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_120.png" alt="density_ndvi_120.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_121.png" alt="density_ndvi_121.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_122.png" alt="density_ndvi_122.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_123.png" alt="density_ndvi_123.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_124.png" alt="density_ndvi_124.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_125.png" alt="density_ndvi_125.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_126.png" alt="density_ndvi_126.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_127.png" alt="density_ndvi_127.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_128.png" alt="density_ndvi_128.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_129.png" alt="density_ndvi_129.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_12.png" alt="density_ndvi_12.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_130.png" alt="density_ndvi_130.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_131.png" alt="density_ndvi_131.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_132.png" alt="density_ndvi_132.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_133.png" alt="density_ndvi_133.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_134.png" alt="density_ndvi_134.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_135.png" alt="density_ndvi_135.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_136.png" alt="density_ndvi_136.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_137.png" alt="density_ndvi_137.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_138.png" alt="density_ndvi_138.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_13.png" alt="density_ndvi_13.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_141.png" alt="density_ndvi_141.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_142.png" alt="density_ndvi_142.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_143.png" alt="density_ndvi_143.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_14.png" alt="density_ndvi_14.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_15.png" alt="density_ndvi_15.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_16.png" alt="density_ndvi_16.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_17.png" alt="density_ndvi_17.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_18.png" alt="density_ndvi_18.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_1.png" alt="density_ndvi_1.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_20.png" alt="density_ndvi_20.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_21.png" alt="density_ndvi_21.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_22.png" alt="density_ndvi_22.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_23.png" alt="density_ndvi_23.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_24.png" alt="density_ndvi_24.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_25.png" alt="density_ndvi_25.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_26.png" alt="density_ndvi_26.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_27.png" alt="density_ndvi_27.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_28.png" alt="density_ndvi_28.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_2.png" alt="density_ndvi_2.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_33.png" alt="density_ndvi_33.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_35.png" alt="density_ndvi_35.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_36.png" alt="density_ndvi_36.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_37.png" alt="density_ndvi_37.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_38.png" alt="density_ndvi_38.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_39.png" alt="density_ndvi_39.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_3.png" alt="density_ndvi_3.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_42.png" alt="density_ndvi_42.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_43.png" alt="density_ndvi_43.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_44.png" alt="density_ndvi_44.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_46.png" alt="density_ndvi_46.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_47.png" alt="density_ndvi_47.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_48.png" alt="density_ndvi_48.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_49.png" alt="density_ndvi_49.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_4.png" alt="density_ndvi_4.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_50.png" alt="density_ndvi_50.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_51.png" alt="density_ndvi_51.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_52.png" alt="density_ndvi_52.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_53.png" alt="density_ndvi_53.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_54.png" alt="density_ndvi_54.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_55.png" alt="density_ndvi_55.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_56.png" alt="density_ndvi_56.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_57.png" alt="density_ndvi_57.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_58.png" alt="density_ndvi_58.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_59.png" alt="density_ndvi_59.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_5.png" alt="density_ndvi_5.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_60.png" alt="density_ndvi_60.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_61.png" alt="density_ndvi_61.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_62.png" alt="density_ndvi_62.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_63.png" alt="density_ndvi_63.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_64.png" alt="density_ndvi_64.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_65.png" alt="density_ndvi_65.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_66.png" alt="density_ndvi_66.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_67.png" alt="density_ndvi_67.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_68.png" alt="density_ndvi_68.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_69.png" alt="density_ndvi_69.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_6.png" alt="density_ndvi_6.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_70.png" alt="density_ndvi_70.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_71.png" alt="density_ndvi_71.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_72.png" alt="density_ndvi_72.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_73.png" alt="density_ndvi_73.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_74.png" alt="density_ndvi_74.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_75.png" alt="density_ndvi_75.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_76.png" alt="density_ndvi_76.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_77.png" alt="density_ndvi_77.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_78.png" alt="density_ndvi_78.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_79.png" alt="density_ndvi_79.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_7.png" alt="density_ndvi_7.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_80.png" alt="density_ndvi_80.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_81.png" alt="density_ndvi_81.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_82.png" alt="density_ndvi_82.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_83.png" alt="density_ndvi_83.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_84.png" alt="density_ndvi_84.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_8.png" alt="density_ndvi_8.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_93.png" alt="density_ndvi_93.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_94.png" alt="density_ndvi_94.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_95.png" alt="density_ndvi_95.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_96.png" alt="density_ndvi_96.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_97.png" alt="density_ndvi_97.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_98.png" alt="density_ndvi_98.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_99.png" alt="density_ndvi_99.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_9.png" alt="density_ndvi_9.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_100.png" alt="density_ndvi_100.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_103.png" alt="density_ndvi_103.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_104.png" alt="density_ndvi_104.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_105.png" alt="density_ndvi_105.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_106.png" alt="density_ndvi_106.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_107.png" alt="density_ndvi_107.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_108.png" alt="density_ndvi_108.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_109.png" alt="density_ndvi_109.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_10.png" alt="density_ndvi_10.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_110.png" alt="density_ndvi_110.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_111.png" alt="density_ndvi_111.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_113.png" alt="density_ndvi_113.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_114.png" alt="density_ndvi_114.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_115.png" alt="density_ndvi_115.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_116.png" alt="density_ndvi_116.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_119.png" alt="density_ndvi_119.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_11.png" alt="density_ndvi_11.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_120.png" alt="density_ndvi_120.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_121.png" alt="density_ndvi_121.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_122.png" alt="density_ndvi_122.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_123.png" alt="density_ndvi_123.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_124.png" alt="density_ndvi_124.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_125.png" alt="density_ndvi_125.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_126.png" alt="density_ndvi_126.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_127.png" alt="density_ndvi_127.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_128.png" alt="density_ndvi_128.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_129.png" alt="density_ndvi_129.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_12.png" alt="density_ndvi_12.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_130.png" alt="density_ndvi_130.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_131.png" alt="density_ndvi_131.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_132.png" alt="density_ndvi_132.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_133.png" alt="density_ndvi_133.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_134.png" alt="density_ndvi_134.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_135.png" alt="density_ndvi_135.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_136.png" alt="density_ndvi_136.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_137.png" alt="density_ndvi_137.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_138.png" alt="density_ndvi_138.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_13.png" alt="density_ndvi_13.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_141.png" alt="density_ndvi_141.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_142.png" alt="density_ndvi_142.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_143.png" alt="density_ndvi_143.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_14.png" alt="density_ndvi_14.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_15.png" alt="density_ndvi_15.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_16.png" alt="density_ndvi_16.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_17.png" alt="density_ndvi_17.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_18.png" alt="density_ndvi_18.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_1.png" alt="density_ndvi_1.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_20.png" alt="density_ndvi_20.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_21.png" alt="density_ndvi_21.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_22.png" alt="density_ndvi_22.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_23.png" alt="density_ndvi_23.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_24.png" alt="density_ndvi_24.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_25.png" alt="density_ndvi_25.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_26.png" alt="density_ndvi_26.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_27.png" alt="density_ndvi_27.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_28.png" alt="density_ndvi_28.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_2.png" alt="density_ndvi_2.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_33.png" alt="density_ndvi_33.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_35.png" alt="density_ndvi_35.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_36.png" alt="density_ndvi_36.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_37.png" alt="density_ndvi_37.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_38.png" alt="density_ndvi_38.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_39.png" alt="density_ndvi_39.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_3.png" alt="density_ndvi_3.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_42.png" alt="density_ndvi_42.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_43.png" alt="density_ndvi_43.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_44.png" alt="density_ndvi_44.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_46.png" alt="density_ndvi_46.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_47.png" alt="density_ndvi_47.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_48.png" alt="density_ndvi_48.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_49.png" alt="density_ndvi_49.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_4.png" alt="density_ndvi_4.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_50.png" alt="density_ndvi_50.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_51.png" alt="density_ndvi_51.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_52.png" alt="density_ndvi_52.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_53.png" alt="density_ndvi_53.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_54.png" alt="density_ndvi_54.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_55.png" alt="density_ndvi_55.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_56.png" alt="density_ndvi_56.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_57.png" alt="density_ndvi_57.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_58.png" alt="density_ndvi_58.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_59.png" alt="density_ndvi_59.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_5.png" alt="density_ndvi_5.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_60.png" alt="density_ndvi_60.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_61.png" alt="density_ndvi_61.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_62.png" alt="density_ndvi_62.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_63.png" alt="density_ndvi_63.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_64.png" alt="density_ndvi_64.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_65.png" alt="density_ndvi_65.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_66.png" alt="density_ndvi_66.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_67.png" alt="density_ndvi_67.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_68.png" alt="density_ndvi_68.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_69.png" alt="density_ndvi_69.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_6.png" alt="density_ndvi_6.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_70.png" alt="density_ndvi_70.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_71.png" alt="density_ndvi_71.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_72.png" alt="density_ndvi_72.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_73.png" alt="density_ndvi_73.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_74.png" alt="density_ndvi_74.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_75.png" alt="density_ndvi_75.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_76.png" alt="density_ndvi_76.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_77.png" alt="density_ndvi_77.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_78.png" alt="density_ndvi_78.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_79.png" alt="density_ndvi_79.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_7.png" alt="density_ndvi_7.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_80.png" alt="density_ndvi_80.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_81.png" alt="density_ndvi_81.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_82.png" alt="density_ndvi_82.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_83.png" alt="density_ndvi_83.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_84.png" alt="density_ndvi_84.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_8.png" alt="density_ndvi_8.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_93.png" alt="density_ndvi_93.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_94.png" alt="density_ndvi_94.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_95.png" alt="density_ndvi_95.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_96.png" alt="density_ndvi_96.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_97.png" alt="density_ndvi_97.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_98.png" alt="density_ndvi_98.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_99.png" alt="density_ndvi_99.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_9.png" alt="density_ndvi_9.png" width="500px" style="display:inline" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbc4c610" class="outline-2">
+<h2 id="orgbc4c610"><span class="section-number-2">5</span> To do</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> Extract color images of the grasslands</li>
+<li class="off"><code>[&#xa0;]</code> Voir <a href="file:///home/mfauvel/Documents/Recherche/ENSAT/These_Master/Lopes/CR/lopes_work.html#MissingReference">Journée hyper</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Mathieu Fauvel</p>
+<p class="date">Created: 2017-03-29 Wed 21:05</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
