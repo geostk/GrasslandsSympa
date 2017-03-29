@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-03-29 Wed 22:23 -->
+<!-- 2017-03-29 Wed 23:03 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Analyze of grasslands biodiversity/heterogeneity</title>
@@ -236,35 +236,35 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8808f62">1. Convenient functions</a>
+<li><a href="#orgf94c7cc">1. Convenient functions</a>
 <ul>
-<li><a href="#orgf253370">1.1. Global import</a></li>
-<li><a href="#org1b059b6">1.2. Extract only two bands from the data</a></li>
+<li><a href="#org79742c4">1.1. Global import</a></li>
+<li><a href="#orgdcf0dbe">1.2. Extract only two bands from the data</a></li>
 </ul>
 </li>
-<li><a href="#org837d93a">2. Pre-processing</a>
+<li><a href="#org15b4960">2. Pre-processing</a>
 <ul>
-<li><a href="#orgfef67c8">2.1. Extraction of the training samples</a></li>
-<li><a href="#orgc217de1">2.2. Filtering the noisy spectral bands</a></li>
+<li><a href="#org791eea1">2.1. Extraction of the training samples</a></li>
+<li><a href="#org3400c99">2.2. Filtering the noisy spectral bands</a></li>
 </ul>
 </li>
-<li><a href="#org37988f5">3. Processing</a>
+<li><a href="#org8d7beb9">3. Processing</a>
 <ul>
-<li><a href="#orgd0867ba">3.1. Extract color images</a></li>
-<li><a href="#org783526a">3.2. NDVI</a></li>
+<li><a href="#orgb13c268">3.1. Extract color images</a></li>
+<li><a href="#org8dc8aa9">3.2. NDVI</a></li>
 </ul>
 </li>
-<li><a href="#org08dff5f">4. Plot and images</a></li>
-<li><a href="#org31a6b43">5. To do</a></li>
+<li><a href="#org704ea72">4. Plot and images</a></li>
+<li><a href="#orgd312f16">5. To do</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org8808f62" class="outline-2">
-<h2 id="org8808f62"><span class="section-number-2">1</span> Convenient functions</h2>
+<div id="outline-container-orgf94c7cc" class="outline-2">
+<h2 id="orgf94c7cc"><span class="section-number-2">1</span> Convenient functions</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-orgf253370" class="outline-3">
-<h3 id="orgf253370"><span class="section-number-3">1.1</span> Global import</h3>
+</div><div id="outline-container-org79742c4" class="outline-3">
+<h3 id="org79742c4"><span class="section-number-3">1.1</span> Global import</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #F92672;">import</span> scipy <span style="color: #F92672;">as</span> sp
@@ -273,14 +273,13 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org1b059b6" class="outline-3">
-<h3 id="org1b059b6"><span class="section-number-3">1.2</span> Extract only two bands from the data</h3>
+<div id="outline-container-orgdcf0dbe" class="outline-3">
+<h3 id="orgdcf0dbe"><span class="section-number-3">1.2</span> Extract only two bands from the data</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #F92672;">def</span> <span style="color: #A6E22E;">read2bands</span>(DB,b1,b2):
 <span style="background-color: #64645E;"> </span>   <span style="color: #E6DB74;">"""The function  reads two bands  from the database and  group samples</span>
 <span style="color: #E6DB74; background-color: #64645E;"> </span><span style="color: #E6DB74;">   with the same ID.</span>
-
 <span style="color: #E6DB74; background-color: #64645E;"> </span><span style="color: #E6DB74;">   """</span>
 
 <span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Create a SQL connection - No check if the DB exists !</span>
@@ -311,11 +310,11 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org837d93a" class="outline-2">
-<h2 id="org837d93a"><span class="section-number-2">2</span> Pre-processing</h2>
+<div id="outline-container-org15b4960" class="outline-2">
+<h2 id="org15b4960"><span class="section-number-2">2</span> Pre-processing</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-orgfef67c8" class="outline-3">
-<h3 id="orgfef67c8"><span class="section-number-3">2.1</span> Extraction of the training samples</h3>
+</div><div id="outline-container-org791eea1" class="outline-3">
+<h3 id="org791eea1"><span class="section-number-3">2.1</span> Extraction of the training samples</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 All  the samples  are extracted  from the  Grasslands, and  grouped by
@@ -350,16 +349,16 @@ otbcli_SampleExtraction -in /mnt/Data_1/MUESLI/VNIR_SWIR_2m/L1c/atm/mosaic.tif <
 </div>
 </div>
 </div>
-<div id="outline-container-orgc217de1" class="outline-3">
-<h3 id="orgc217de1"><span class="section-number-3">2.2</span> Filtering the noisy spectral bands</h3>
+<div id="outline-container-org3400c99" class="outline-3">
+<h3 id="org3400c99"><span class="section-number-3">2.2</span> Filtering the noisy spectral bands</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 The data  must be cleaned. Some  of the wavelengths are  noisy, due to
 water  absorption in  the  atmosphere.  Thus we  choose  to work  with
-reduced spectral domains, which are given in the table <a href="#org2220aa8">1</a>.
+reduced spectral domains, which are given in the table <a href="#org9375bb7">1</a>.
 </p>
 
-<table id="org2220aa8" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="org9375bb7" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 1:</span> Domain of validity.</caption>
 
 <colgroup>
@@ -399,10 +398,10 @@ reduced spectral domains, which are given in the table <a href="#org2220aa8">1</
 
 <p>
 Given the wavelength provided in the <code>.hdr</code> files, we have the following
-band number / wavelength correspondences reported in table <a href="#org08a542d">2</a>.
+band number / wavelength correspondences reported in table <a href="#orgb7c3268">2</a>.
 </p>
 
-<table id="org08a542d" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="orgb7c3268" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 2:</span> Wavelengths as a function of band number.</caption>
 
 <colgroup>
@@ -2173,10 +2172,10 @@ band number / wavelength correspondences reported in table <a href="#org08a542d"
 </table>
 
 <p>
-We get the  bands number given in table <a href="#orgfc9843a">3</a>,  for a total
+We get the  bands number given in table <a href="#org18ca395">3</a>,  for a total
 of 345 spectral bands.
 </p>
-<table id="orgfc9843a" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="org18ca395" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 3:</span> Selected bands, border included.</caption>
 
 <colgroup>
@@ -2253,11 +2252,11 @@ The following  lines on  Python provides  the string  to be  used with
 </div>
 </div>
 
-<div id="outline-container-org37988f5" class="outline-2">
-<h2 id="org37988f5"><span class="section-number-2">3</span> Processing</h2>
+<div id="outline-container-org8d7beb9" class="outline-2">
+<h2 id="org8d7beb9"><span class="section-number-2">3</span> Processing</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-orgd0867ba" class="outline-3">
-<h3 id="orgd0867ba"><span class="section-number-3">3.1</span> Extract color images</h3>
+</div><div id="outline-container-orgb13c268" class="outline-3">
+<h3 id="orgb13c268"><span class="section-number-3">3.1</span> Extract color images</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 We first need to get the number of grasslands in the shapefile. 
@@ -2287,36 +2286,35 @@ Then  we  will iterate  over  each  entity (grasslands),  extract  its
 polygons, warp the "aperçu" to extract the image.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #75715E;"># </span><span style="color: #75715E;">Compute the NDVI</span>
-otbcli_BandMath -il /mnt/Data_1/MUESLI/VNIR_SWIR_2m/L1c/atm/mosaic.tif -out /mnt/Data_1/MUESLI/VNIR_SWIR_2m/L1c/atm/ndvi.tif
-                    -exp <span style="color: #E6DB74;">"(im1b107-im1b71)/(im1b107+im1b71)"</span> -ram 4096
-
-<span style="color: #F92672;">for</span> i<span style="color: #F92672;"> in</span> <span style="color: #AE81FF; font-weight: bold;">`seq 1 192`</span>
+<pre class="src src-sh"><span style="color: #F92672;">for</span> i<span style="color: #F92672;"> in</span> 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 21 22 23 24 25 26 27 28 33 35 36 37 38 39 42 43 44 46 47 48 49 50 51 52 53 54 55 56 57 8 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 93 94 95 96 97 98 99 100 103 104 105 106 107 108 109 110 111 113 114 115 116 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 141 143
 <span style="color: #F92672;">do</span>
     <span style="color: #75715E;"># </span><span style="color: #75715E;">Extract the polygon</span>
     ogr2ogr -f <span style="color: #E6DB74;">"ESRI Shapefile"</span> /tmp/temp.shp -where <span style="color: #E6DB74;">"ID = ${i}"</span> ../Data/all_prairies_indices_emp_auch.shp
 
     <span style="color: #75715E;"># </span><span style="color: #75715E;">Warp the aper&#231;u</span>
-    gdalwarp -cutline /tmp/temp.shp -crop_to_cutline -dstalpha /mnt/Data_1/MUESLI/VNIR_SWIR_2m/L1c/atm/ndvi.tif ../Figures/color_${<span style="color: #FD971F;">i</span>}.tif
+    gdalwarp -cutline /tmp/temp.shp -crop_to_cutline /mnt/Data_1/MUESLI/VNIR_SWIR_2m/L1c/atm/mosaic.tif /tmp/temp.tif
+
+    <span style="color: #75715E;"># </span><span style="color: #75715E;">Compute the NDVI</span>
+    otbcli_BandMath -il /tmp/temp.tif -out /tmp/ndvi.tif -exp <span style="color: #E6DB74;">"(im1b107-im1b71)/(im1b107+im1b71)"</span> -ram 4096
 
     <span style="color: #75715E;"># </span><span style="color: #75715E;">Stretch data</span>
-    gdal_translate -scale 0 1 0 255 -of PNG ../Figures/color_${<span style="color: #FD971F;">i</span>}.tif ../Figures/color_${<span style="color: #FD971F;">i</span>}.png
+    gdal_translate -scale 0 1 0 255 -of PNG /tmp/ndvi.tif ../Figures/color_${<span style="color: #FD971F;">i</span>}.png
     
     <span style="color: #75715E;"># </span><span style="color: #75715E;">Clean data</span>
-    rm /tmp/temp.*
+    rm /tmp/temp.* /tmp/ndvi.tif
 <span style="color: #F92672;">done</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org783526a" class="outline-3">
-<h3 id="org783526a"><span class="section-number-3">3.2</span> NDVI</h3>
+<div id="outline-container-org8dc8aa9" class="outline-3">
+<h3 id="org8dc8aa9"><span class="section-number-3">3.2</span> NDVI</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 For all the  grasslands, the NDVI is computed and  the density plot is
 estimated. To compute the NDVI we  need the wavelength 800nm and 670nm
-which correspond, from table <a href="#org08a542d">2</a>, to the bands number 106 and 70,
+which correspond, from table <a href="#orgb7c3268">2</a>, to the bands number 106 and 70,
 respectively.
 </p>
 
@@ -2373,8 +2371,8 @@ matplotlib.style.use(<span style="color: #E6DB74;">'ggplot'</span>)
 </div>
 </div>
 
-<div id="outline-container-org08dff5f" class="outline-2">
-<h2 id="org08dff5f"><span class="section-number-2">4</span> Plot and images</h2>
+<div id="outline-container-org704ea72" class="outline-2">
+<h2 id="org704ea72"><span class="section-number-2">4</span> Plot and images</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 We can plot the estimated density from the NDVI.
@@ -2382,1199 +2380,2369 @@ We can plot the estimated density from the NDVI.
 
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_100.png" alt="density_ndvi_100.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_1.png" alt="density_ndvi_1.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_103.png" alt="density_ndvi_103.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_1.png" alt="color_1.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_104.png" alt="density_ndvi_104.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_2.png" alt="density_ndvi_2.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_105.png" alt="density_ndvi_105.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_2.png" alt="color_2.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_106.png" alt="density_ndvi_106.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_3.png" alt="density_ndvi_3.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_107.png" alt="density_ndvi_107.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_3.png" alt="color_3.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_108.png" alt="density_ndvi_108.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_4.png" alt="density_ndvi_4.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_109.png" alt="density_ndvi_109.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_4.png" alt="color_4.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_10.png" alt="density_ndvi_10.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_5.png" alt="density_ndvi_5.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_110.png" alt="density_ndvi_110.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_5.png" alt="color_5.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_111.png" alt="density_ndvi_111.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_6.png" alt="density_ndvi_6.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_113.png" alt="density_ndvi_113.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_6.png" alt="color_6.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_114.png" alt="density_ndvi_114.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_7.png" alt="density_ndvi_7.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_115.png" alt="density_ndvi_115.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_7.png" alt="color_7.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_116.png" alt="density_ndvi_116.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_8.png" alt="density_ndvi_8.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_119.png" alt="density_ndvi_119.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_8.png" alt="color_8.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_11.png" alt="density_ndvi_11.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_9.png" alt="density_ndvi_9.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_120.png" alt="density_ndvi_120.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_9.png" alt="color_9.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_121.png" alt="density_ndvi_121.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_10.png" alt="density_ndvi_10.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_122.png" alt="density_ndvi_122.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_10.png" alt="color_10.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_123.png" alt="density_ndvi_123.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_11.png" alt="density_ndvi_11.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_124.png" alt="density_ndvi_124.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_11.png" alt="color_11.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_125.png" alt="density_ndvi_125.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_12.png" alt="density_ndvi_12.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_126.png" alt="density_ndvi_126.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_12.png" alt="color_12.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_127.png" alt="density_ndvi_127.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_13.png" alt="density_ndvi_13.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_128.png" alt="density_ndvi_128.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_13.png" alt="color_13.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_129.png" alt="density_ndvi_129.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_14.png" alt="density_ndvi_14.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_12.png" alt="density_ndvi_12.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_14.png" alt="color_14.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_130.png" alt="density_ndvi_130.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_15.png" alt="density_ndvi_15.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_131.png" alt="density_ndvi_131.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_15.png" alt="color_15.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_132.png" alt="density_ndvi_132.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_16.png" alt="density_ndvi_16.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_133.png" alt="density_ndvi_133.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_16.png" alt="color_16.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_134.png" alt="density_ndvi_134.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_17.png" alt="density_ndvi_17.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_135.png" alt="density_ndvi_135.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_17.png" alt="color_17.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_136.png" alt="density_ndvi_136.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_18.png" alt="density_ndvi_18.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_137.png" alt="density_ndvi_137.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_18.png" alt="color_18.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_138.png" alt="density_ndvi_138.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_20.png" alt="density_ndvi_20.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_13.png" alt="density_ndvi_13.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_20.png" alt="color_20.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_141.png" alt="density_ndvi_141.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_21.png" alt="density_ndvi_21.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_142.png" alt="density_ndvi_142.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_21.png" alt="color_21.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_143.png" alt="density_ndvi_143.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_22.png" alt="density_ndvi_22.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_14.png" alt="density_ndvi_14.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_22.png" alt="color_22.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_15.png" alt="density_ndvi_15.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_23.png" alt="density_ndvi_23.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_16.png" alt="density_ndvi_16.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_23.png" alt="color_23.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_17.png" alt="density_ndvi_17.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_24.png" alt="density_ndvi_24.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_18.png" alt="density_ndvi_18.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_24.png" alt="color_24.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_1.png" alt="density_ndvi_1.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_25.png" alt="density_ndvi_25.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_20.png" alt="density_ndvi_20.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_25.png" alt="color_25.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_21.png" alt="density_ndvi_21.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_26.png" alt="density_ndvi_26.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_22.png" alt="density_ndvi_22.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_26.png" alt="color_26.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_23.png" alt="density_ndvi_23.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_27.png" alt="density_ndvi_27.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_24.png" alt="density_ndvi_24.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_27.png" alt="color_27.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_25.png" alt="density_ndvi_25.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_28.png" alt="density_ndvi_28.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_26.png" alt="density_ndvi_26.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_28.png" alt="color_28.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_27.png" alt="density_ndvi_27.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_33.png" alt="density_ndvi_33.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_28.png" alt="density_ndvi_28.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_33.png" alt="color_33.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_2.png" alt="density_ndvi_2.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_35.png" alt="density_ndvi_35.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_33.png" alt="density_ndvi_33.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_35.png" alt="color_35.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_35.png" alt="density_ndvi_35.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_36.png" alt="density_ndvi_36.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_36.png" alt="density_ndvi_36.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_36.png" alt="color_36.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_37.png" alt="density_ndvi_37.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_37.png" alt="density_ndvi_37.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_38.png" alt="density_ndvi_38.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_37.png" alt="color_37.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_39.png" alt="density_ndvi_39.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_38.png" alt="density_ndvi_38.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_3.png" alt="density_ndvi_3.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_38.png" alt="color_38.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_42.png" alt="density_ndvi_42.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_39.png" alt="density_ndvi_39.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_43.png" alt="density_ndvi_43.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_39.png" alt="color_39.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_44.png" alt="density_ndvi_44.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_42.png" alt="density_ndvi_42.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_46.png" alt="density_ndvi_46.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_42.png" alt="color_42.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_47.png" alt="density_ndvi_47.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_43.png" alt="density_ndvi_43.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_48.png" alt="density_ndvi_48.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_43.png" alt="color_43.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_49.png" alt="density_ndvi_49.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_44.png" alt="density_ndvi_44.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_4.png" alt="density_ndvi_4.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_44.png" alt="color_44.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_50.png" alt="density_ndvi_50.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_46.png" alt="density_ndvi_46.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_51.png" alt="density_ndvi_51.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_46.png" alt="color_46.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_52.png" alt="density_ndvi_52.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_47.png" alt="density_ndvi_47.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_53.png" alt="density_ndvi_53.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_47.png" alt="color_47.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_54.png" alt="density_ndvi_54.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_48.png" alt="density_ndvi_48.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_55.png" alt="density_ndvi_55.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_48.png" alt="color_48.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_56.png" alt="density_ndvi_56.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_49.png" alt="density_ndvi_49.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_57.png" alt="density_ndvi_57.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_49.png" alt="color_49.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_58.png" alt="density_ndvi_58.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_50.png" alt="density_ndvi_50.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_59.png" alt="density_ndvi_59.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_50.png" alt="color_50.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_5.png" alt="density_ndvi_5.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_51.png" alt="density_ndvi_51.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_60.png" alt="density_ndvi_60.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_51.png" alt="color_51.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_61.png" alt="density_ndvi_61.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_52.png" alt="density_ndvi_52.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_62.png" alt="density_ndvi_62.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_52.png" alt="color_52.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_63.png" alt="density_ndvi_63.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_53.png" alt="density_ndvi_53.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_64.png" alt="density_ndvi_64.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_53.png" alt="color_53.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_65.png" alt="density_ndvi_65.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_54.png" alt="density_ndvi_54.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_66.png" alt="density_ndvi_66.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_54.png" alt="color_54.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_67.png" alt="density_ndvi_67.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_55.png" alt="density_ndvi_55.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_68.png" alt="density_ndvi_68.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_55.png" alt="color_55.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_69.png" alt="density_ndvi_69.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_56.png" alt="density_ndvi_56.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_6.png" alt="density_ndvi_6.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_56.png" alt="color_56.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_70.png" alt="density_ndvi_70.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_57.png" alt="density_ndvi_57.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_71.png" alt="density_ndvi_71.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_57.png" alt="color_57.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_72.png" alt="density_ndvi_72.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_8.png" alt="density_ndvi_8.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_73.png" alt="density_ndvi_73.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_8.png" alt="color_8.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_74.png" alt="density_ndvi_74.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_59.png" alt="density_ndvi_59.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_75.png" alt="density_ndvi_75.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_59.png" alt="color_59.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_76.png" alt="density_ndvi_76.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_60.png" alt="density_ndvi_60.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_77.png" alt="density_ndvi_77.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_60.png" alt="color_60.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_78.png" alt="density_ndvi_78.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_61.png" alt="density_ndvi_61.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_79.png" alt="density_ndvi_79.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_61.png" alt="color_61.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_7.png" alt="density_ndvi_7.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_62.png" alt="density_ndvi_62.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_80.png" alt="density_ndvi_80.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_62.png" alt="color_62.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_81.png" alt="density_ndvi_81.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_63.png" alt="density_ndvi_63.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_82.png" alt="density_ndvi_82.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_63.png" alt="color_63.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_83.png" alt="density_ndvi_83.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_64.png" alt="density_ndvi_64.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_84.png" alt="density_ndvi_84.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_64.png" alt="color_64.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_8.png" alt="density_ndvi_8.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_65.png" alt="density_ndvi_65.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_93.png" alt="density_ndvi_93.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_65.png" alt="color_65.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_94.png" alt="density_ndvi_94.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_66.png" alt="density_ndvi_66.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_95.png" alt="density_ndvi_95.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_66.png" alt="color_66.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_96.png" alt="density_ndvi_96.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_67.png" alt="density_ndvi_67.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_97.png" alt="density_ndvi_97.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_67.png" alt="color_67.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_98.png" alt="density_ndvi_98.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_68.png" alt="density_ndvi_68.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_99.png" alt="density_ndvi_99.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_68.png" alt="color_68.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_9.png" alt="density_ndvi_9.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_69.png" alt="density_ndvi_69.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_100.png" alt="density_ndvi_100.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_69.png" alt="color_69.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_103.png" alt="density_ndvi_103.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_70.png" alt="density_ndvi_70.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_104.png" alt="density_ndvi_104.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_70.png" alt="color_70.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_105.png" alt="density_ndvi_105.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_71.png" alt="density_ndvi_71.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_106.png" alt="density_ndvi_106.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_71.png" alt="color_71.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_107.png" alt="density_ndvi_107.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_72.png" alt="density_ndvi_72.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_108.png" alt="density_ndvi_108.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_72.png" alt="color_72.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_109.png" alt="density_ndvi_109.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_73.png" alt="density_ndvi_73.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_10.png" alt="density_ndvi_10.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_73.png" alt="color_73.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_110.png" alt="density_ndvi_110.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_74.png" alt="density_ndvi_74.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_111.png" alt="density_ndvi_111.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_74.png" alt="color_74.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_113.png" alt="density_ndvi_113.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_75.png" alt="density_ndvi_75.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_114.png" alt="density_ndvi_114.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_75.png" alt="color_75.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_115.png" alt="density_ndvi_115.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_76.png" alt="density_ndvi_76.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_116.png" alt="density_ndvi_116.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_76.png" alt="color_76.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_119.png" alt="density_ndvi_119.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_77.png" alt="density_ndvi_77.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_11.png" alt="density_ndvi_11.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_77.png" alt="color_77.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_120.png" alt="density_ndvi_120.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_78.png" alt="density_ndvi_78.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_121.png" alt="density_ndvi_121.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_78.png" alt="color_78.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_122.png" alt="density_ndvi_122.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_79.png" alt="density_ndvi_79.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_123.png" alt="density_ndvi_123.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_79.png" alt="color_79.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_124.png" alt="density_ndvi_124.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_80.png" alt="density_ndvi_80.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_125.png" alt="density_ndvi_125.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_80.png" alt="color_80.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_126.png" alt="density_ndvi_126.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_81.png" alt="density_ndvi_81.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_127.png" alt="density_ndvi_127.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_81.png" alt="color_81.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_128.png" alt="density_ndvi_128.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_82.png" alt="density_ndvi_82.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_129.png" alt="density_ndvi_129.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_82.png" alt="color_82.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_12.png" alt="density_ndvi_12.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_83.png" alt="density_ndvi_83.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_130.png" alt="density_ndvi_130.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_83.png" alt="color_83.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_131.png" alt="density_ndvi_131.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_84.png" alt="density_ndvi_84.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_132.png" alt="density_ndvi_132.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_84.png" alt="color_84.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_133.png" alt="density_ndvi_133.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_93.png" alt="density_ndvi_93.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_134.png" alt="density_ndvi_134.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_93.png" alt="color_93.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_135.png" alt="density_ndvi_135.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_94.png" alt="density_ndvi_94.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_136.png" alt="density_ndvi_136.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_94.png" alt="color_94.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_137.png" alt="density_ndvi_137.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_95.png" alt="density_ndvi_95.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_138.png" alt="density_ndvi_138.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_95.png" alt="color_95.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_13.png" alt="density_ndvi_13.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_96.png" alt="density_ndvi_96.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_141.png" alt="density_ndvi_141.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_96.png" alt="color_96.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_142.png" alt="density_ndvi_142.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_97.png" alt="density_ndvi_97.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_143.png" alt="density_ndvi_143.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_97.png" alt="color_97.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_14.png" alt="density_ndvi_14.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_98.png" alt="density_ndvi_98.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_15.png" alt="density_ndvi_15.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_98.png" alt="color_98.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_16.png" alt="density_ndvi_16.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_99.png" alt="density_ndvi_99.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_17.png" alt="density_ndvi_17.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_99.png" alt="color_99.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_18.png" alt="density_ndvi_18.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_100.png" alt="density_ndvi_100.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_1.png" alt="density_ndvi_1.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_100.png" alt="color_100.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_20.png" alt="density_ndvi_20.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_103.png" alt="density_ndvi_103.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_21.png" alt="density_ndvi_21.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_103.png" alt="color_103.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_22.png" alt="density_ndvi_22.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_104.png" alt="density_ndvi_104.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_23.png" alt="density_ndvi_23.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_104.png" alt="color_104.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_24.png" alt="density_ndvi_24.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_105.png" alt="density_ndvi_105.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_25.png" alt="density_ndvi_25.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_105.png" alt="color_105.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_26.png" alt="density_ndvi_26.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_106.png" alt="density_ndvi_106.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_27.png" alt="density_ndvi_27.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_106.png" alt="color_106.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_28.png" alt="density_ndvi_28.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_107.png" alt="density_ndvi_107.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_2.png" alt="density_ndvi_2.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_107.png" alt="color_107.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_33.png" alt="density_ndvi_33.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_108.png" alt="density_ndvi_108.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_35.png" alt="density_ndvi_35.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_108.png" alt="color_108.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_36.png" alt="density_ndvi_36.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_109.png" alt="density_ndvi_109.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_37.png" alt="density_ndvi_37.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_109.png" alt="color_109.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_38.png" alt="density_ndvi_38.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_110.png" alt="density_ndvi_110.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_39.png" alt="density_ndvi_39.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_110.png" alt="color_110.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_3.png" alt="density_ndvi_3.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_111.png" alt="density_ndvi_111.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_42.png" alt="density_ndvi_42.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_111.png" alt="color_111.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_43.png" alt="density_ndvi_43.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_113.png" alt="density_ndvi_113.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_44.png" alt="density_ndvi_44.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_113.png" alt="color_113.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_46.png" alt="density_ndvi_46.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_114.png" alt="density_ndvi_114.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_47.png" alt="density_ndvi_47.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_114.png" alt="color_114.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_48.png" alt="density_ndvi_48.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_115.png" alt="density_ndvi_115.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_49.png" alt="density_ndvi_49.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_115.png" alt="color_115.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_4.png" alt="density_ndvi_4.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_116.png" alt="density_ndvi_116.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_50.png" alt="density_ndvi_50.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_116.png" alt="color_116.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_51.png" alt="density_ndvi_51.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_119.png" alt="density_ndvi_119.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_52.png" alt="density_ndvi_52.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_119.png" alt="color_119.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_53.png" alt="density_ndvi_53.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_120.png" alt="density_ndvi_120.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_54.png" alt="density_ndvi_54.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_120.png" alt="color_120.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_55.png" alt="density_ndvi_55.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_121.png" alt="density_ndvi_121.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_56.png" alt="density_ndvi_56.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_121.png" alt="color_121.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_57.png" alt="density_ndvi_57.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_122.png" alt="density_ndvi_122.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_58.png" alt="density_ndvi_58.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_122.png" alt="color_122.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_59.png" alt="density_ndvi_59.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_123.png" alt="density_ndvi_123.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_5.png" alt="density_ndvi_5.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_123.png" alt="color_123.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_60.png" alt="density_ndvi_60.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_124.png" alt="density_ndvi_124.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_61.png" alt="density_ndvi_61.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_124.png" alt="color_124.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_62.png" alt="density_ndvi_62.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_125.png" alt="density_ndvi_125.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_63.png" alt="density_ndvi_63.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_125.png" alt="color_125.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_64.png" alt="density_ndvi_64.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_126.png" alt="density_ndvi_126.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_65.png" alt="density_ndvi_65.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_126.png" alt="color_126.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_66.png" alt="density_ndvi_66.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_127.png" alt="density_ndvi_127.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_67.png" alt="density_ndvi_67.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_127.png" alt="color_127.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_68.png" alt="density_ndvi_68.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_128.png" alt="density_ndvi_128.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_69.png" alt="density_ndvi_69.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_128.png" alt="color_128.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_6.png" alt="density_ndvi_6.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_129.png" alt="density_ndvi_129.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_70.png" alt="density_ndvi_70.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_129.png" alt="color_129.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_71.png" alt="density_ndvi_71.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_130.png" alt="density_ndvi_130.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_72.png" alt="density_ndvi_72.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_130.png" alt="color_130.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_73.png" alt="density_ndvi_73.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_131.png" alt="density_ndvi_131.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_74.png" alt="density_ndvi_74.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_131.png" alt="color_131.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_75.png" alt="density_ndvi_75.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_132.png" alt="density_ndvi_132.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_76.png" alt="density_ndvi_76.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_132.png" alt="color_132.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_77.png" alt="density_ndvi_77.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_133.png" alt="density_ndvi_133.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_78.png" alt="density_ndvi_78.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_133.png" alt="color_133.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_79.png" alt="density_ndvi_79.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_134.png" alt="density_ndvi_134.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_7.png" alt="density_ndvi_7.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_134.png" alt="color_134.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_80.png" alt="density_ndvi_80.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_135.png" alt="density_ndvi_135.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_81.png" alt="density_ndvi_81.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_135.png" alt="color_135.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_82.png" alt="density_ndvi_82.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_136.png" alt="density_ndvi_136.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_83.png" alt="density_ndvi_83.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_136.png" alt="color_136.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_84.png" alt="density_ndvi_84.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_137.png" alt="density_ndvi_137.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_8.png" alt="density_ndvi_8.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_137.png" alt="color_137.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_93.png" alt="density_ndvi_93.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_138.png" alt="density_ndvi_138.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_94.png" alt="density_ndvi_94.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_138.png" alt="color_138.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_95.png" alt="density_ndvi_95.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_141.png" alt="density_ndvi_141.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_96.png" alt="density_ndvi_96.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_141.png" alt="color_141.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_97.png" alt="density_ndvi_97.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_143.png" alt="density_ndvi_143.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_98.png" alt="density_ndvi_98.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_143.png" alt="color_143.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_99.png" alt="density_ndvi_99.png" width="500px" style="display:inline" />
+<p><img src="./Figures/density_ndvi_1.png" alt="density_ndvi_1.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
 
 <div class="figure">
-<p><img src="./Figures/density_ndvi_9.png" alt="density_ndvi_9.png" width="500px" style="display:inline" />
+<p><img src="./Figures/color_1.png" alt="color_1.png" width="500px" height="500px" style="display:inline" />
 </p>
 </div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_2.png" alt="density_ndvi_2.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_2.png" alt="color_2.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_3.png" alt="density_ndvi_3.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_3.png" alt="color_3.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_4.png" alt="density_ndvi_4.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_4.png" alt="color_4.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_5.png" alt="density_ndvi_5.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_5.png" alt="color_5.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_6.png" alt="density_ndvi_6.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_6.png" alt="color_6.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_7.png" alt="density_ndvi_7.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_7.png" alt="color_7.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_8.png" alt="density_ndvi_8.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_8.png" alt="color_8.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_9.png" alt="density_ndvi_9.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_9.png" alt="color_9.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_10.png" alt="density_ndvi_10.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_10.png" alt="color_10.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_11.png" alt="density_ndvi_11.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_11.png" alt="color_11.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_12.png" alt="density_ndvi_12.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_12.png" alt="color_12.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_13.png" alt="density_ndvi_13.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_13.png" alt="color_13.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_14.png" alt="density_ndvi_14.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_14.png" alt="color_14.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_15.png" alt="density_ndvi_15.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_15.png" alt="color_15.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_16.png" alt="density_ndvi_16.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_16.png" alt="color_16.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_17.png" alt="density_ndvi_17.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_17.png" alt="color_17.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_18.png" alt="density_ndvi_18.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_18.png" alt="color_18.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_20.png" alt="density_ndvi_20.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_20.png" alt="color_20.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_21.png" alt="density_ndvi_21.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_21.png" alt="color_21.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_22.png" alt="density_ndvi_22.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_22.png" alt="color_22.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_23.png" alt="density_ndvi_23.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_23.png" alt="color_23.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_24.png" alt="density_ndvi_24.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_24.png" alt="color_24.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_25.png" alt="density_ndvi_25.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_25.png" alt="color_25.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_26.png" alt="density_ndvi_26.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_26.png" alt="color_26.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_27.png" alt="density_ndvi_27.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_27.png" alt="color_27.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_28.png" alt="density_ndvi_28.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_28.png" alt="color_28.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_33.png" alt="density_ndvi_33.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_33.png" alt="color_33.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_35.png" alt="density_ndvi_35.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_35.png" alt="color_35.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_36.png" alt="density_ndvi_36.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_36.png" alt="color_36.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_37.png" alt="density_ndvi_37.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_37.png" alt="color_37.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_38.png" alt="density_ndvi_38.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_38.png" alt="color_38.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_39.png" alt="density_ndvi_39.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_39.png" alt="color_39.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_42.png" alt="density_ndvi_42.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_42.png" alt="color_42.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_43.png" alt="density_ndvi_43.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_43.png" alt="color_43.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_44.png" alt="density_ndvi_44.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_44.png" alt="color_44.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_46.png" alt="density_ndvi_46.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_46.png" alt="color_46.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_47.png" alt="density_ndvi_47.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_47.png" alt="color_47.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_48.png" alt="density_ndvi_48.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_48.png" alt="color_48.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_49.png" alt="density_ndvi_49.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_49.png" alt="color_49.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_50.png" alt="density_ndvi_50.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_50.png" alt="color_50.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_51.png" alt="density_ndvi_51.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_51.png" alt="color_51.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_52.png" alt="density_ndvi_52.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_52.png" alt="color_52.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_53.png" alt="density_ndvi_53.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_53.png" alt="color_53.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_54.png" alt="density_ndvi_54.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_54.png" alt="color_54.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_55.png" alt="density_ndvi_55.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_55.png" alt="color_55.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_56.png" alt="density_ndvi_56.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_56.png" alt="color_56.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_57.png" alt="density_ndvi_57.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_57.png" alt="color_57.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_8.png" alt="density_ndvi_8.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_8.png" alt="color_8.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_59.png" alt="density_ndvi_59.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_59.png" alt="color_59.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_60.png" alt="density_ndvi_60.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_60.png" alt="color_60.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_61.png" alt="density_ndvi_61.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_61.png" alt="color_61.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_62.png" alt="density_ndvi_62.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_62.png" alt="color_62.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_63.png" alt="density_ndvi_63.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_63.png" alt="color_63.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_64.png" alt="density_ndvi_64.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_64.png" alt="color_64.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_65.png" alt="density_ndvi_65.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_65.png" alt="color_65.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_66.png" alt="density_ndvi_66.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_66.png" alt="color_66.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_67.png" alt="density_ndvi_67.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_67.png" alt="color_67.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_68.png" alt="density_ndvi_68.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_68.png" alt="color_68.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_69.png" alt="density_ndvi_69.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_69.png" alt="color_69.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_70.png" alt="density_ndvi_70.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_70.png" alt="color_70.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_71.png" alt="density_ndvi_71.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_71.png" alt="color_71.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_72.png" alt="density_ndvi_72.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_72.png" alt="color_72.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_73.png" alt="density_ndvi_73.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_73.png" alt="color_73.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_74.png" alt="density_ndvi_74.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_74.png" alt="color_74.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_75.png" alt="density_ndvi_75.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_75.png" alt="color_75.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_76.png" alt="density_ndvi_76.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_76.png" alt="color_76.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_77.png" alt="density_ndvi_77.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_77.png" alt="color_77.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_78.png" alt="density_ndvi_78.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_78.png" alt="color_78.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_79.png" alt="density_ndvi_79.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_79.png" alt="color_79.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_80.png" alt="density_ndvi_80.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_80.png" alt="color_80.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_81.png" alt="density_ndvi_81.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_81.png" alt="color_81.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_82.png" alt="density_ndvi_82.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_82.png" alt="color_82.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_83.png" alt="density_ndvi_83.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_83.png" alt="color_83.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_84.png" alt="density_ndvi_84.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_84.png" alt="color_84.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_93.png" alt="density_ndvi_93.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_93.png" alt="color_93.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_94.png" alt="density_ndvi_94.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_94.png" alt="color_94.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_95.png" alt="density_ndvi_95.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_95.png" alt="color_95.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_96.png" alt="density_ndvi_96.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_96.png" alt="color_96.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_97.png" alt="density_ndvi_97.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_97.png" alt="color_97.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_98.png" alt="density_ndvi_98.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_98.png" alt="color_98.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_99.png" alt="density_ndvi_99.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_99.png" alt="color_99.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_100.png" alt="density_ndvi_100.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_100.png" alt="color_100.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_103.png" alt="density_ndvi_103.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_103.png" alt="color_103.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_104.png" alt="density_ndvi_104.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_104.png" alt="color_104.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_105.png" alt="density_ndvi_105.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_105.png" alt="color_105.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_106.png" alt="density_ndvi_106.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_106.png" alt="color_106.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_107.png" alt="density_ndvi_107.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_107.png" alt="color_107.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_108.png" alt="density_ndvi_108.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_108.png" alt="color_108.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_109.png" alt="density_ndvi_109.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_109.png" alt="color_109.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_110.png" alt="density_ndvi_110.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_110.png" alt="color_110.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_111.png" alt="density_ndvi_111.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_111.png" alt="color_111.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_113.png" alt="density_ndvi_113.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_113.png" alt="color_113.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_114.png" alt="density_ndvi_114.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_114.png" alt="color_114.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_115.png" alt="density_ndvi_115.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_115.png" alt="color_115.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_116.png" alt="density_ndvi_116.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_116.png" alt="color_116.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_119.png" alt="density_ndvi_119.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_119.png" alt="color_119.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_120.png" alt="density_ndvi_120.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_120.png" alt="color_120.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_121.png" alt="density_ndvi_121.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_121.png" alt="color_121.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_122.png" alt="density_ndvi_122.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_122.png" alt="color_122.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_123.png" alt="density_ndvi_123.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_123.png" alt="color_123.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_124.png" alt="density_ndvi_124.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_124.png" alt="color_124.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_125.png" alt="density_ndvi_125.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_125.png" alt="color_125.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_126.png" alt="density_ndvi_126.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_126.png" alt="color_126.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_127.png" alt="density_ndvi_127.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_127.png" alt="color_127.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_128.png" alt="density_ndvi_128.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_128.png" alt="color_128.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_129.png" alt="density_ndvi_129.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_129.png" alt="color_129.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_130.png" alt="density_ndvi_130.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_130.png" alt="color_130.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_131.png" alt="density_ndvi_131.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_131.png" alt="color_131.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_132.png" alt="density_ndvi_132.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_132.png" alt="color_132.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_133.png" alt="density_ndvi_133.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_133.png" alt="color_133.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_134.png" alt="density_ndvi_134.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_134.png" alt="color_134.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_135.png" alt="density_ndvi_135.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_135.png" alt="color_135.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_136.png" alt="density_ndvi_136.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_136.png" alt="color_136.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_137.png" alt="density_ndvi_137.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_137.png" alt="color_137.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_138.png" alt="density_ndvi_138.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_138.png" alt="color_138.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_141.png" alt="density_ndvi_141.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_141.png" alt="color_141.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_ndvi_143.png" alt="density_ndvi_143.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/color_143.png" alt="color_143.png" width="500px" height="500px" style="display:inline" />
+</p>
+</div>
 </div>
 </div>
 
-<div id="outline-container-org31a6b43" class="outline-2">
-<h2 id="org31a6b43"><span class="section-number-2">5</span> To do</h2>
+<div id="outline-container-orgd312f16" class="outline-2">
+<h2 id="orgd312f16"><span class="section-number-2">5</span> To do</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li class="off"><code>[&#xa0;]</code> Extract color images of the grasslands</li>
@@ -3586,7 +4754,7 @@ We can plot the estimated density from the NDVI.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Mathieu Fauvel</p>
-<p class="date">Created: 2017-03-29 Wed 22:23</p>
+<p class="date">Created: 2017-03-29 Wed 23:03</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

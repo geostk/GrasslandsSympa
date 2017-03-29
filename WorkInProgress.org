@@ -17,7 +17,6 @@ import sqlite3
 def read2bands(DB,b1,b2):
     """The function  reads two bands  from the database and  group samples
     with the same ID.
-
     """
 
     # Create a SQL connection - No check if the DB exists !
@@ -155,7 +154,7 @@ print layerIn.GetFeatureCount()
 Then  we  will iterate  over  each  entity (grasslands),  extract  its
 polygons, warp the "aperçu" to extract the image.
 #+BEGIN_SRC sh :tangle Codes/extract_color.sh
-for i in `seq 1 192`
+for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 21 22 23 24 25 26 27 28 33 35 36 37 38 39 42 43 44 46 47 48 49 50 51 52 53 54 55 56 57 8 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 93 94 95 96 97 98 99 100 103 104 105 106 107 108 109 110 111 113 114 115 116 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 141 143
 do
     # Extract the polygon
     ogr2ogr -f "ESRI Shapefile" /tmp/temp.shp -where "ID = ${i}" ../Data/all_prairies_indices_emp_auch.shp
@@ -233,252 +232,489 @@ if PLOT_DENSITY:
 We can plot the estimated density from the NDVI.
 
 #+BEGIN_SRC bash :exports results :results raw outputs
-for i in Figures/density_ndvi_*png
+for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 21 22 23 24 25 26 27 28 33 35 36 37 38 39 42 43 44 46 47 48 49 50 51 52 53 54 55 56 57 8 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 93 94 95 96 97 98 99 100 103 104 105 106 107 108 109 110 111 113 114 115 116 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 141 143
 do
-    echo \#+ATTR_HTML: :width 500px :style "display:inline"
-    echo [[file:./${i}]]
+    echo \#+ATTR_HTML: :width 500px :height 500px :style "display:inline"
+    echo [[file:./Figures/density_ndvi_${i}.png]]
+    echo \#+ATTR_HTML: :width 500px :height 500px :style "display:inline"
+    echo [[file:./Figures/color_${i}.png]]
 done
 #+END_SRC
 
+
 #+RESULTS:
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_100.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_103.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_104.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_105.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_106.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_107.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_108.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_109.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_10.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_110.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_111.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_113.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_114.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_115.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_116.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_119.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_11.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_120.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_121.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_122.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_123.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_124.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_125.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_126.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_127.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_128.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_129.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_12.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_130.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_131.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_132.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_133.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_134.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_135.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_136.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_137.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_138.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_13.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_141.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_142.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_143.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_14.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_15.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_16.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_17.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_18.png]]
-#+ATTR_HTML: :width 500px :style display:inline
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
 [[file:./Figures/density_ndvi_1.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_20.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_21.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_22.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_23.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_24.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_25.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_26.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_27.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_28.png]]
-#+ATTR_HTML: :width 500px :style display:inline
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_1.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
 [[file:./Figures/density_ndvi_2.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_33.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_35.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_36.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_37.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_38.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_39.png]]
-#+ATTR_HTML: :width 500px :style display:inline
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_2.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
 [[file:./Figures/density_ndvi_3.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_42.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_43.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_44.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_46.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_47.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_48.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_49.png]]
-#+ATTR_HTML: :width 500px :style display:inline
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_3.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
 [[file:./Figures/density_ndvi_4.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_50.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_51.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_52.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_53.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_54.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_55.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_56.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_57.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_58.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_59.png]]
-#+ATTR_HTML: :width 500px :style display:inline
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_4.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
 [[file:./Figures/density_ndvi_5.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_60.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_61.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_62.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_63.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_64.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_65.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_66.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_67.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_68.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_69.png]]
-#+ATTR_HTML: :width 500px :style display:inline
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_5.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
 [[file:./Figures/density_ndvi_6.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_70.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_71.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_72.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_73.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_74.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_75.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_76.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_77.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_78.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_79.png]]
-#+ATTR_HTML: :width 500px :style display:inline
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_6.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
 [[file:./Figures/density_ndvi_7.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_80.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_81.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_82.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_83.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_84.png]]
-#+ATTR_HTML: :width 500px :style display:inline
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_7.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
 [[file:./Figures/density_ndvi_8.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_93.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_94.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_95.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_96.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_97.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_98.png]]
-#+ATTR_HTML: :width 500px :style display:inline
-[[file:./Figures/density_ndvi_99.png]]
-#+ATTR_HTML: :width 500px :style display:inline
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_8.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
 [[file:./Figures/density_ndvi_9.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_9.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_10.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_10.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_11.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_11.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_12.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_12.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_13.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_13.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_14.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_14.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_15.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_15.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_16.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_16.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_17.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_17.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_18.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_18.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_20.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_20.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_21.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_21.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_22.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_22.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_23.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_23.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_24.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_24.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_25.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_25.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_26.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_26.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_27.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_27.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_28.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_28.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_33.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_33.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_35.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_35.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_36.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_36.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_37.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_37.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_38.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_38.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_39.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_39.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_42.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_42.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_43.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_43.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_44.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_44.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_46.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_46.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_47.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_47.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_48.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_48.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_49.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_49.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_50.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_50.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_51.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_51.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_52.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_52.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_53.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_53.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_54.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_54.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_55.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_55.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_56.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_56.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_57.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_57.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_8.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_8.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_59.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_59.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_60.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_60.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_61.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_61.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_62.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_62.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_63.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_63.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_64.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_64.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_65.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_65.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_66.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_66.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_67.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_67.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_68.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_68.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_69.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_69.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_70.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_70.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_71.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_71.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_72.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_72.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_73.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_73.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_74.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_74.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_75.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_75.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_76.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_76.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_77.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_77.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_78.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_78.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_79.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_79.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_80.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_80.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_81.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_81.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_82.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_82.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_83.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_83.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_84.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_84.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_93.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_93.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_94.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_94.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_95.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_95.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_96.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_96.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_97.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_97.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_98.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_98.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_99.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_99.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_100.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_100.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_103.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_103.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_104.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_104.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_105.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_105.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_106.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_106.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_107.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_107.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_108.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_108.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_109.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_109.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_110.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_110.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_111.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_111.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_113.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_113.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_114.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_114.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_115.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_115.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_116.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_116.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_119.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_119.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_120.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_120.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_121.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_121.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_122.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_122.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_123.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_123.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_124.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_124.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_125.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_125.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_126.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_126.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_127.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_127.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_128.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_128.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_129.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_129.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_130.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_130.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_131.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_131.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_132.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_132.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_133.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_133.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_134.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_134.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_135.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_135.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_136.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_136.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_137.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_137.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_138.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_138.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_141.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_141.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/density_ndvi_143.png]]
+#+ATTR_HTML: :width 500px :height 500px :style display:inline
+[[file:./Figures/color_143.png]]
 
 * To do 
 - [ ] Extract color images of the grasslands
