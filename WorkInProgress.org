@@ -481,6 +481,7 @@ done
 #+BEGIN_SRC bash
 sed -i 's/.figure { padding: 1em; }*$/.figure { padding: 1em; display:inline }/g' WorkInProgress.html
 sed -i 's/.figure p { text-align: center; }*$/.figure p { text-align: center ; display:inline }/g' WorkInProgress.html
+cp WorkInProgress.html index.html
 #+END_SRC
 
 #+RESULTS:
