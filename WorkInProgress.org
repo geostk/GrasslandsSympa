@@ -135,7 +135,7 @@ print(bands)
 ** Extract color images
 We first need to get the number of grasslands in the shapefile. 
 
-#+BEGIN_SRC python :exports both :results output
+#+BEGIN_SRC python :exports both :results output :tangle Codes/extract_color.sh
 from osgeo import ogr,gdalconst
 
 # Data name

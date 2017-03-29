@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-03-29 Wed 21:05 -->
+<!-- 2017-03-29 Wed 21:14 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Analyze of grasslands biodiversity/heterogeneity</title>
@@ -236,35 +236,35 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9e73b22">1. Convenient functions</a>
+<li><a href="#orgf9e3e2b">1. Convenient functions</a>
 <ul>
-<li><a href="#org9d874c1">1.1. Global import</a></li>
-<li><a href="#org2b11aab">1.2. Extract only two bands from the data</a></li>
+<li><a href="#orgb67dc07">1.1. Global import</a></li>
+<li><a href="#orgb088163">1.2. Extract only two bands from the data</a></li>
 </ul>
 </li>
-<li><a href="#org8f3ff04">2. Pre-processing</a>
+<li><a href="#org8868971">2. Pre-processing</a>
 <ul>
-<li><a href="#orge1d74b7">2.1. Extraction of the training samples</a></li>
-<li><a href="#org1c12048">2.2. Filtering the noisy spectral bands</a></li>
+<li><a href="#org37c0af5">2.1. Extraction of the training samples</a></li>
+<li><a href="#org244ddd6">2.2. Filtering the noisy spectral bands</a></li>
 </ul>
 </li>
-<li><a href="#orgea26e8b">3. Processing</a>
+<li><a href="#org51a13e6">3. Processing</a>
 <ul>
-<li><a href="#orgc0ea139">3.1. Extract color images</a></li>
-<li><a href="#orgbee2900">3.2. NDVI</a></li>
+<li><a href="#org4dea092">3.1. Extract color images</a></li>
+<li><a href="#org5dfb762">3.2. NDVI</a></li>
 </ul>
 </li>
-<li><a href="#orga6f2343">4. Plot and images</a></li>
-<li><a href="#orgbc4c610">5. To do</a></li>
+<li><a href="#org0e7e5a6">4. Plot and images</a></li>
+<li><a href="#org55737d0">5. To do</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9e73b22" class="outline-2">
-<h2 id="org9e73b22"><span class="section-number-2">1</span> Convenient functions</h2>
+<div id="outline-container-orgf9e3e2b" class="outline-2">
+<h2 id="orgf9e3e2b"><span class="section-number-2">1</span> Convenient functions</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-org9d874c1" class="outline-3">
-<h3 id="org9d874c1"><span class="section-number-3">1.1</span> Global import</h3>
+</div><div id="outline-container-orgb67dc07" class="outline-3">
+<h3 id="orgb67dc07"><span class="section-number-3">1.1</span> Global import</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #F92672;">import</span> scipy <span style="color: #F92672;">as</span> sp
@@ -273,8 +273,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org2b11aab" class="outline-3">
-<h3 id="org2b11aab"><span class="section-number-3">1.2</span> Extract only two bands from the data</h3>
+<div id="outline-container-orgb088163" class="outline-3">
+<h3 id="orgb088163"><span class="section-number-3">1.2</span> Extract only two bands from the data</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #F92672;">def</span> <span style="color: #A6E22E;">read2bands</span>(DB,b1,b2):
@@ -311,11 +311,11 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org8f3ff04" class="outline-2">
-<h2 id="org8f3ff04"><span class="section-number-2">2</span> Pre-processing</h2>
+<div id="outline-container-org8868971" class="outline-2">
+<h2 id="org8868971"><span class="section-number-2">2</span> Pre-processing</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-orge1d74b7" class="outline-3">
-<h3 id="orge1d74b7"><span class="section-number-3">2.1</span> Extraction of the training samples</h3>
+</div><div id="outline-container-org37c0af5" class="outline-3">
+<h3 id="org37c0af5"><span class="section-number-3">2.1</span> Extraction of the training samples</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 All  the samples  are extracted  from the  Grasslands, and  grouped by
@@ -350,16 +350,16 @@ otbcli_SampleExtraction -in /mnt/Data_1/MUESLI/VNIR_SWIR_2m/L1c/atm/mosaic.tif <
 </div>
 </div>
 </div>
-<div id="outline-container-org1c12048" class="outline-3">
-<h3 id="org1c12048"><span class="section-number-3">2.2</span> Filtering the noisy spectral bands</h3>
+<div id="outline-container-org244ddd6" class="outline-3">
+<h3 id="org244ddd6"><span class="section-number-3">2.2</span> Filtering the noisy spectral bands</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 The data  must be cleaned. Some  of the wavelengths are  noisy, due to
 water  absorption in  the  atmosphere.  Thus we  choose  to work  with
-reduced spectral domains, which are given in the table <a href="#org5de774a">1</a>.
+reduced spectral domains, which are given in the table <a href="#orge00b2fe">1</a>.
 </p>
 
-<table id="org5de774a" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="orge00b2fe" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 1:</span> Domain of validity.</caption>
 
 <colgroup>
@@ -399,10 +399,10 @@ reduced spectral domains, which are given in the table <a href="#org5de774a">1</
 
 <p>
 Given the wavelength provided in the <code>.hdr</code> files, we have the following
-band number / wavelength correspondences reported in table <a href="#org7a6cc36">2</a>.
+band number / wavelength correspondences reported in table <a href="#org1df3b42">2</a>.
 </p>
 
-<table id="org7a6cc36" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="org1df3b42" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 2:</span> Wavelengths as a function of band number.</caption>
 
 <colgroup>
@@ -2173,10 +2173,10 @@ band number / wavelength correspondences reported in table <a href="#org7a6cc36"
 </table>
 
 <p>
-We get the  bands number given in table <a href="#orgc453361">3</a>,  for a total
+We get the  bands number given in table <a href="#orga99990f">3</a>,  for a total
 of 345 spectral bands.
 </p>
-<table id="orgc453361" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="orga99990f" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 3:</span> Selected bands, border included.</caption>
 
 <colgroup>
@@ -2253,11 +2253,11 @@ The following  lines on  Python provides  the string  to be  used with
 </div>
 </div>
 
-<div id="outline-container-orgea26e8b" class="outline-2">
-<h2 id="orgea26e8b"><span class="section-number-2">3</span> Processing</h2>
+<div id="outline-container-org51a13e6" class="outline-2">
+<h2 id="org51a13e6"><span class="section-number-2">3</span> Processing</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-orgc0ea139" class="outline-3">
-<h3 id="orgc0ea139"><span class="section-number-3">3.1</span> Extract color images</h3>
+</div><div id="outline-container-org4dea092" class="outline-3">
+<h3 id="org4dea092"><span class="section-number-3">3.1</span> Extract color images</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 We first need to get the number of grasslands in the shapefile. 
@@ -2302,13 +2302,13 @@ polygons, warp the "aperçu" to extract the image.
 </div>
 </div>
 </div>
-<div id="outline-container-orgbee2900" class="outline-3">
-<h3 id="orgbee2900"><span class="section-number-3">3.2</span> NDVI</h3>
+<div id="outline-container-org5dfb762" class="outline-3">
+<h3 id="org5dfb762"><span class="section-number-3">3.2</span> NDVI</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 For all the  grasslands, the NDVI is computed and  the density plot is
 estimated. To compute the NDVI we  need the wavelength 800nm and 670nm
-which correspond, from table <a href="#org7a6cc36">2</a>, to the bands number 106 and 70,
+which correspond, from table <a href="#org1df3b42">2</a>, to the bands number 106 and 70,
 respectively.
 </p>
 
@@ -2365,8 +2365,8 @@ matplotlib.style.use(<span style="color: #E6DB74;">'ggplot'</span>)
 </div>
 </div>
 
-<div id="outline-container-orga6f2343" class="outline-2">
-<h2 id="orga6f2343"><span class="section-number-2">4</span> Plot and images</h2>
+<div id="outline-container-org0e7e5a6" class="outline-2">
+<h2 id="org0e7e5a6"><span class="section-number-2">4</span> Plot and images</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 We can plot the estimated density from the NDVI.
@@ -3565,8 +3565,8 @@ We can plot the estimated density from the NDVI.
 </div>
 </div>
 
-<div id="outline-container-orgbc4c610" class="outline-2">
-<h2 id="orgbc4c610"><span class="section-number-2">5</span> To do</h2>
+<div id="outline-container-org55737d0" class="outline-2">
+<h2 id="org55737d0"><span class="section-number-2">5</span> To do</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li class="off"><code>[&#xa0;]</code> Extract color images of the grasslands</li>
@@ -3577,7 +3577,7 @@ We can plot the estimated density from the NDVI.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Mathieu Fauvel</p>
-<p class="date">Created: 2017-03-29 Wed 21:05</p>
+<p class="date">Created: 2017-03-29 Wed 21:14</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
