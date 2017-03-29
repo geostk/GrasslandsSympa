@@ -1,0 +1,1579 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-03-24 Fri 13:15 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Analyze of grasslands biodiversity/heterogeneity</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Mathieu Fauvel" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; display:inline }
+  .figure p { text-align: center; display:inline }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Analyze of grasslands biodiversity/heterogeneity
+<br>
+<span class="subtitle">MUESLI</span>
+</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgce0bef4">1. Convenient functions</a>
+<ul>
+<li><a href="#org8a8268c">1.1. Global import</a></li>
+<li><a href="#orgdbeb74a">1.2. Extract only two bands from the data</a></li>
+</ul>
+</li>
+<li><a href="#orgdff5f50">2. Processing</a>
+<ul>
+<li><a href="#org44986c7">2.1. NDVI</a></li>
+</ul>
+</li>
+<li><a href="#org3da0457">3. To do</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgce0bef4" class="outline-2">
+<h2 id="orgce0bef4"><span class="section-number-2">1</span> Convenient functions</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-org8a8268c" class="outline-3">
+<h3 id="org8a8268c"><span class="section-number-3">1.1</span> Global import</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #F92672;">import</span> scipy <span style="color: #F92672;">as</span> sp
+<span style="color: #F92672;">import</span> sqlite3
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdbeb74a" class="outline-3">
+<h3 id="orgdbeb74a"><span class="section-number-3">1.2</span> Extract only two bands from the data</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #F92672;">def</span> <span style="color: #A6E22E;">read2bands</span>(DB,b1,b2):
+<span style="background-color: #64645E;"> </span>   <span style="color: #E6DB74;">"""The function  reads two bands  from the database and  group samples</span>
+<span style="color: #E6DB74; background-color: #64645E;"> </span><span style="color: #E6DB74;">   with the same ID.</span>
+
+<span style="color: #E6DB74; background-color: #64645E;"> </span><span style="color: #E6DB74;">   """</span>
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Create a SQL connection - No check if the DB exists !</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">con</span> = sqlite3.connect(DB) 
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">cursor</span> = con.cursor()
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Get the IDs</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">id_pp</span> = []
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">for</span> row <span style="color: #F92672;">in</span> cursor.execute(<span style="color: #E6DB74;">"SELECT id FROM output WHERE band_0 &gt; 0"</span>): <span style="color: #75715E;"># </span><span style="color: #75715E;">Read only grasslands that intersect with the MUESLI area</span>
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">if</span> row[0] <span style="color: #F92672;">not</span> <span style="color: #F92672;">in</span> id_pp:
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   id_pp.append(row[0])
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Load one grassland per iteration</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">X</span> = <span style="color: #F92672;">list</span>()
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">for</span> id_ <span style="color: #F92672;">in</span> id_pp:
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Load variables</span>
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">X_</span> = <span style="color: #F92672;">list</span>()
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">for</span> row <span style="color: #F92672;">in</span> cursor.execute(<span style="color: #E6DB74;">"SELECT band_{}, band_{} FROM output WHERE id=?"</span>.<span style="color: #F92672;">format</span>(b1,b2),(id_,)):
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">tp</span> = sp.asarray(row).astype(<span style="color: #F92672;">float</span>)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">if</span> <span style="color: #F92672;">not</span> sp.isnan(tp).<span style="color: #F92672;">any</span>(): <span style="color: #75715E;"># </span><span style="color: #75715E;">Check for nan values</span>
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   X_.append(tp)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   X.append(sp.asarray(X_))
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">return</span> X,id_pp
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdff5f50" class="outline-2">
+<h2 id="orgdff5f50"><span class="section-number-2">2</span> Processing</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-org44986c7" class="outline-3">
+<h3 id="org44986c7"><span class="section-number-3">2.1</span> NDVI</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+For all the grasslands, the NDVI is computed and the density plot is estimated.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #F92672;">import</span> muesli_functions <span style="color: #F92672;">as</span> mf
+<span style="color: #F92672;">import</span> matplotlib.pyplot <span style="color: #F92672;">as</span> plt
+<span style="color: #F92672;">import</span> matplotlib
+matplotlib.style.use(<span style="color: #E6DB74;">'ggplot'</span>)
+<span style="color: #F92672;">from</span> sklearn.neighbors <span style="color: #F92672;">import</span> KernelDensity
+<span style="color: #F92672;">from</span> sklearn.model_selection <span style="color: #F92672;">import</span> GridSearchCV
+<span style="color: #F92672;">import</span> scipy <span style="color: #F92672;">as</span> sp
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">Options</span>
+<span style="color: #FD971F;">PLOT_DENSITY</span> = <span style="color: #AE81FF;">True</span>
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">Load samples</span>
+<span style="color: #FD971F;">X</span>,<span style="color: #FD971F;">Y</span> = mf.read2bands(<span style="color: #E6DB74;">"/media/Data/Data/MUESLI/spectresPrairies/Data/prairie_half.sqlite"</span>,70,106)
+<span style="color: #F92672;">print</span>(<span style="color: #E6DB74;">"Load {} grasslands"</span>.<span style="color: #F92672;">format</span>(<span style="color: #F92672;">len</span>(X)))
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">Compute NDVI</span>
+<span style="color: #FD971F;">NDVI</span> = []
+<span style="color: #F92672;">for</span> i <span style="color: #F92672;">in</span> <span style="color: #F92672;">xrange</span>(<span style="color: #F92672;">len</span>(X)):
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">X_</span> = X[i]
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Compute safe version of NDVI</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">DENOM</span> = (X_[:,1]+X_[:,0])
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">t</span> = sp.where(DENOM&gt;0)[0]    
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">NDVI_</span> = (X_[t,1]-X_[t,0])/DENOM[t]
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">if</span> <span style="color: #F92672;">len</span>(NDVI_) &gt; 0:
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   NDVI.append(NDVI_)
+
+<span style="color: #F92672;">print</span>(<span style="color: #E6DB74;">"Compute NDVI for {} grasslands"</span>.<span style="color: #F92672;">format</span>(<span style="color: #F92672;">len</span>(NDVI)))
+
+<span style="color: #F92672;">if</span> PLOT_DENSITY:
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">ndvi_grid</span> = sp.linspace(0, 1, 1000)[:, sp.newaxis]
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">for</span> i <span style="color: #F92672;">in</span> <span style="color: #F92672;">xrange</span>(<span style="color: #F92672;">len</span>(NDVI)):
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">print</span> <span style="color: #E6DB74;">"Compute id:{}"</span>.<span style="color: #F92672;">format</span>(Y[i])
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">grid</span> = GridSearchCV(KernelDensity(),
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   {<span style="color: #E6DB74;">'bandwidth'</span>: sp.linspace(0.001, 0.1, 10)},
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   cv=5, n_jobs=-1)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">NDVI_</span> = NDVI[i][:,sp.newaxis]
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   grid.fit(NDVI_)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">kde</span> = grid.best_estimator_
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">pdf</span> = sp.exp(kde.score_samples(ndvi_grid))
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   plt.figure()
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   plt.plot(ndvi_grid,pdf,linewidth=3,alpha=0.75)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   plt.plot(NDVI_,-0.5 - 0.2 * sp.random.random(NDVI_.size),<span style="color: #E6DB74;">'ko'</span>,alpha=0.25)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   plt.title(<span style="color: #E6DB74;">'Grasslands number {0} of size {1}. Optimal bw={2}'</span>.<span style="color: #F92672;">format</span>(Y[i],NDVI_.shape[0],kde.bandwidth))
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   plt.grid(<span style="color: #AE81FF;">True</span>)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   plt.savefig(<span style="color: #E6DB74;">"/media/Data/Data/MUESLI/spectresPrairies/Figures/density_ndvi_{}.png"</span>.<span style="color: #F92672;">format</span>(Y[i]),dpi=300)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   plt.close()
+</pre>
+</div>
+
+<p>
+We can plot the estimated density
+</p>
+
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_100.png" alt="density_grassland_100.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_103.png" alt="density_grassland_103.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_104.png" alt="density_grassland_104.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_105.png" alt="density_grassland_105.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_106.png" alt="density_grassland_106.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_107.png" alt="density_grassland_107.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_108.png" alt="density_grassland_108.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_109.png" alt="density_grassland_109.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_10.png" alt="density_grassland_10.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_110.png" alt="density_grassland_110.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_111.png" alt="density_grassland_111.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_113.png" alt="density_grassland_113.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_114.png" alt="density_grassland_114.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_115.png" alt="density_grassland_115.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_116.png" alt="density_grassland_116.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_119.png" alt="density_grassland_119.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_11.png" alt="density_grassland_11.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_120.png" alt="density_grassland_120.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_121.png" alt="density_grassland_121.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_122.png" alt="density_grassland_122.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_123.png" alt="density_grassland_123.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_124.png" alt="density_grassland_124.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_125.png" alt="density_grassland_125.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_126.png" alt="density_grassland_126.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_127.png" alt="density_grassland_127.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_128.png" alt="density_grassland_128.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_129.png" alt="density_grassland_129.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_12.png" alt="density_grassland_12.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_130.png" alt="density_grassland_130.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_131.png" alt="density_grassland_131.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_132.png" alt="density_grassland_132.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_133.png" alt="density_grassland_133.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_134.png" alt="density_grassland_134.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_135.png" alt="density_grassland_135.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_136.png" alt="density_grassland_136.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_137.png" alt="density_grassland_137.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_138.png" alt="density_grassland_138.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_13.png" alt="density_grassland_13.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_141.png" alt="density_grassland_141.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_142.png" alt="density_grassland_142.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_143.png" alt="density_grassland_143.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_14.png" alt="density_grassland_14.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_15.png" alt="density_grassland_15.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_16.png" alt="density_grassland_16.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_17.png" alt="density_grassland_17.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_18.png" alt="density_grassland_18.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_1.png" alt="density_grassland_1.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_20.png" alt="density_grassland_20.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_21.png" alt="density_grassland_21.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_22.png" alt="density_grassland_22.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_23.png" alt="density_grassland_23.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_24.png" alt="density_grassland_24.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_25.png" alt="density_grassland_25.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_26.png" alt="density_grassland_26.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_27.png" alt="density_grassland_27.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_28.png" alt="density_grassland_28.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_2.png" alt="density_grassland_2.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_33.png" alt="density_grassland_33.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_35.png" alt="density_grassland_35.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_36.png" alt="density_grassland_36.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_37.png" alt="density_grassland_37.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_38.png" alt="density_grassland_38.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_39.png" alt="density_grassland_39.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_3.png" alt="density_grassland_3.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_42.png" alt="density_grassland_42.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_43.png" alt="density_grassland_43.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_44.png" alt="density_grassland_44.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_46.png" alt="density_grassland_46.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_47.png" alt="density_grassland_47.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_48.png" alt="density_grassland_48.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_49.png" alt="density_grassland_49.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_4.png" alt="density_grassland_4.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_50.png" alt="density_grassland_50.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_51.png" alt="density_grassland_51.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_52.png" alt="density_grassland_52.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_53.png" alt="density_grassland_53.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_54.png" alt="density_grassland_54.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_55.png" alt="density_grassland_55.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_56.png" alt="density_grassland_56.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_57.png" alt="density_grassland_57.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_58.png" alt="density_grassland_58.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_59.png" alt="density_grassland_59.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_5.png" alt="density_grassland_5.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_60.png" alt="density_grassland_60.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_61.png" alt="density_grassland_61.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_62.png" alt="density_grassland_62.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_63.png" alt="density_grassland_63.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_64.png" alt="density_grassland_64.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_65.png" alt="density_grassland_65.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_66.png" alt="density_grassland_66.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_67.png" alt="density_grassland_67.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_68.png" alt="density_grassland_68.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_69.png" alt="density_grassland_69.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_6.png" alt="density_grassland_6.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_70.png" alt="density_grassland_70.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_71.png" alt="density_grassland_71.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_72.png" alt="density_grassland_72.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_73.png" alt="density_grassland_73.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_74.png" alt="density_grassland_74.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_75.png" alt="density_grassland_75.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_76.png" alt="density_grassland_76.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_77.png" alt="density_grassland_77.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_78.png" alt="density_grassland_78.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_79.png" alt="density_grassland_79.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_7.png" alt="density_grassland_7.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_80.png" alt="density_grassland_80.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_81.png" alt="density_grassland_81.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_82.png" alt="density_grassland_82.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_83.png" alt="density_grassland_83.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_84.png" alt="density_grassland_84.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_8.png" alt="density_grassland_8.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_93.png" alt="density_grassland_93.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_94.png" alt="density_grassland_94.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_95.png" alt="density_grassland_95.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_96.png" alt="density_grassland_96.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_97.png" alt="density_grassland_97.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_98.png" alt="density_grassland_98.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_99.png" alt="density_grassland_99.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_9.png" alt="density_grassland_9.png" width="500px" style="display:inline" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_100.png" alt="density_grassland_100.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_103.png" alt="density_grassland_103.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_104.png" alt="density_grassland_104.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_105.png" alt="density_grassland_105.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_106.png" alt="density_grassland_106.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_107.png" alt="density_grassland_107.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_108.png" alt="density_grassland_108.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_109.png" alt="density_grassland_109.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_10.png" alt="density_grassland_10.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_110.png" alt="density_grassland_110.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_111.png" alt="density_grassland_111.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_113.png" alt="density_grassland_113.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_114.png" alt="density_grassland_114.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_115.png" alt="density_grassland_115.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_116.png" alt="density_grassland_116.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_119.png" alt="density_grassland_119.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_11.png" alt="density_grassland_11.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_120.png" alt="density_grassland_120.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_121.png" alt="density_grassland_121.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_122.png" alt="density_grassland_122.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_123.png" alt="density_grassland_123.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_124.png" alt="density_grassland_124.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_125.png" alt="density_grassland_125.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_126.png" alt="density_grassland_126.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_127.png" alt="density_grassland_127.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_128.png" alt="density_grassland_128.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_129.png" alt="density_grassland_129.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_12.png" alt="density_grassland_12.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_130.png" alt="density_grassland_130.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_131.png" alt="density_grassland_131.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_132.png" alt="density_grassland_132.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_133.png" alt="density_grassland_133.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_134.png" alt="density_grassland_134.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_135.png" alt="density_grassland_135.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_136.png" alt="density_grassland_136.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_137.png" alt="density_grassland_137.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_138.png" alt="density_grassland_138.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_13.png" alt="density_grassland_13.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_141.png" alt="density_grassland_141.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_142.png" alt="density_grassland_142.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_143.png" alt="density_grassland_143.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_14.png" alt="density_grassland_14.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_15.png" alt="density_grassland_15.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_16.png" alt="density_grassland_16.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_17.png" alt="density_grassland_17.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_18.png" alt="density_grassland_18.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_1.png" alt="density_grassland_1.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_20.png" alt="density_grassland_20.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_21.png" alt="density_grassland_21.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_22.png" alt="density_grassland_22.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_23.png" alt="density_grassland_23.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_24.png" alt="density_grassland_24.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_25.png" alt="density_grassland_25.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_26.png" alt="density_grassland_26.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_27.png" alt="density_grassland_27.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_28.png" alt="density_grassland_28.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_2.png" alt="density_grassland_2.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_33.png" alt="density_grassland_33.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_35.png" alt="density_grassland_35.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_36.png" alt="density_grassland_36.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_37.png" alt="density_grassland_37.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_38.png" alt="density_grassland_38.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_39.png" alt="density_grassland_39.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_3.png" alt="density_grassland_3.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_42.png" alt="density_grassland_42.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_43.png" alt="density_grassland_43.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_44.png" alt="density_grassland_44.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_46.png" alt="density_grassland_46.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_47.png" alt="density_grassland_47.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_48.png" alt="density_grassland_48.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_49.png" alt="density_grassland_49.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_4.png" alt="density_grassland_4.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_50.png" alt="density_grassland_50.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_51.png" alt="density_grassland_51.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_52.png" alt="density_grassland_52.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_53.png" alt="density_grassland_53.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_54.png" alt="density_grassland_54.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_55.png" alt="density_grassland_55.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_56.png" alt="density_grassland_56.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_57.png" alt="density_grassland_57.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_58.png" alt="density_grassland_58.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_59.png" alt="density_grassland_59.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_5.png" alt="density_grassland_5.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_60.png" alt="density_grassland_60.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_61.png" alt="density_grassland_61.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_62.png" alt="density_grassland_62.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_63.png" alt="density_grassland_63.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_64.png" alt="density_grassland_64.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_65.png" alt="density_grassland_65.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_66.png" alt="density_grassland_66.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_67.png" alt="density_grassland_67.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_68.png" alt="density_grassland_68.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_69.png" alt="density_grassland_69.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_6.png" alt="density_grassland_6.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_70.png" alt="density_grassland_70.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_71.png" alt="density_grassland_71.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_72.png" alt="density_grassland_72.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_73.png" alt="density_grassland_73.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_74.png" alt="density_grassland_74.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_75.png" alt="density_grassland_75.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_76.png" alt="density_grassland_76.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_77.png" alt="density_grassland_77.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_78.png" alt="density_grassland_78.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_79.png" alt="density_grassland_79.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_7.png" alt="density_grassland_7.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_80.png" alt="density_grassland_80.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_81.png" alt="density_grassland_81.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_82.png" alt="density_grassland_82.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_83.png" alt="density_grassland_83.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_84.png" alt="density_grassland_84.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_8.png" alt="density_grassland_8.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_93.png" alt="density_grassland_93.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_94.png" alt="density_grassland_94.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_95.png" alt="density_grassland_95.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_96.png" alt="density_grassland_96.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_97.png" alt="density_grassland_97.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_98.png" alt="density_grassland_98.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_99.png" alt="density_grassland_99.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Figures/density_grassland_9.png" alt="density_grassland_9.png" width="500px" style="&quot;display:inline&quot;" />
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3da0457" class="outline-2">
+<h2 id="org3da0457"><span class="section-number-2">3</span> To do</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> Extract color images of the grasslands</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Mathieu Fauvel</p>
+<p class="date">Created: 2017-03-24 Fri 13:15</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
