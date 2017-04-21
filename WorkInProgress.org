@@ -11,6 +11,7 @@
 #+BEGIN_SRC python :tangle Codes/muesli_functions.py
 import scipy as sp
 import sqlite3
+from osgeo import gdal, ogr, gdalconst
 #+END_SRC
 ** Extract only two bands from the data
 #+BEGIN_SRC python :tangle Codes/muesli_functions.py
@@ -41,6 +42,117 @@ def read2bands(DB,b1,b2):
         X.append(sp.asarray(X_))
 
     return X,id_pp
+#+END_SRC
+** Extract samples given ID
+#+BEGIN_SRC python :tangle Codes/muesli_functions.py
+def readSamplesId(DB,ID,bands):
+    """
+    """
+    
+    # Create a SQL connection - No check if the DB exists !
+    con = sqlite3.connect(DB) 
+    cursor = con.cursor()
+
+    # Load samples
+    X = []
+    for row in cursor.execute("SELECT {} FROM output WHERE id=?".format(bands),(ID,)):
+        tp = sp.asarray(row).astype(float)
+        if not sp.isnan(tp).any() and tp[0] > 0: # Check for nan values
+                X.append(tp)
+    X = sp.asarray(X)
+    return X
+
+    # Close connection
+    conn.close()
+#+END_SRC
+
+** Read samples and location from SamplesExtraction
+#+BEGIN_SRC python :tangle Codes/muesli_functions.py
+def readSamples(DB,bands,Field="Class",NODATA=0):
+    """
+    TBC
+    """
+    # Initialization
+    X,Y,P=[],[],[]
+
+    # Use gdal Exceptions
+    gdal.UseExceptions()
+
+    # Open DB with OGR
+    driverOgr = ogr.GetDriverByName('SQLite')
+    vectorIn = driverOgr.Open(DB,gdalconst.GA_ReadOnly)
+    layerIn = vectorIn.GetLayer()
+
+    # # Open raster with GDAL
+    # rasterIn = gdal.Open(raster,gdalconst.GA_ReadOnly)
+    # if rasterIn is None:
+    #     print 'Impossible to open '+filename
+    #     exit()
+
+    # W,H,D= rasterIn.RasterXSize,rasterIn.RasterYSize,rasterIn.RasterCount
+    # GeoTransform = rasterIn.GetGeoTransform()
+    # Projection = rasterIn.GetProjection()
+    # ox,oy = GeoTransform[0],GeoTransform[3]
+    # sx,sy = GeoTransform[1],GeoTransform[5]
+
+    # print "X={},Y={},D={}".format(W,H,D)
+    
+    # Iterate over features and store pixels position
+    for feat in layerIn:
+        geom = feat.GetGeometryRef()
+        if feat.GetField("band_0") != NODATA:
+            P.append([geom.GetX(),geom.GetY()])
+            Y.append(feat.GetField(Field))
+            X.append([feat.GetField(b) for b in bands])
+            
+        # pi_ = [sp.floor((Xc-ox)/sx).astype(int), sp.floor((Yc-oy)/sy).astype(int)]
+        # if (pi_[0]>=0) and (pi_[0]<W) and (pi_[1]>=0) and (pi_[1]<H): # Check if the point is in the image
+        #     pi.append(pi_)
+        #     y.append(feat.GetField(Field))  
+        
+
+    # # Filter NODATA values
+    # band = rasterIn.GetRasterBand(1).ReadAsArray()
+    # PI,Y=[],[]
+    # for y_,pi_ in zip(y,pi):x
+    #     if band[pi_[1], pi_[0]] > 0:
+    #         PI.append(pi_)
+    #         Y.append(y_)
+    # del y,pi
+    
+    # # Load samples
+    # ns = len(Y)
+    # X = sp.empty((ns,bands.size))
+    # print X.shape
+    # for d_ in bands:
+    #     print "Bands number {}".format(d_)
+    #     band = rasterIn.GetRasterBand(d_+1).ReadAsArray()
+    #     for p, pi_ in enumerate(PI):
+    #         X[p, d_] = band[pi_[1], pi_[0]]
+
+    return X,Y,P
+#+END_SRC
+
+#+BEGIN_SRC python :tangle Codes/test.py
+import muesli_functions as mf
+bands = 'band_0'
+
+for b in xrange(1,221):
+    bands += ",band_{}".format(b)
+
+for b in xrange(259,306):
+    bands += ",band_{}".format(b)
+
+for b in xrange(338,415):
+    bands += ",band_{}".format(b)
+bands = bands.split(",")
+
+X,Y,P=mf.readSamples("/media/Data/Data/MUESLI/spectresPrairies/Data/grassland_id_2m.sqlite",bands,Field="D")
+print len(X)
+print len(X[0])
+print len(Y)
+print len(P)
+print P[0]
 #+END_SRC
 
 * Pre-processing
@@ -129,6 +241,32 @@ print(bands)
 
 #+RESULTS:
 : band_0, band_1, band_2, band_3, band_4, band_5, band_6, band_7, band_8, band_9, band_10, band_11, band_12, band_13, band_14, band_15, band_16, band_17, band_18, band_19, band_20, band_21, band_22, band_23, band_24, band_25, band_26, band_27, band_28, band_29, band_30, band_31, band_32, band_33, band_34, band_35, band_36, band_37, band_38, band_39, band_40, band_41, band_42, band_43, band_44, band_45, band_46, band_47, band_48, band_49, band_50, band_51, band_52, band_53, band_54, band_55, band_56, band_57, band_58, band_59, band_60, band_61, band_62, band_63, band_64, band_65, band_66, band_67, band_68, band_69, band_70, band_71, band_72, band_73, band_74, band_75, band_76, band_77, band_78, band_79, band_80, band_81, band_82, band_83, band_84, band_85, band_86, band_87, band_88, band_89, band_90, band_91, band_92, band_93, band_94, band_95, band_96, band_97, band_98, band_99, band_100, band_101, band_102, band_103, band_104, band_105, band_106, band_107, band_108, band_109, band_110, band_111, band_112, band_113, band_114, band_115, band_116, band_117, band_118, band_119, band_120, band_121, band_122, band_123, band_124, band_125, band_126, band_127, band_128, band_129, band_130, band_131, band_132, band_133, band_134, band_135, band_136, band_137, band_138, band_139, band_140, band_141, band_142, band_143, band_144, band_145, band_146, band_147, band_148, band_149, band_150, band_151, band_152, band_153, band_154, band_155, band_156, band_157, band_158, band_159, band_160, band_161, band_162, band_163, band_164, band_165, band_166, band_167, band_168, band_169, band_170, band_171, band_172, band_173, band_174, band_175, band_176, band_177, band_178, band_179, band_180, band_181, band_182, band_183, band_184, band_185, band_186, band_187, band_188, band_189, band_190, band_191, band_192, band_193, band_194, band_195, band_196, band_197, band_198, band_199, band_200, band_201, band_202, band_203, band_204, band_205, band_206, band_207, band_208, band_209, band_210, band_211, band_212, band_213, band_214, band_215, band_216, band_217, band_218, band_219, band_220, band_259, band_260, band_261, band_262, band_263, band_264, band_265, band_266, band_267, band_268, band_269, band_270, band_271, band_272, band_273, band_274, band_275, band_276, band_277, band_278, band_279, band_280, band_281, band_282, band_283, band_284, band_285, band_286, band_287, band_288, band_289, band_290, band_291, band_292, band_293, band_294, band_295, band_296, band_297, band_298, band_299, band_300, band_301, band_302, band_303, band_304, band_305, band_338, band_339, band_340, band_341, band_342, band_343, band_344, band_345, band_346, band_347, band_348, band_349, band_350, band_351, band_352, band_353, band_354, band_355, band_356, band_357, band_358, band_359, band_360, band_361, band_362, band_363, band_364, band_365, band_366, band_367, band_368, band_369, band_370, band_371, band_372, band_373, band_374, band_375, band_376, band_377, band_378, band_379, band_380, band_381, band_382, band_383, band_384, band_385, band_386, band_387, band_388, band_389, band_390, band_391, band_392, band_393, band_394, band_395, band_396, band_397, band_398, band_399, band_400, band_401, band_402, band_403, band_404, band_405, band_406, band_407, band_408, band_409, band_410, band_411, band_412, band_413, band_414
+
+** Get a list of valid ID
+#+BEGIN_SRC python :results output raw :exports both
+import ogr
+import scipy as sp
+
+# Open data
+shapefile = "Data/intersection_grasslands.shp"
+driver = ogr.GetDriverByName('ESRI Shapefile')
+dataSource = driver.Open(shapefile, 0) 
+layerIn = dataSource.GetLayer()
+
+# Scan all ID
+FID = [feat.GetField("id_2") for feat in layerIn]
+
+print sp.unique(FID)
+#+END_SRC
+
+#+RESULTS:
+[  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18
+  19  20  21  22  23  24  25  26  27  28  36  37  38  39  42  43  44  45
+  46  47  48  49  50  51  53  54  55  56  57  58  59  60  61  62  63  64
+  65  66  67  68  69  70  71  72  73  74  75  76  77  78  79  80  81  82
+  83  84  93  94  95  96  97  98  99 100 104 105 106 107 108 109 110 111
+ 113 114 115 116 119 120 121 122 123 124 125 126 127 128 129 130 131 132
+ 133 134 135 136 137 138 141 142 143]
 
 * Processing
 ** Extract color images
@@ -228,6 +366,76 @@ if PLOT_DENSITY:
         plt.close()
 #+END_SRC
 
+** Unsupervised analysis
+- For each Grasslands
+  + Normalization -> L2 ?
+  + Do the segmentation
+  + Compute the heterogeneity
+
+#+BEGIN_SRC python :tangle Codes/cluster_grasslands.py
+import scipy as sp
+import pickle
+import hdda
+import muesli_functions as mf
+import os
+from multiprocessing import Pool
+
+# Convenient function
+def  ClusterGrasslands(id_,DB,bands,C):
+    # Read samples
+    X = mf.readSamplesId(DB,id_,bands)
+
+    # L1 Normalization
+    X /= X.sum(axis=1)[:,sp.newaxis]
+
+    print("Process Grasslands {0}, number of samples {1}".format(id_,X.shape[0]))
+    # Run HDDA
+    ICL=[]
+    for c in C:
+        icl = []
+        for rep in xrange(5): # Do several init 
+            param = {'th':0.1,'tol':0.0001,'random_state':rep,'C':c}
+            model = hdda.HDGMM(model='M4')
+            conv = model.fit(X,param=param)
+            if conv == 1:
+                icl.append(model.icl)
+        if len(icl) > 0:
+            ICL.append(sum(icl)/len(icl))
+        else:
+            ICL.append(sp.nan)
+            
+    # Save model
+    T = []
+    T.append(C)
+    T.append(ICL)
+    sp.savetxt("../Res/ICL_{}.csv".format(id_),T,delimiter=',')
+
+
+if __name__ == '__main__':
+    os.system("export  OMP_NUM_THREADS=1")
+    
+    # Parameters
+    DB = "../Data/grassland_id_2m.sqlite"
+
+    ID = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 36, 37, 38, 39, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 53, 54, 55, 56 , 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74 , 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 93, 94, 95, 96, 97, 98, 99, 100 ,104, 105, 106, 107, 108, 109, 110, 111, 113, 114, 115, 116, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 141, 142, 143]
+
+    bands = 'band_0'
+    for b in xrange(1,221):
+        bands += ", band_{}".format(b)
+    for b in xrange(259,306):
+        bands += ", band_{}".format(b)
+    for b in xrange(338,415):
+        bands += ", band_{}".format(b)
+
+    C = sp.arange(1,20)
+
+    # Iteration over the ID
+    pool = Pool(processes=8)
+    [pool.apply_async(ClusterGrasslands,(id_,DB,bands,C,)) for id_ in ID]
+    pool.close()
+    pool.join()
+#+END_SRC
+    
 * Plot and images
 We can plot the estimated density from the NDVI.
 
