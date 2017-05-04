@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-03-29 Wed 23:03 -->
+<!-- 2017-05-04 Thu 17:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Analyze of grasslands biodiversity/heterogeneity</title>
@@ -184,7 +184,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -225,6 +225,28 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
@@ -236,45 +258,56 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf94c7cc">1. Convenient functions</a>
+<li><a href="#orgc94ce8b">1. Convenient functions</a>
 <ul>
-<li><a href="#org79742c4">1.1. Global import</a></li>
-<li><a href="#orgdcf0dbe">1.2. Extract only two bands from the data</a></li>
+<li><a href="#org54adbd8">1.1. Global import</a></li>
+<li><a href="#orge87c7ba">1.2. Extract only two bands from the data</a></li>
+<li><a href="#org016fb88">1.3. Extract samples given ID</a></li>
+<li><a href="#org7f676ba">1.4. Read samples and location from SamplesExtraction</a></li>
 </ul>
 </li>
-<li><a href="#org15b4960">2. Pre-processing</a>
+<li><a href="#org52101e5">2. Pre-processing</a>
 <ul>
-<li><a href="#org791eea1">2.1. Extraction of the training samples</a></li>
-<li><a href="#org3400c99">2.2. Filtering the noisy spectral bands</a></li>
+<li><a href="#orgd32baa5">2.1. Extraction of the training samples</a></li>
+<li><a href="#orgcf5daab">2.2. Filtering the noisy spectral bands</a></li>
+<li><a href="#org8101a46">2.3. Get a list of valid ID</a></li>
 </ul>
 </li>
-<li><a href="#org8d7beb9">3. Processing</a>
+<li><a href="#org6ca5b0a">3. Processing</a>
 <ul>
-<li><a href="#orgb13c268">3.1. Extract color images</a></li>
-<li><a href="#org8dc8aa9">3.2. NDVI</a></li>
+<li><a href="#org7817200">3.1. Extract color images</a></li>
+<li><a href="#org6474408">3.2. NDVI</a></li>
+<li><a href="#orgc909027">3.3. Unsupervised analysis</a>
+<ul>
+<li><a href="#org7deae14">3.3.1. Computation of the ICL for various configuration</a></li>
+<li><a href="#orgd5ef7a0">3.3.2. Analysis of the ICL</a></li>
+<li><a href="#orgea7a0b0">3.3.3. Computation of the models for each grasslands</a></li>
 </ul>
 </li>
-<li><a href="#org704ea72">4. Plot and images</a></li>
-<li><a href="#orgd312f16">5. To do</a></li>
+</ul>
+</li>
+<li><a href="#orgcaa44f0">4. Plot and images</a></li>
+<li><a href="#org438ec9e">5. To do</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgf94c7cc" class="outline-2">
-<h2 id="orgf94c7cc"><span class="section-number-2">1</span> Convenient functions</h2>
+<div id="outline-container-orgc94ce8b" class="outline-2">
+<h2 id="orgc94ce8b"><span class="section-number-2">1</span> Convenient functions</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-org79742c4" class="outline-3">
-<h3 id="org79742c4"><span class="section-number-3">1.1</span> Global import</h3>
+</div><div id="outline-container-org54adbd8" class="outline-3">
+<h3 id="org54adbd8"><span class="section-number-3">1.1</span> Global import</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #F92672;">import</span> scipy <span style="color: #F92672;">as</span> sp
 <span style="color: #F92672;">import</span> sqlite3
+<span style="color: #F92672;">from</span> osgeo <span style="color: #F92672;">import</span> gdal, ogr, gdalconst
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgdcf0dbe" class="outline-3">
-<h3 id="orgdcf0dbe"><span class="section-number-3">1.2</span> Extract only two bands from the data</h3>
+<div id="outline-container-orge87c7ba" class="outline-3">
+<h3 id="orge87c7ba"><span class="section-number-3">1.2</span> Extract only two bands from the data</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #F92672;">def</span> <span style="color: #A6E22E;">read2bands</span>(DB,b1,b2):
@@ -308,13 +341,135 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
+<div id="outline-container-org016fb88" class="outline-3">
+<h3 id="org016fb88"><span class="section-number-3">1.3</span> Extract samples given ID</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #F92672;">def</span> <span style="color: #A6E22E;">readSamplesId</span>(DB,ID,bands):
+<span style="background-color: #64645E;"> </span>   <span style="color: #E6DB74;">"""</span>
+<span style="color: #E6DB74; background-color: #64645E;"> </span><span style="color: #E6DB74;">   """</span>
+<span style="background-color: #64645E;"> </span>   
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Create a SQL connection - No check if the DB exists !</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">con</span> = sqlite3.connect(DB) 
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">cursor</span> = con.cursor()
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Load samples</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">X</span> = []
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">for</span> row <span style="color: #F92672;">in</span> cursor.execute(<span style="color: #E6DB74;">"SELECT {} FROM output WHERE id=?"</span>.<span style="color: #F92672;">format</span>(bands),(<span style="color: #F92672;">str</span>(ID),)):
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">tp</span> = sp.asarray(row).astype(<span style="color: #F92672;">float</span>)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">if</span> <span style="color: #F92672;">not</span> sp.isnan(tp).<span style="color: #F92672;">any</span>() <span style="color: #F92672;">and</span> tp[0] &gt; 0: <span style="color: #75715E;"># </span><span style="color: #75715E;">Check for nan values</span>
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   X.append(tp)
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">X</span> = sp.asarray(X)
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">return</span> X
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Close connection</span>
+<span style="background-color: #64645E;"> </span>   conn.close()
+</pre>
+</div>
+</div>
 </div>
 
-<div id="outline-container-org15b4960" class="outline-2">
-<h2 id="org15b4960"><span class="section-number-2">2</span> Pre-processing</h2>
+<div id="outline-container-org7f676ba" class="outline-3">
+<h3 id="org7f676ba"><span class="section-number-3">1.4</span> Read samples and location from SamplesExtraction</h3>
+<div class="outline-text-3" id="text-1-4">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #F92672;">def</span> <span style="color: #A6E22E;">readSamples</span>(DB,bands,Field=<span style="color: #E6DB74;">"Class"</span>,NODATA=0):
+<span style="background-color: #64645E;"> </span>   <span style="color: #E6DB74;">"""</span>
+<span style="color: #E6DB74; background-color: #64645E;"> </span><span style="color: #E6DB74;">   TBC</span>
+<span style="color: #E6DB74; background-color: #64645E;"> </span><span style="color: #E6DB74;">   """</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Initialization</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">X</span>,<span style="color: #FD971F;">Y</span>,<span style="color: #FD971F;">P</span>=[],[],[]
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Use gdal Exceptions</span>
+<span style="background-color: #64645E;"> </span>   gdal.UseExceptions()
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Open DB with OGR</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">driverOgr</span> = ogr.GetDriverByName(<span style="color: #E6DB74;">'SQLite'</span>)
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">vectorIn</span> = driverOgr.Open(DB,gdalconst.GA_ReadOnly)
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">layerIn</span> = vectorIn.GetLayer()
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;"># Open raster with GDAL</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">rasterIn = gdal.Open(raster,gdalconst.GA_ReadOnly)</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">if rasterIn is None:</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;">#     </span><span style="color: #75715E;">print 'Impossible to open '+filename</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;">#     </span><span style="color: #75715E;">exit()</span>
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">W,H,D= rasterIn.RasterXSize,rasterIn.RasterYSize,rasterIn.RasterCount</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">GeoTransform = rasterIn.GetGeoTransform()</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Projection = rasterIn.GetProjection()</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">ox,oy = GeoTransform[0],GeoTransform[3]</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">sx,sy = GeoTransform[1],GeoTransform[5]</span>
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">print "X={},Y={},D={}".format(W,H,D)</span>
+<span style="background-color: #64645E;"> </span>   
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Iterate over features and store pixels position</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">for</span> feat <span style="color: #F92672;">in</span> layerIn:
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">geom</span> = feat.GetGeometryRef()
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">if</span> feat.GetField(<span style="color: #E6DB74;">"band_0"</span>) != NODATA:
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   P.append([geom.GetX(),geom.GetY()])
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   Y.append(feat.GetField(Field))
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   X.append([feat.GetField(b) <span style="color: #F92672;">for</span> b <span style="color: #F92672;">in</span> bands])
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">pi_ = [sp.floor((Xc-ox)/sx).astype(int), sp.floor((Yc-oy)/sy).astype(int)]</span>
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">if (pi_[0]&gt;=0) and (pi_[0]&lt;W) and (pi_[1]&gt;=0) and (pi_[1]&lt;H): # Check if the point is in the image</span>
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #75715E;">#     </span><span style="color: #75715E;">pi.append(pi_)</span>
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #75715E;">#     </span><span style="color: #75715E;">y.append(feat.GetField(Field))  </span>
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;"># Filter NODATA values</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">band = rasterIn.GetRasterBand(1).ReadAsArray()</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">PI,Y=[],[]</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">for y_,pi_ in zip(y,pi):x</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;">#     </span><span style="color: #75715E;">if band[pi_[1], pi_[0]] &gt; 0:</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;">#         </span><span style="color: #75715E;">PI.append(pi_)</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;">#         </span><span style="color: #75715E;">Y.append(y_)</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">del y,pi</span>
+<span style="background-color: #64645E;"> </span>   
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;"># Load samples</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">ns = len(Y)</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">X = sp.empty((ns,bands.size))</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">print X.shape</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">for d_ in bands:</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;">#     </span><span style="color: #75715E;">print "Bands number {}".format(d_)</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;">#     </span><span style="color: #75715E;">band = rasterIn.GetRasterBand(d_+1).ReadAsArray()</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;">#     </span><span style="color: #75715E;">for p, pi_ in enumerate(PI):</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;">#         </span><span style="color: #75715E;">X[p, d_] = band[pi_[1], pi_[0]]</span>
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">return</span> X,Y,P
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #F92672;">import</span> muesli_functions <span style="color: #F92672;">as</span> mf
+<span style="color: #FD971F;">bands</span> = <span style="color: #E6DB74;">'band_0'</span>
+
+<span style="color: #F92672;">for</span> b <span style="color: #F92672;">in</span> <span style="color: #F92672;">xrange</span>(1,221):
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">bands</span> += <span style="color: #E6DB74;">",band_{}"</span>.<span style="color: #F92672;">format</span>(b)
+
+<span style="color: #F92672;">for</span> b <span style="color: #F92672;">in</span> <span style="color: #F92672;">xrange</span>(259,306):
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">bands</span> += <span style="color: #E6DB74;">",band_{}"</span>.<span style="color: #F92672;">format</span>(b)
+
+<span style="color: #F92672;">for</span> b <span style="color: #F92672;">in</span> <span style="color: #F92672;">xrange</span>(338,415):
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">bands</span> += <span style="color: #E6DB74;">",band_{}"</span>.<span style="color: #F92672;">format</span>(b)
+<span style="color: #FD971F;">bands</span> = bands.split(<span style="color: #E6DB74;">","</span>)
+
+<span style="color: #FD971F;">X</span>,<span style="color: #FD971F;">Y</span>,<span style="color: #FD971F;">P</span>=mf.readSamples(<span style="color: #E6DB74;">"/media/Data/Data/MUESLI/spectresPrairies/Data/grassland_id_2m.sqlite"</span>,bands,Field=<span style="color: #E6DB74;">"D"</span>)
+<span style="color: #F92672;">print</span> <span style="color: #F92672;">len</span>(X)
+<span style="color: #F92672;">print</span> <span style="color: #F92672;">len</span>(X[0])
+<span style="color: #F92672;">print</span> <span style="color: #F92672;">len</span>(Y)
+<span style="color: #F92672;">print</span> <span style="color: #F92672;">len</span>(P)
+<span style="color: #F92672;">print</span> P[0]
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org52101e5" class="outline-2">
+<h2 id="org52101e5"><span class="section-number-2">2</span> Pre-processing</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-org791eea1" class="outline-3">
-<h3 id="org791eea1"><span class="section-number-3">2.1</span> Extraction of the training samples</h3>
+</div><div id="outline-container-orgd32baa5" class="outline-3">
+<h3 id="orgd32baa5"><span class="section-number-3">2.1</span> Extraction of the training samples</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 All  the samples  are extracted  from the  Grasslands, and  grouped by
@@ -349,16 +504,16 @@ otbcli_SampleExtraction -in /mnt/Data_1/MUESLI/VNIR_SWIR_2m/L1c/atm/mosaic.tif <
 </div>
 </div>
 </div>
-<div id="outline-container-org3400c99" class="outline-3">
-<h3 id="org3400c99"><span class="section-number-3">2.2</span> Filtering the noisy spectral bands</h3>
+<div id="outline-container-orgcf5daab" class="outline-3">
+<h3 id="orgcf5daab"><span class="section-number-3">2.2</span> Filtering the noisy spectral bands</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 The data  must be cleaned. Some  of the wavelengths are  noisy, due to
 water  absorption in  the  atmosphere.  Thus we  choose  to work  with
-reduced spectral domains, which are given in the table <a href="#org9375bb7">1</a>.
+reduced spectral domains, which are given in the table <a href="#org1621aad">1</a>.
 </p>
 
-<table id="org9375bb7" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="org1621aad" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 1:</span> Domain of validity.</caption>
 
 <colgroup>
@@ -398,10 +553,10 @@ reduced spectral domains, which are given in the table <a href="#org9375bb7">1</
 
 <p>
 Given the wavelength provided in the <code>.hdr</code> files, we have the following
-band number / wavelength correspondences reported in table <a href="#orgb7c3268">2</a>.
+band number / wavelength correspondences reported in table <a href="#orgf2872e7">2</a>.
 </p>
 
-<table id="orgb7c3268" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="orgf2872e7" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 2:</span> Wavelengths as a function of band number.</caption>
 
 <colgroup>
@@ -2172,10 +2327,10 @@ band number / wavelength correspondences reported in table <a href="#orgb7c3268"
 </table>
 
 <p>
-We get the  bands number given in table <a href="#org18ca395">3</a>,  for a total
+We get the  bands number given in table <a href="#org421d0b9">3</a>,  for a total
 of 345 spectral bands.
 </p>
-<table id="org18ca395" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="org421d0b9" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 3:</span> Selected bands, border included.</caption>
 
 <colgroup>
@@ -2250,13 +2405,52 @@ The following  lines on  Python provides  the string  to be  used with
 </div>
 </div>
 </div>
+
+<div id="outline-container-org8101a46" class="outline-3">
+<h3 id="org8101a46"><span class="section-number-3">2.3</span> Get a list of valid ID</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #F92672;">import</span> ogr
+<span style="color: #F92672;">import</span> scipy <span style="color: #F92672;">as</span> sp
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">Open data</span>
+<span style="color: #FD971F;">shapefile</span> = <span style="color: #E6DB74;">"Data/intersection_grasslands.shp"</span>
+<span style="color: #FD971F;">driver</span> = ogr.GetDriverByName(<span style="color: #E6DB74;">'ESRI Shapefile'</span>)
+<span style="color: #FD971F;">dataSource</span> = driver.Open(shapefile, 0) 
+<span style="color: #FD971F;">layerIn</span> = dataSource.GetLayer()
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">Scan all ID</span>
+<span style="color: #FD971F;">FID</span> = [feat.GetField(<span style="color: #E6DB74;">"id_2"</span>) <span style="color: #F92672;">for</span> feat <span style="color: #F92672;">in</span> layerIn]
+
+<span style="color: #F92672;">print</span> sp.unique(FID)
+</pre>
 </div>
 
-<div id="outline-container-org8d7beb9" class="outline-2">
-<h2 id="org8d7beb9"><span class="section-number-2">3</span> Processing</h2>
+<p>
+[  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18
+  19  20  21  22  23  24  25  26  27  28  36  37  38  39  42  43  44  45
+  46  47  48  49  50  51  53  54  55  56  57  58  59  60  61  62  63  64
+  65  66  67  68  69  70  71  72  73  74  75  76  77  78  79  80  81  82
+  83  84  93  94  95  96  97  98  99 100 104 105 106 107 108 109 110 111
+ 113 114 115 116 119 120 121 122 123 124 125 126 127 128 129 130 131 132
+ 133 134 135 136 137 138 141 142 143]
+[  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18
+  19  20  21  22  23  24  25  26  27  28  36  37  38  39  42  43  44  45
+  46  47  48  49  50  51  53  54  55  56  57  58  59  60  61  62  63  64
+  65  66  67  68  69  70  71  72  73  74  75  76  77  78  79  80  81  82
+  83  84  93  94  95  96  97  98  99 100 104 105 106 107 108 109 110 111
+ 113 114 115 116 119 120 121 122 123 124 125 126 127 128 129 130 131 132
+ 133 134 135 136 137 138 141 142 143]
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6ca5b0a" class="outline-2">
+<h2 id="org6ca5b0a"><span class="section-number-2">3</span> Processing</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-orgb13c268" class="outline-3">
-<h3 id="orgb13c268"><span class="section-number-3">3.1</span> Extract color images</h3>
+</div><div id="outline-container-org7817200" class="outline-3">
+<h3 id="org7817200"><span class="section-number-3">3.1</span> Extract color images</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 We first need to get the number of grasslands in the shapefile. 
@@ -2279,6 +2473,7 @@ We first need to get the number of grasslands in the shapefile.
 
 <pre class="example">
 192
+
 </pre>
 
 <p>
@@ -2308,13 +2503,13 @@ polygons, warp the "aperçu" to extract the image.
 </div>
 </div>
 
-<div id="outline-container-org8dc8aa9" class="outline-3">
-<h3 id="org8dc8aa9"><span class="section-number-3">3.2</span> NDVI</h3>
+<div id="outline-container-org6474408" class="outline-3">
+<h3 id="org6474408"><span class="section-number-3">3.2</span> NDVI</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 For all the  grasslands, the NDVI is computed and  the density plot is
 estimated. To compute the NDVI we  need the wavelength 800nm and 670nm
-which correspond, from table <a href="#orgb7c3268">2</a>, to the bands number 106 and 70,
+which correspond, from table <a href="#orgf2872e7">2</a>, to the bands number 106 and 70,
 respectively.
 </p>
 
@@ -2369,10 +2564,211 @@ matplotlib.style.use(<span style="color: #E6DB74;">'ggplot'</span>)
 </div>
 </div>
 </div>
+
+<div id="outline-container-orgc909027" class="outline-3">
+<h3 id="orgc909027"><span class="section-number-3">3.3</span> Unsupervised analysis</h3>
+<div class="outline-text-3" id="text-3-3">
+</div><div id="outline-container-org7deae14" class="outline-4">
+<h4 id="org7deae14"><span class="section-number-4">3.3.1</span> Computation of the ICL for various configuration</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<ul class="org-ul">
+<li>For each Grasslands
+<ul class="org-ul">
+<li>Normalization -&gt; L1 ? \(xn = x/|x|\)</li>
+<li>Do the segmentation with the model <code>M4</code></li>
+<li>Compute the heterogeneity</li>
+</ul></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #F92672;">import</span> scipy <span style="color: #F92672;">as</span> sp
+<span style="color: #F92672;">import</span> pickle
+<span style="color: #F92672;">import</span> hdda
+<span style="color: #F92672;">import</span> muesli_functions <span style="color: #F92672;">as</span> mf
+<span style="color: #F92672;">import</span> os
+<span style="color: #F92672;">from</span> multiprocessing <span style="color: #F92672;">import</span> Pool
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">Convenient function</span>
+<span style="color: #F92672;">def</span>  <span style="color: #A6E22E;">ClusterGrasslands</span>(id_,DB,bands,C):
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Read samples</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">X</span> = mf.readSamplesId(DB,id_,bands)
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">L1 Normalization</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">X</span> /= X.<span style="color: #F92672;">sum</span>(axis=1)[:,sp.newaxis]
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">print</span>(<span style="color: #E6DB74;">"Process Grasslands {0}, number of samples {1}"</span>.<span style="color: #F92672;">format</span>(id_,X.shape[0]))
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Run HDDA</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">ICL</span>=[]
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">for</span> c <span style="color: #F92672;">in</span> C:
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">icl</span> = []
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">for</span> rep <span style="color: #F92672;">in</span> <span style="color: #F92672;">xrange</span>(5): <span style="color: #75715E;"># </span><span style="color: #75715E;">Do several init </span>
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">param</span> = {<span style="color: #E6DB74;">'th'</span>:0.1,<span style="color: #E6DB74;">'tol'</span>:0.0001,<span style="color: #E6DB74;">'random_state'</span>:rep,<span style="color: #E6DB74;">'C'</span>:c}
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">model</span> = hdda.HDGMM(model=<span style="color: #E6DB74;">'M4'</span>)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">conv</span> = model.fit(X,param=param)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">if</span> conv == 1:
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   icl.append(model.icl)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">if</span> <span style="color: #F92672;">len</span>(icl) &gt; 0:
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   ICL.append(<span style="color: #F92672;">sum</span>(icl)/<span style="color: #F92672;">len</span>(icl))
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">else</span>:
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   ICL.append(sp.nan)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Save model</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">T</span> = []
+<span style="background-color: #64645E;"> </span>   T.append(C)
+<span style="background-color: #64645E;"> </span>   T.append(ICL)
+<span style="background-color: #64645E;"> </span>   sp.savetxt(<span style="color: #E6DB74;">"../Res/ICL_{}.csv"</span>.<span style="color: #F92672;">format</span>(id_),T,delimiter=<span style="color: #E6DB74;">','</span>)
+
+
+<span style="color: #F92672;">if</span> <span style="color: #F92672;">__name__</span> == <span style="color: #E6DB74;">'__main__'</span>:
+<span style="background-color: #64645E;"> </span>   os.system(<span style="color: #E6DB74;">"export  OMP_NUM_THREADS=1"</span>)
+<span style="background-color: #64645E;"> </span>   
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Parameters</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">DB</span> = <span style="color: #E6DB74;">"../Data/grassland_id_2m.sqlite"</span>
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">ID</span> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 36, 37, 38, 39, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 53, 54, 55, 56 , 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74 , 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 93, 94, 95, 96, 97, 98, 99, 100 ,104, 105, 106, 107, 108, 109, 110, 111, 113, 114, 115, 116, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 141, 142, 143]
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">bands</span> = <span style="color: #E6DB74;">'band_0'</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">for</span> b <span style="color: #F92672;">in</span> <span style="color: #F92672;">xrange</span>(1,221):
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">bands</span> += <span style="color: #E6DB74;">", band_{}"</span>.<span style="color: #F92672;">format</span>(b)
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">for</span> b <span style="color: #F92672;">in</span> <span style="color: #F92672;">xrange</span>(259,306):
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">bands</span> += <span style="color: #E6DB74;">", band_{}"</span>.<span style="color: #F92672;">format</span>(b)
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">for</span> b <span style="color: #F92672;">in</span> <span style="color: #F92672;">xrange</span>(338,415):
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">bands</span> += <span style="color: #E6DB74;">", band_{}"</span>.<span style="color: #F92672;">format</span>(b)
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">C</span> = sp.arange(1,20)
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Iteration over the ID</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">pool</span> = Pool(processes=8)
+<span style="background-color: #64645E;"> </span>   [pool.apply_async(ClusterGrasslands,(id_,DB,bands,C,)) <span style="color: #F92672;">for</span> id_ <span style="color: #F92672;">in</span> ID]
+<span style="background-color: #64645E;"> </span>   pool.close()
+<span style="background-color: #64645E;"> </span>   pool.join()
+</pre>
+</div>
+</div>
 </div>
 
-<div id="outline-container-org704ea72" class="outline-2">
-<h2 id="org704ea72"><span class="section-number-2">4</span> Plot and images</h2>
+<div id="outline-container-orgd5ef7a0" class="outline-4">
+<h4 id="orgd5ef7a0"><span class="section-number-4">3.3.2</span> Analysis of the ICL</h4>
+<div class="outline-text-4" id="text-3-3-2">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #F92672;">import</span> scipy <span style="color: #F92672;">as</span> sp
+<span style="color: #F92672;">import</span> matplotlib.pyplot <span style="color: #F92672;">as</span> plt
+<span style="color: #F92672;">import</span> os
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">Parameters</span>
+<span style="color: #FD971F;">ID</span> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 36, 37, 38, 39, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 53, 54, 55, 56 , 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74 , 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 93, 94, 95, 96, 97, 98, 99, 100 ,104, 105, 106, 107, 108, 109, 110, 111, 113, 114, 115, 116, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 141, 142, 143]
+
+<span style="color: #FD971F;">TH</span> = 0.1
+<span style="color: #FD971F;">RES</span> = []
+<span style="color: #75715E;"># </span><span style="color: #75715E;">Scan all files</span>
+<span style="color: #F92672;">for</span> id_ <span style="color: #F92672;">in</span> ID:
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">try</span>:
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">C</span>,<span style="color: #FD971F;">ICL</span> = sp.loadtxt(<span style="color: #E6DB74;">"/media/Data/Data/MUESLI/spectresPrairies/Res/ICL_{}.csv"</span>.<span style="color: #F92672;">format</span>(id_),delimiter=<span style="color: #E6DB74;">','</span>,unpack=<span style="color: #AE81FF;">True</span>).T
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">plt.figure()</span>
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">plt.plot(C,ICL)</span>
+
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">dICL</span> = sp.diff(ICL)/ICL[:-1]*100
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">dICL</span> = dICL[sp.isnan(dICL)==<span style="color: #AE81FF;">False</span>]
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   plt.figure()
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   plt.plot(C[1:<span style="color: #F92672;">len</span>(dICL)+1],dICL,<span style="color: #E6DB74;">'-*'</span>)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   plt.title(<span style="color: #E6DB74;">'ID : {}'</span>.<span style="color: #F92672;">format</span>(id_))
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   plt.axis([1,19,0,3])
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   plt.savefig(<span style="color: #E6DB74;">"/tmp/icl_{}.pdf"</span>.<span style="color: #F92672;">format</span>(id_),dpi=300)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">t</span> = sp.where(dICL&lt;TH)[0]
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">if</span> <span style="color: #F92672;">len</span>(t) &lt;1:
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">t</span> = [<span style="color: #F92672;">len</span>(dICL)+1]
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">print("Number of class {} for ID {}".format(t[0],id_))</span>
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   RES.append([id_,C[t[0]+1]])
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">except</span> <span style="color: #66D9EF;">IOError</span>:
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #AE81FF;">None</span>
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">print("Id {} does not exist".format(id_))</span>
+
+os.system(<span style="color: #E6DB74;">"pdftk /tmp/dicl*.pdf cat output /media/Data/Data/MUESLI/spectresPrairies/dicl.pdf"</span>)
+os.system(<span style="color: #E6DB74;">"rm /tmp/dicl*.pdf"</span>)
+
+<span style="color: #F92672;">return</span> RES
+</pre>
+</div>
+
+
+<p>
+Grasslands not processed
+</p>
+<pre class="example">
+Id 5 does not exist
+Id 43 does not exist
+Id 45 does not exist
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgea7a0b0" class="outline-4">
+<h4 id="orgea7a0b0"><span class="section-number-4">3.3.3</span> Computation of the models for each grasslands</h4>
+<div class="outline-text-4" id="text-3-3-3">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #F92672;">import</span> scipy <span style="color: #F92672;">as</span> sp
+<span style="color: #F92672;">import</span> hdda
+<span style="color: #F92672;">from</span> multiprocessing <span style="color: #F92672;">import</span> Pool
+<span style="color: #F92672;">import</span> pickle
+<span style="color: #F92672;">import</span> muesli_functions <span style="color: #F92672;">as</span> mf
+
+<span style="color: #75715E;"># </span><span style="color: #75715E;">Convenient function</span>
+<span style="color: #F92672;">def</span> <span style="color: #A6E22E;">ClusterGrasslands</span>(id_,DB,bands,C):
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Read samples</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">X</span> = mf.readSamplesId(DB,id_,bands)
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">L1 Normalization</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">X</span> /= X.<span style="color: #F92672;">sum</span>(axis=1)[:,sp.newaxis]
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">print</span>(<span style="color: #E6DB74;">"Process Grasslands {0}, number of samples {1}, number of classes"</span>.<span style="color: #F92672;">format</span>(id_,X.shape[0],C))
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Run HDDA</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">models</span>, <span style="color: #FD971F;">icl</span> = [], []
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">for</span> rep <span style="color: #F92672;">in</span> <span style="color: #F92672;">xrange</span>(5): <span style="color: #75715E;"># </span><span style="color: #75715E;">Do several init </span>
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">param</span> = {<span style="color: #E6DB74;">'th'</span>:0.1,<span style="color: #E6DB74;">'tol'</span>:0.0001,<span style="color: #E6DB74;">'random_state'</span>:rep,<span style="color: #E6DB74;">'C'</span>:C}
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">model_</span> = hdda.HDGMM(model=<span style="color: #E6DB74;">'M4'</span>)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">conv</span> = model_.fit(X,param=param)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">if</span> conv == 1:
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   models.append(model_)
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   icl.append(model_.icl)
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">model_</span> = []
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Select the model with the highest ICL</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">t</span> = sp.argmax(icl)
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">model</span> = models
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Save the model</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">with</span> <span style="color: #F92672;">open</span>(<span style="color: #E6DB74;">"model_{}"</span>.<span style="color: #F92672;">format</span>(id_),<span style="color: #E6DB74;">'wb'</span>) <span style="color: #F92672;">as</span> output:
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   pickle.dump(model,output)
+
+<span style="color: #F92672;">if</span> <span style="color: #F92672;">__name__</span> == <span style="color: #E6DB74;">'__main__'</span>:
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Parameters</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">DB</span> = <span style="color: #E6DB74;">"../Data/grassland_id_2m.sqlite"</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">data</span> = sp.loadtxt(<span style="color: #E6DB74;">"../Res/dicl.csv"</span>,delimiter=<span style="color: #E6DB74;">','</span>,dtype=sp.int16)
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">bands</span> = <span style="color: #E6DB74;">'band_0'</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">for</span> b <span style="color: #F92672;">in</span> <span style="color: #F92672;">xrange</span>(1,221):
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">bands</span> += <span style="color: #E6DB74;">", band_{}"</span>.<span style="color: #F92672;">format</span>(b)
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">for</span> b <span style="color: #F92672;">in</span> <span style="color: #F92672;">xrange</span>(259,306):
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">bands</span> += <span style="color: #E6DB74;">", band_{}"</span>.<span style="color: #F92672;">format</span>(b)
+<span style="background-color: #64645E;"> </span>   <span style="color: #F92672;">for</span> b <span style="color: #F92672;">in</span> <span style="color: #F92672;">xrange</span>(338,415):
+<span style="background-color: #64645E;"> </span>   <span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">bands</span> += <span style="color: #E6DB74;">", band_{}"</span>.<span style="color: #F92672;">format</span>(b)
+
+<span style="background-color: #64645E;"> </span>   <span style="color: #75715E;"># </span><span style="color: #75715E;">Iteration over the ID</span>
+<span style="background-color: #64645E;"> </span>   <span style="color: #FD971F;">pool</span> = Pool(processes=8)
+<span style="background-color: #64645E;"> </span>   [pool.apply_async(ClusterGrasslands,(id_,DB,bands,C,)) <span style="color: #F92672;">for</span> id_,C <span style="color: #F92672;">in</span> data]
+<span style="background-color: #64645E;"> </span>   pool.close()
+<span style="background-color: #64645E;"> </span>   pool.join()
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgcaa44f0" class="outline-2">
+<h2 id="orgcaa44f0"><span class="section-number-2">4</span> Plot and images</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 We can plot the estimated density from the NDVI.
@@ -4741,8 +5137,8 @@ We can plot the estimated density from the NDVI.
 </div>
 </div>
 
-<div id="outline-container-orgd312f16" class="outline-2">
-<h2 id="orgd312f16"><span class="section-number-2">5</span> To do</h2>
+<div id="outline-container-org438ec9e" class="outline-2">
+<h2 id="org438ec9e"><span class="section-number-2">5</span> To do</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li class="off"><code>[&#xa0;]</code> Extract color images of the grasslands</li>
@@ -4754,7 +5150,7 @@ We can plot the estimated density from the NDVI.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Mathieu Fauvel</p>
-<p class="date">Created: 2017-03-29 Wed 23:03</p>
+<p class="date">Created: 2017-05-04 Thu 17:13</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
