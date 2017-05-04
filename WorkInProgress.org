@@ -55,7 +55,7 @@ def readSamplesId(DB,ID,bands):
 
     # Load samples
     X = []
-    for row in cursor.execute("SELECT {} FROM output WHERE id=?".format(bands),(ID,)):
+    for row in cursor.execute("SELECT {} FROM output WHERE id=?".format(bands),(str(ID),)):
         tp = sp.asarray(row).astype(float)
         if not sp.isnan(tp).any() and tp[0] > 0: # Check for nan values
                 X.append(tp)
@@ -367,12 +367,13 @@ if PLOT_DENSITY:
 #+END_SRC
 
 ** Unsupervised analysis
+*** Computation of the ICL for various configuration
 - For each Grasslands
-  + Normalization -> L2 ?
-  + Do the segmentation
+  + Normalization -> L1 ? \(xn = x/|x|\)
+  + Do the segmentation with the model =M4=
   + Compute the heterogeneity
 
-#+BEGIN_SRC python :tangle Codes/cluster_grasslands.py
+#+BEGIN_SRC python :tangle Codes/icl_grasslands.py
 import scipy as sp
 import pickle
 import hdda
@@ -435,7 +436,226 @@ if __name__ == '__main__':
     pool.close()
     pool.join()
 #+END_SRC
-    
+
+*** Analysis of the ICL    
+#+BEGIN_SRC python :results table
+import scipy as sp
+import matplotlib.pyplot as plt
+import os
+
+# Parameters
+ID = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 36, 37, 38, 39, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 53, 54, 55, 56 , 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74 , 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 93, 94, 95, 96, 97, 98, 99, 100 ,104, 105, 106, 107, 108, 109, 110, 111, 113, 114, 115, 116, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 141, 142, 143]
+
+TH = 0.1
+RES = []
+# Scan all files
+for id_ in ID:
+    try:
+        C,ICL = sp.loadtxt("/media/Data/Data/MUESLI/spectresPrairies/Res/ICL_{}.csv".format(id_),delimiter=',',unpack=True).T
+        # plt.figure()
+        # plt.plot(C,ICL)
+
+        dICL = sp.diff(ICL)/ICL[:-1]*100
+        dICL = dICL[sp.isnan(dICL)==False]
+        plt.figure()
+        plt.plot(C[1:len(dICL)+1],dICL,'-*')
+        plt.title('ID : {}'.format(id_))
+        plt.axis([1,19,0,3])
+        plt.savefig("/tmp/icl_{}.pdf".format(id_),dpi=300)
+        t = sp.where(dICL<TH)[0]
+        if len(t) <1:
+            t = [len(dICL)+1]
+        # print("Number of class {} for ID {}".format(t[0],id_))
+        RES.append([id_,C[t[0]+1]])
+    except IOError:
+        None
+        # print("Id {} does not exist".format(id_))
+
+os.system("pdftk /tmp/dicl*.pdf cat output /media/Data/Data/MUESLI/spectresPrairies/dicl.pdf")
+os.system("rm /tmp/dicl*.pdf")
+
+return RES
+#+END_SRC
+
+#+RESULTS:
+|   1 |  5.0 |
+|   2 |  7.0 |
+|   3 |  6.0 |
+|   4 |  5.0 |
+|   6 |  8.0 |
+|   7 |  7.0 |
+|   8 |  6.0 |
+|   9 |  5.0 |
+|  10 |  3.0 |
+|  11 | 12.0 |
+|  12 |  7.0 |
+|  13 |  7.0 |
+|  14 |  5.0 |
+|  15 |  7.0 |
+|  16 |  6.0 |
+|  17 |  7.0 |
+|  18 |  4.0 |
+|  19 |  2.0 |
+|  20 |  7.0 |
+|  21 |  7.0 |
+|  22 | 11.0 |
+|  23 | 10.0 |
+|  24 |  9.0 |
+|  25 |  4.0 |
+|  26 |  6.0 |
+|  27 |  9.0 |
+|  28 |  4.0 |
+|  36 |  9.0 |
+|  37 |  8.0 |
+|  38 |  7.0 |
+|  39 |  8.0 |
+|  42 |  8.0 |
+|  44 |  2.0 |
+|  46 |  7.0 |
+|  47 |  4.0 |
+|  48 |  6.0 |
+|  49 |  7.0 |
+|  50 |  7.0 |
+|  51 |  7.0 |
+|  53 |  6.0 |
+|  54 |  6.0 |
+|  55 |  4.0 |
+|  56 |  7.0 |
+|  57 |  5.0 |
+|  58 |  6.0 |
+|  59 |  8.0 |
+|  60 |  9.0 |
+|  61 |  3.0 |
+|  62 |  5.0 |
+|  63 |  9.0 |
+|  64 |  6.0 |
+|  65 |  8.0 |
+|  66 |  7.0 |
+|  67 |  5.0 |
+|  68 |  2.0 |
+|  69 |  7.0 |
+|  70 |  6.0 |
+|  71 |  7.0 |
+|  72 |  4.0 |
+|  73 |  2.0 |
+|  74 |  7.0 |
+|  75 |  8.0 |
+|  76 |  6.0 |
+|  77 | 12.0 |
+|  78 |  7.0 |
+|  79 |  5.0 |
+|  80 |  7.0 |
+|  81 | 12.0 |
+|  82 | 11.0 |
+|  83 | 13.0 |
+|  84 |  6.0 |
+|  93 | 10.0 |
+|  94 |  6.0 |
+|  95 | 10.0 |
+|  96 |  6.0 |
+|  97 |  7.0 |
+|  98 | 10.0 |
+|  99 |  9.0 |
+| 100 |  7.0 |
+| 104 |  4.0 |
+| 105 |  7.0 |
+| 106 |  5.0 |
+| 107 |  5.0 |
+| 108 |  4.0 |
+| 109 |  5.0 |
+| 110 |  6.0 |
+| 111 |  4.0 |
+| 113 |  3.0 |
+| 114 | 11.0 |
+| 115 |  7.0 |
+| 116 |  6.0 |
+| 119 |  8.0 |
+| 120 |  7.0 |
+| 121 |  7.0 |
+| 122 |  7.0 |
+| 123 |  8.0 |
+| 124 |  8.0 |
+| 125 | 13.0 |
+| 126 |  7.0 |
+| 127 |  7.0 |
+| 128 |  7.0 |
+| 129 |  6.0 |
+| 130 |  8.0 |
+| 131 |  9.0 |
+| 132 | 11.0 |
+| 133 |  7.0 |
+| 134 |  7.0 |
+| 135 |  4.0 |
+| 136 |  9.0 |
+| 137 |  8.0 |
+| 138 |  4.0 |
+| 141 |  7.0 |
+| 142 |  6.0 |
+| 143 |  5.0 |
+
+
+Grasslands not processed
+: Id 5 does not exist
+: Id 43 does not exist
+: Id 45 does not exist
+
+*** Computation of the models for each grasslands
+#+BEGIN_SRC python :tangle Codes/cluster_grasslands.py
+import scipy as sp
+import hdda
+from multiprocessing import Pool
+import pickle
+import muesli_functions as mf
+
+# Convenient function
+def ClusterGrasslands(id_,DB,bands,C):
+    # Read samples
+    X = mf.readSamplesId(DB,id_,bands)
+
+    # L1 Normalization
+    X /= X.sum(axis=1)[:,sp.newaxis]
+
+    print("Process Grasslands {0}, number of samples {1}, number of classes".format(id_,X.shape[0],C))
+    # Run HDDA
+    models, icl = [], []
+    for rep in xrange(5): # Do several init 
+        param = {'th':0.1,'tol':0.0001,'random_state':rep,'C':C}
+        model_ = hdda.HDGMM(model='M4')
+        conv = model_.fit(X,param=param)
+        if conv == 1:
+            models.append(model_)
+            icl.append(model_.icl)
+
+    model_ = []
+    # Select the model with the highest ICL
+    t = sp.argmax(icl)
+    model = models
+    # Save the model
+    with open("model_{}".format(id_),'wb') as output:
+        pickle.dump(model,output)
+
+if __name__ == '__main__':
+
+    # Parameters
+    DB = "../Data/grassland_id_2m.sqlite"
+    data = sp.loadtxt("../Res/dicl.csv",delimiter=',',dtype=sp.int16)
+
+    bands = 'band_0'
+    for b in xrange(1,221):
+        bands += ", band_{}".format(b)
+    for b in xrange(259,306):
+        bands += ", band_{}".format(b)
+    for b in xrange(338,415):
+        bands += ", band_{}".format(b)
+
+    # Iteration over the ID
+    pool = Pool(processes=8)
+    [pool.apply_async(ClusterGrasslands,(id_,DB,bands,C,)) for id_,C in data]
+    pool.close()
+    pool.join()
+#+END_SRC
+
+
 * Plot and images
 We can plot the estimated density from the NDVI.
 

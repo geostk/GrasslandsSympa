@@ -40,7 +40,7 @@ def readSamplesId(DB,ID,bands):
 
     # Load samples
     X = []
-    for row in cursor.execute("SELECT {} FROM output WHERE id=?".format(bands),(ID,)):
+    for row in cursor.execute("SELECT {} FROM output WHERE id=?".format(bands),(str(ID),)):
         tp = sp.asarray(row).astype(float)
         if not sp.isnan(tp).any() and tp[0] > 0: # Check for nan values
                 X.append(tp)
