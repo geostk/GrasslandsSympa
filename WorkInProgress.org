@@ -438,7 +438,7 @@ if __name__ == '__main__':
 #+END_SRC
 
 *** Analysis of the ICL    
-#+BEGIN_SRC python :results table
+#+BEGIN_SRC python :results table :exports both
 import scipy as sp
 import matplotlib.pyplot as plt
 import os
