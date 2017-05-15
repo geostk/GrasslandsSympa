@@ -37,7 +37,7 @@ def  ClusterGrasslands(id_,DB,bands,C):
 
 
 if __name__ == '__main__':
-    os.system("export  OMP_NUM_THREADS=1")
+    os.system("export OMP_NUM_THREADS=1")
     
     # Parameters
     DB = "../Data/grassland_id_2m.sqlite"
